@@ -1,9 +1,10 @@
 # CGRA 2020/2021
 
-## Group T0xG0y
-| Name             | Number    | E-Mail             |
-| ---------------- | --------- | ------------------ |
-| John Doe         | 201901010 | ...                |
-| Jane Doe         | 201901011 | ...                |
+## Group T07G03
+
+| Name             | Number    | E-Mail               |
+| ---------------- | --------- | -------------------- |
+| Pedro Correia    | 201905348 | up201905348@fe.up.pt |
+| Catarina Pires   | 201907925 | up201907925@fe.up.pt |
 
 ----
