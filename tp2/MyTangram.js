@@ -139,6 +139,7 @@ export class MyTangram extends CGFobject {
 		this.triangleBig1.display();
 
 		scene.popMatrix();
+		scene.pushMatrix();
 
 		scene.multMatrix([
 		1, 0, 0, 0,
@@ -155,6 +156,8 @@ export class MyTangram extends CGFobject {
 		]); 
 		
 		this.triangleBig2.display();
+		
+		scene.popMatrix();
 	}
 }
 
