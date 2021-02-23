@@ -4,7 +4,5 @@
 
 ## TP 2 Notes
 
-(add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
-
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+- In exercise 1 we initially had some difficulties trying to write the transformation matrices correctly, especially the ones that involved square roots.
+- In exercises 2 and 3 we had no major difficulties and the final result looked like what we were expecting.
