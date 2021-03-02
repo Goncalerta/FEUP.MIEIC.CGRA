@@ -1,10 +1,9 @@
 # CGRA 2020/2021
 
-## Group T0xG0y
+## Group T07G03
 
 ## TP 3 Notes
 
 (add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
 
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+- In the Experiments section, we noticed the differences between the lights and what resulted if some aspects were changed (position, attenuation, colors, shininess, ...). Ambient light did not depend on the object's position nor on the observer's position (because it is constant in every direction); Diffuse light depended on the object position relative to the light source; Especular light depended both on the object position and on the observer's position.
