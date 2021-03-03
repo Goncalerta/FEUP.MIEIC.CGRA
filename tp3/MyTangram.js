@@ -1,9 +1,10 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject, CGFappearance} from '../lib/CGF.js';
 import { MyDiamond } from "./MyDiamond.js";
 import { MyTriangle } from "./MyTriangle.js";
 import { MyTriangleSmall } from "./MyTriangleSmall.js";
 import { MyTriangleBig } from "./MyTriangleBig.js";
 import { MyParallelogram } from "./MyParallelogram.js";
+
 /**
  * MyTangram
  * @constructor
@@ -40,6 +41,15 @@ export class MyTangram extends CGFobject {
 			0, 1, 0, 1,
 		]);
 
+        // this.material_diamond = new CGFappearance(this.scene);
+        // this.material_diamond.setAmbient(0.849, 1.0, 0.1, 1.0);
+        // this.material_diamond.setDiffuse(0.849*0.9, 1.0*0.9, 0.1*0.9, 1.0);
+        // this.material_diamond.setSpecular(0.849, 1.0, 0.1, 1.0);
+        // this.material_diamond.setShininess(11.0);
+        // this.material_diamond.apply();
+
+        this.scene.materials[4].apply();
+
 		this.diamond.display();
 
 		scene.popMatrix();
@@ -58,6 +68,13 @@ export class MyTangram extends CGFobject {
 		0, 0, 1, 0,
 		0, 0, 0, 1,
 		]); 
+
+        this.material_parallelogram = new CGFappearance(this.scene);
+        this.material_parallelogram.setAmbient(1.0, 1.0, 0.2, 1.0);
+        this.material_parallelogram.setDiffuse(1.0*0.9, 1.0*0.9, 0.2*0.9, 1.0);
+        this.material_parallelogram.setSpecular(1.0, 1.0, 0.2, 1.0);
+        this.material_parallelogram.setShininess(11.0);
+        this.material_parallelogram.apply();
 
 		this.parallelogram.display();
 
@@ -78,6 +95,13 @@ export class MyTangram extends CGFobject {
 		0, 0, 1, 0,
 		1, 0, 0, 1,
 		]);
+
+        this.material_triangleSmall1 = new CGFappearance(this.scene);
+        this.material_triangleSmall1.setAmbient(0.37, 0.0, 1.0, 1.0);
+        this.material_triangleSmall1.setDiffuse(0.37*0.9, 0.0, 1.0*0.9, 1.0);
+        this.material_triangleSmall1.setSpecular(0.37, 0.0, 1.0, 1.0);
+        this.material_triangleSmall1.setShininess(11.0);
+        this.material_triangleSmall1.apply();
 
 		this.triangleSmall1.display();
 
@@ -100,6 +124,13 @@ export class MyTangram extends CGFobject {
 		]);
 
 
+        this.material_triangleSmall2 = new CGFappearance(this.scene);
+        this.material_triangleSmall2.setAmbient(1.0, 0.2, 0.2, 1.0);
+        this.material_triangleSmall2.setDiffuse(1.0*0.9, 0.2*0.9, 0.2*0.9, 1.0);
+        this.material_triangleSmall2.setSpecular(1.0, 0.2, 0.2, 1.0);
+        this.material_triangleSmall2.setShininess(11.0);
+        this.material_triangleSmall2.apply();
+
 		this.triangleSmall2.display();
 
 		scene.popMatrix();
@@ -118,6 +149,13 @@ export class MyTangram extends CGFobject {
 		0, 0, 1, 0,
 		0, 0, 0, 1,
 		]); 
+
+        this.material_triangle = new CGFappearance(this.scene);
+        this.material_triangle.setAmbient(1.0, 0.54, 0.8, 1.0);
+        this.material_triangle.setDiffuse(1.0*0.9, 0.54*0.9, 0.8*0.9, 1.0);
+        this.material_triangle.setSpecular(1.0, 0.54, 0.8, 1.0);
+        this.material_triangle.setShininess(11.0);
+        this.material_triangle.apply();
 
 		this.triangle.display();
 
@@ -138,6 +176,13 @@ export class MyTangram extends CGFobject {
 		0, 0, 0, 1,
 		]); 
 		
+        this.material_triangleBig1 = new CGFappearance(this.scene);
+        this.material_triangleBig1.setAmbient(1.0, 0.6, 0.0, 1.0);
+        this.material_triangleBig1.setDiffuse(1.0*0.9, 0.6*0.9, 0.0, 1.0);
+        this.material_triangleBig1.setSpecular(1.0, 0.6, 0.0, 1.0);
+        this.material_triangleBig1.setShininess(11.0);
+        this.material_triangleBig1.apply();
+
 		this.triangleBig1.display();
 
 		scene.popMatrix();
@@ -156,6 +201,13 @@ export class MyTangram extends CGFobject {
 		0, 0, 1, 0,
 		0, 0, 0, 1,
 		]); 
+
+        this.material_triangleBig2 = new CGFappearance(this.scene);
+        this.material_triangleBig2.setAmbient(0.2, 0.6, 1.0, 1.0);
+        this.material_triangleBig2.setDiffuse(0.2*0.9, 0.6*0.9, 1.0*0.9, 1.0);
+        this.material_triangleBig2.setSpecular(0.2, 0.6, 1.0, 1.0);
+        this.material_triangleBig2.setShininess(11.0);
+        this.material_triangleBig2.apply();
 		
 		this.triangleBig2.display();
 		
