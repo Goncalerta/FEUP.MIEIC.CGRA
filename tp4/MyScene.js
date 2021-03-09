@@ -1,6 +1,7 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyQuad } from "./MyQuad.js";
 import { MyTangram } from "./MyTangram.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
  * MyScene
@@ -25,13 +26,6 @@ export class MyScene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
 
-        this.textureLinear = true;
-
-        //Initialize scene objects
-        this.axis = new CGFaxis(this);
-        this.quad = new MyQuad(this);
-        this.tangram = new MyTangram(this);
-
         //------ Applied Material
         this.quadMaterial = new CGFappearance(this);
         this.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -48,9 +42,29 @@ export class MyScene extends CGFscene {
         this.texture3 = new CGFtexture(this, 'images/window.jpg');
         //-------
 
+        // Initialize scene objects
+        this.axis = new CGFaxis(this);
+        this.quad = new MyQuad(this);
+        this.tangram = new MyTangram(this);
+        this.texture_mine_top = new CGFtexture(this, 'images/mineTop.png');
+        this.texture_mine_bot = new CGFtexture(this, 'images/mineBottom.png');
+        this.texture_mine_side = new CGFtexture(this, 'images/mineSide.png');
+        this.cube = new MyUnitCubeQuad(
+            this,
+            this.texture_mine_top,
+            this.texture_mine_side,
+            this.texture_mine_side,
+            this.texture_mine_side,
+            this.texture_mine_side,
+            this.texture_mine_bot,
+        );
+
         //-------Objects connected to MyInterface
         this.displayAxis = true;
         this.displayQuad = false;
+        this.displayTangram = false;
+        this.displayCube = true;
+        this.textureLinear = true;
         this.scaleFactor = 5;
         this.selectedTexture = -1;        
         this.wrapS = 0;
@@ -129,7 +143,9 @@ export class MyScene extends CGFscene {
         // Uncomment next line for NEAREST when magnifying, or 
         // add a checkbox in the GUI to alternate in real time
         
-        if (!this.textureLinear) {
+        if (this.textureLinear) {
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+        } else {
             this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
         }
 
@@ -137,7 +153,13 @@ export class MyScene extends CGFscene {
             this.quad.display();
         }
 
-        this.tangram.display();
+        if (this.displayTangram) {
+            this.tangram.display();
+        }
+
+        if (this.displayCube) {
+            this.cube.display();
+        }
 
         // ---- END Primitive drawing section
     }
