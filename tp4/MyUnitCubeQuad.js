@@ -1,4 +1,4 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject, CGFappearance} from '../lib/CGF.js';
 import {MyQuad} from './MyQuad.js';
 
 /**
@@ -7,12 +7,16 @@ import {MyQuad} from './MyQuad.js';
  * @param scene - Reference to MyScene object
  */
 export class MyUnitCubeQuad extends CGFobject {
-	constructor(scene) {
+	constructor(scene, tex1 = null, tex2 = null, tex3 = null, tex4 = null, tex5 = null, tex6 = null) {
 		super(scene);
         this.quad = new MyQuad(scene);
+        this.tex = [tex1, tex2, tex3, tex4, tex5, tex6];
 	}
 	
+	
 	display() {
+        let material = new CGFappearance(this.scene);
+
         this.scene.pushMatrix();
 
         this.scene.multMatrix([
@@ -22,6 +26,9 @@ export class MyUnitCubeQuad extends CGFobject {
 			0, 0, 0.5, 1,
 		]);
 
+        material.setTexture(this.tex[1]);
+        material.apply();
+        
         this.quad.display();
         this.scene.popMatrix();
         this.scene.pushMatrix();
@@ -40,10 +47,20 @@ export class MyUnitCubeQuad extends CGFobject {
 			0, 0, 0, 1,
 		]);
 
+        material.setTexture(this.tex[5]);
+        material.apply();
+
         this.quad.display();
         this.scene.popMatrix();
         this.scene.pushMatrix();
         
+        this.scene.multMatrix([
+            Math.cos(Math.PI), Math.sin(Math.PI), 0, 0,
+			-Math.sin(Math.PI), Math.cos(Math.PI), 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1,
+		]);
+
         this.scene.multMatrix([
             1, 0, 0, 0,
 			0, 1, 0, 0,
@@ -57,6 +74,9 @@ export class MyUnitCubeQuad extends CGFobject {
 			0, -Math.sin(Math.PI), Math.cos(Math.PI), 0,
 			0, 0, 0, 1,
 		]);
+
+        material.setTexture(this.tex[3]);
+        material.apply();
 
         this.quad.display();
         this.scene.popMatrix();
@@ -76,6 +96,10 @@ export class MyUnitCubeQuad extends CGFobject {
 			0, 0, 0, 1,
 		]);
 
+        
+        material.setTexture(this.tex[0]);
+        material.apply();
+       
         this.quad.display();
         this.scene.popMatrix();
         this.scene.pushMatrix();
@@ -94,6 +118,9 @@ export class MyUnitCubeQuad extends CGFobject {
 			0, 0, 0, 1,
 		]);
 
+        material.setTexture(this.tex[2]);
+        material.apply();
+
         this.quad.display();
         this.scene.popMatrix();
         this.scene.pushMatrix();
@@ -111,6 +138,9 @@ export class MyUnitCubeQuad extends CGFobject {
 			Math.sin(-Math.PI/2), 0, Math.cos(-Math.PI/2), 0,
 			0, 0, 0, 1,
 		]);
+
+        material.setTexture(this.tex[4]);
+        material.apply();
 
         this.quad.display();
         this.scene.popMatrix();
