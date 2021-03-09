@@ -5,9 +5,10 @@ import {CGFobject} from '../lib/CGF.js';
  * @param scene - Reference to MyScene object
  */
 export class MyTriangleBig extends CGFobject {
-	constructor(scene) {
+	constructor(scene, texCoords) {
 		super(scene);
-		this.initBuffers();
+		this.texCoords = texCoords;
+        this.initBuffers();
 	}
 	
 	initBuffers() {
@@ -26,12 +27,6 @@ export class MyTriangleBig extends CGFobject {
             0, 0, 1,
             0, 0, 1,
             0, 0, 1,
-        ];
-
-        this.texCoords = [
-            0, 0,
-            0.5, 0.5,
-            1, 0
         ];
 
 		//The defined indices (and corresponding vertices)
