@@ -1,5 +1,6 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyQuad } from "./MyQuad.js";
+import { MyTangram } from "./MyTangram.js";
 
 /**
  * MyScene
@@ -29,6 +30,7 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.quad = new MyQuad(this);
+        this.tangram = new MyTangram(this);
 
         //------ Applied Material
         this.quadMaterial = new CGFappearance(this);
@@ -134,6 +136,8 @@ export class MyScene extends CGFscene {
         if (this.displayQuad) {
             this.quad.display();
         }
+
+        this.tangram.display();
 
         // ---- END Primitive drawing section
     }
