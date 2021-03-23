@@ -97,9 +97,9 @@ export class ShaderScene extends CGFscene {
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
 		this.testShaders[4].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[5].setUniformsValues({ uSampler2: 1 });
-		this.testShaders[6].setUniformsValues({ uSampler2: 1 });
-		this.testShaders[6].setUniformsValues({ timeFactor: 0 });
-        this.testShaders[11].setUniformsValues({ timeFactor: 0 });
+		this.testShaders[6].setUniformsValues({ uSampler2: 1, timeFactor: 0 });
+		this.testShaders[11].setUniformsValues({ uSampler2: 1, timeFactor: 0 });
+
 
 		// Shaders interface variables
 
