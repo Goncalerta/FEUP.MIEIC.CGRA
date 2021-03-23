@@ -15,12 +15,14 @@ uniform float normScale;
 
 void main() {
 	vec3 offset=vec3(0.0,0.0,0.0);
-	
+	vec3 sin_offset=vec3(0, 0, sin(aVertexPosition.x / 10.0)*normScale);
+    //vec3 sin_offset=vec3(sin(aVertexPosition.x / 10.0)*normScale, 0, 0);
+
 	vTextureCoord = aTextureCoord;
 
-	if (texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord).b > 0.5)
-		offset=aVertexNormal*normScale*0.1*sin(timeFactor);
+	//if (texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord).b > 0.5)
+	//	offset=aVertexNormal*normScale*0.1*sin(timeFactor);
 
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition+offset, 1.0);
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition+offset+sin_offset, 1.0);
 }
 
