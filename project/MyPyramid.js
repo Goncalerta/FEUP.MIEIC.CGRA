@@ -13,6 +13,7 @@ export class MyPyramid extends CGFobject {
         this.stacks = stacks;
         this.initBuffers();
     }
+    
     initBuffers() {
         this.vertices = [];
         this.indices = [];
@@ -67,6 +68,8 @@ export class MyPyramid extends CGFobject {
     }
 
     display() {
+        // Transformations so that MyPyramid complies with the 
+        // restrictions imposed by MyMovingObject.
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2, 1, 0, 0);
         this.scene.translate(0, -0.5, 0);

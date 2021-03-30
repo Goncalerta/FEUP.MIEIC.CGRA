@@ -4,7 +4,9 @@
 
 ## Project Notes
 
-(add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
+### Part A 
 
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+#### 1. Moving Object
+
+- In this part we learned how to detect user input from the keyboard to affect our scene.
+- We also learned how to create movable objects that change position and orientation over time.
