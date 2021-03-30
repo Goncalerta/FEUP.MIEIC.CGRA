@@ -21,6 +21,30 @@ export class MyInterface extends CGFinterface {
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
 
+        this.initKeys();
         return true;
+    }
+
+    initKeys() {
+        this.scene.gui = this;
+        this.processKeyboard = function() {};
+        this.activeKeys = {};
+    }
+
+    processKeyDown(event) {
+        this.activeKeys[event.code] = true;
+    }
+
+    processKeyUp(event) {
+        this.activeKeys[event.code] = false;
+    }
+
+    isKeyPressed(keyCode) {
+        if (this.activeKeys[keyCode] === true && (keyCode == "keyL" || keyCode == "keyP")) {
+            this.activeKeys[keyCode] = false;
+            return true;
+        }
+
+        return this.activeKeys[keyCode] || false;
     }
 }

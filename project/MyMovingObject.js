@@ -10,6 +10,7 @@ import {CGFobject} from '../lib/CGF.js';
 export class MyMovingObject extends CGFobject {
     constructor(scene, object) {
         super(scene);
+        this.reset();
         this.object = object;
         this.initBuffers();
     }
@@ -24,8 +25,36 @@ export class MyMovingObject extends CGFobject {
         this.object.updateBuffers(complexity);
     }
 
+    update() {
+        let directionVect = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
+        
+        for (let i = 0; i < 3; i++) {
+            this.position[i] += this.speed * directionVect[i];
+        }
+    }
+
+    turn(val) {
+        this.orientation += val;
+    }
+
+    accelerate(val) {
+        this.speed += val;
+        if (this.speed < 0) this.speed = 0;
+    }
+
+    reset() {
+        this.position = [0, 0, 0];
+        this.speed = 0;
+        this.orientation = 0;
+    }
+
     display() {
+        this.scene.pushMatrix();
+        this.scene.translate(...this.position);
+        this.scene.rotate(this.orientation, 0, 1, 0);
+        
         this.object.display();
+        this.scene.popMatrix();
     }
 }
 
