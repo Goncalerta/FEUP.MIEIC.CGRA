@@ -136,10 +136,14 @@ export class MyScene extends CGFscene {
 
         // This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
-        //this.movingObject.display();
+        this.movingObject.display();
 
-        //this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
+        let CUBE_MAP_LENGTH = 50;
+        this.pushMatrix();
+        this.translate(...this.camera.position);
+        this.scale(CUBE_MAP_LENGTH, CUBE_MAP_LENGTH, CUBE_MAP_LENGTH);
         this.cubeMap.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }

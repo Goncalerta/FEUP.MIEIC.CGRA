@@ -5,25 +5,37 @@ import {MyQuad} from './MyQuad.js';
  * MyUnitCubeQuad
  * @constructor
  * @param scene - Reference to MyScene object
+ * @param texturePY - Texture of +Y side.
+ * @param texturePZ - Texture of +Z side.
+ * @param texturePX - Texture of +X side.
+ * @param textureNZ - Texture of -Z side.
+ * @param textureNX - Texture of -X side.
+ * @param textureNY - Texture of -Y side.
  */
 export class MyUnitCubeQuad extends CGFobject {
-	constructor(scene, tex1 = null, tex2 = null, tex3 = null, tex4 = null, tex5 = null, tex6 = null) {
+	constructor(scene, texturePY = null, texturePZ = null, texturePX = null, textureNZ = null, textureNX = null, textureNY = null) {
 		super(scene);
         this.quad = new MyQuad(scene);
-        this.tex = [tex1, tex2, tex3, tex4, tex5, tex6];
+        this.textures = [texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY];
         this.material = new CGFappearance(this.scene);
     }
 	
-    displayFace(angle, top_or_bottom, textureIndex) {
+    /**
+     * Displays a single face of the cube.
+     * @param angle The angle needed to rotate from the +Z face to the side to display.
+     * @param topOrBottom Whether the face is one of top or bottom (otherwise, it's a side face).
+     * @param textureIndex The index of the texture to display (from the `this.textures` array).
+     */
+    displayFace(angle, topOrBottom, textureIndex) {
         this.scene.pushMatrix();
-        if (top_or_bottom) {
+        if (topOrBottom) {
             this.scene.rotate(angle, 1, 0, 0);
         } else {
             this.scene.rotate(angle, 0, 1, 0);
         }
         this.scene.translate(0, 0, 0.5);
         
-        this.material.setTexture(this.tex[textureIndex]);
+        this.material.setTexture(this.textures[textureIndex]);
         this.material.apply();
         this.quad.display();
         this.scene.popMatrix();
