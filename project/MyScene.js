@@ -3,7 +3,6 @@ import { MyCubeMap } from "./MyCubeMap.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
-import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
 * MyScene
@@ -35,21 +34,13 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
         this.cubeMap = new MyCubeMap(this, 
-            new CGFtexture(this, 'images/car_cubemap/top.png'),
-            new CGFtexture(this, 'images/car_cubemap/back.png'),
-            new CGFtexture(this, 'images/car_cubemap/right.png'),
-            new CGFtexture(this, 'images/car_cubemap/front.png'),
-            new CGFtexture(this, 'images/car_cubemap/left.png'),
-            new CGFtexture(this, 'images/car_cubemap/bottom.png')
+            new CGFtexture(this, 'images/canyon_cubemap/top.png'),
+            new CGFtexture(this, 'images/canyon_cubemap/back.png'),
+            new CGFtexture(this, 'images/canyon_cubemap/right.png'),
+            new CGFtexture(this, 'images/canyon_cubemap/front.png'),
+            new CGFtexture(this, 'images/canyon_cubemap/left.png'),
+            new CGFtexture(this, 'images/canyon_cubemap/bottom.png')
         );
-        // this.cubeMap = new MyCubeMap(this, 
-        //     new CGFtexture(this, 'images/test_cubemap/py.png'),
-        //     new CGFtexture(this, 'images/test_cubemap/pz.png'),
-        //     new CGFtexture(this, 'images/test_cubemap/px.png'),
-        //     new CGFtexture(this, 'images/test_cubemap/nz.png'),
-        //     new CGFtexture(this, 'images/test_cubemap/nx.png'),
-        //     new CGFtexture(this, 'images/test_cubemap/ny.png')
-        // );
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
