@@ -34,19 +34,19 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
         this.cubeMap = new MyCubeMap(this, 
-            new CGFtexture(this, 'images/test_cubemap/py.png'),
-            new CGFtexture(this, 'images/test_cubemap/pz.png'),
-            new CGFtexture(this, 'images/test_cubemap/px.png'),
-            new CGFtexture(this, 'images/test_cubemap/nz.png'),
-            new CGFtexture(this, 'images/test_cubemap/nx.png'),
-            new CGFtexture(this, 'images/test_cubemap/ny.png')
+            new CGFtexture(this, 'images/demo_cubemap/top.png'),
+            new CGFtexture(this, 'images/demo_cubemap/back.png'),
+            new CGFtexture(this, 'images/demo_cubemap/right.png'),
+            new CGFtexture(this, 'images/demo_cubemap/front.png'),
+            new CGFtexture(this, 'images/demo_cubemap/left.png'),
+            new CGFtexture(this, 'images/demo_cubemap/bottom.png')
         );
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.defaultAppearance.setEmission(0,0,0,1);
+        this.defaultAppearance.setEmission(0, 0, 0, 1);
 		this.defaultAppearance.setShininess(120);
 
 		this.sphereAppearance = new CGFappearance(this);

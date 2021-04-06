@@ -54,6 +54,7 @@ export class MyCubeMap extends CGFobject {
 			0, 0, 0, 1,
 		]);
 
+        this.scene.rotate(Math.PI, 0, 0, 1);
         
         material.setTexture(this.tex[0]);
         material.apply();
@@ -165,6 +166,8 @@ export class MyCubeMap extends CGFobject {
 			0, -Math.sin(Math.PI/2), Math.cos(Math.PI/2), 0,
 			0, 0, 0, 1,
 		]);
+
+        this.scene.rotate(Math.PI, 0, 0, 1);
 
         material.setTexture(this.tex[5]);
         material.apply();
