@@ -35,12 +35,12 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
         this.cubeMap = new MyCubeMap(this, 
-            new CGFtexture(this, 'images/demo_cubemap/top.png'),
-            new CGFtexture(this, 'images/demo_cubemap/back.png'),
-            new CGFtexture(this, 'images/demo_cubemap/right.png'),
-            new CGFtexture(this, 'images/demo_cubemap/front.png'),
-            new CGFtexture(this, 'images/demo_cubemap/left.png'),
-            new CGFtexture(this, 'images/demo_cubemap/bottom.png')
+            new CGFtexture(this, 'images/car_cubemap/top.png'),
+            new CGFtexture(this, 'images/car_cubemap/back.png'),
+            new CGFtexture(this, 'images/car_cubemap/right.png'),
+            new CGFtexture(this, 'images/car_cubemap/front.png'),
+            new CGFtexture(this, 'images/car_cubemap/left.png'),
+            new CGFtexture(this, 'images/car_cubemap/bottom.png')
         );
         // this.cubeMap = new MyCubeMap(this, 
         //     new CGFtexture(this, 'images/test_cubemap/py.png'),
