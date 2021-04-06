@@ -13,7 +13,7 @@ export class MyPyramid extends CGFobject {
         this.stacks = stacks;
         this.initBuffers();
     }
-    
+
     initBuffers() {
         this.vertices = [];
         this.indices = [];

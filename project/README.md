@@ -4,7 +4,7 @@
 
 ## Project Notes
 
-### Part A 
+### Part A
 
 #### 1. Moving Object
 

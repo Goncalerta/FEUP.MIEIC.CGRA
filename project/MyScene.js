@@ -1,4 +1,5 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
+import { MyCubeMap } from "./MyCubeMap.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
@@ -16,7 +17,7 @@ export class MyScene extends CGFscene {
         this.initCameras();
         this.initLights();
 
-        //Background color
+        // Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
         this.gl.clearDepth(100.0);
@@ -28,10 +29,18 @@ export class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
-        //Initialize scene objects
+        // Initialize scene objects
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+        this.cubeMap = new MyCubeMap(this, 
+            new CGFtexture(this, 'images/test_cubemap/py.png'),
+            new CGFtexture(this, 'images/test_cubemap/pz.png'),
+            new CGFtexture(this, 'images/test_cubemap/px.png'),
+            new CGFtexture(this, 'images/test_cubemap/nz.png'),
+            new CGFtexture(this, 'images/test_cubemap/nx.png'),
+            new CGFtexture(this, 'images/test_cubemap/ny.png')
+        );
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -47,7 +56,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setShininess(120);
 
 
-        //Objects connected to MyInterface
+        // Objects connected to MyInterface
         this.displayAxis = true;
     }
     initLights() {
@@ -64,11 +73,11 @@ export class MyScene extends CGFscene {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setEmission(0,0,0,1);
+        this.setEmission(0, 0, 0, 1);
         this.setShininess(10.0);
     }
 
-    // called periodically (as per setUpdatePeriod() in init())
+    // Called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
         this.movingObject.update();
@@ -116,9 +125,12 @@ export class MyScene extends CGFscene {
         this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
 
-        //This sphere does not have defined texture coordinates
+        // This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
-        this.movingObject.display();
+        //this.movingObject.display();
+
+        this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
+        this.cubeMap.display();
 
         // ---- END Primitive drawing section
     }
