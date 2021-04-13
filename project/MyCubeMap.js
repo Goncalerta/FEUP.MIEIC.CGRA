@@ -68,6 +68,16 @@ export class MyCubeMap extends CGFobject {
         this.displayFace(Math.PI/2, true, 5);
     }
 
+    /**
+     * @method updateTextures
+     * Updates the textures of this MyCubeMap.
+     * @param texturePY - Texture of +Y side.
+     * @param texturePZ - Texture of +Z side.
+     * @param texturePX - Texture of +X side.
+     * @param textureNZ - Texture of -Z side.
+     * @param textureNX - Texture of -X side.
+     * @param textureNY - Texture of -Y side.
+     */
     updateTextures(texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY) {
         this.textures = [texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY];
     }
