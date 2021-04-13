@@ -16,8 +16,8 @@ export class MyCubeMap extends CGFobject {
     constructor(scene, texturePY = null, texturePZ = null, texturePX = null, textureNZ = null, textureNX = null, textureNY = null) {
 		super(scene);
         this.quad = new MyQuad(scene);
-        this.textures = [texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY];
         
+        this.updateTextures(texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY);
         this.initMaterial();
     }
 
@@ -66,5 +66,9 @@ export class MyCubeMap extends CGFobject {
         }
 
         this.displayFace(Math.PI/2, true, 5);
+    }
+
+    updateTextures(texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY) {
+        this.textures = [texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY];
     }
 }

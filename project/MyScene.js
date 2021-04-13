@@ -34,14 +34,22 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
-        this.cubeMap = new MyCubeMap(this, 
-            new CGFtexture(this, 'images/canyon_cubemap/top.png'),
-            new CGFtexture(this, 'images/canyon_cubemap/back.png'),
-            new CGFtexture(this, 'images/canyon_cubemap/right.png'),
-            new CGFtexture(this, 'images/canyon_cubemap/front.png'),
-            new CGFtexture(this, 'images/canyon_cubemap/left.png'),
-            new CGFtexture(this, 'images/canyon_cubemap/bottom.png')
-        );
+
+        this.cubeMapTextures = [];
+        let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
+        for (let textureName of cubeMapTextureNames) {
+            let cubeMapTexture = [
+                new CGFtexture(this, 'images/' + textureName + '/top.png'),
+                new CGFtexture(this, 'images/' + textureName + '/back.png'),
+                new CGFtexture(this, 'images/' + textureName + '/right.png'),
+                new CGFtexture(this, 'images/' + textureName + '/front.png'),
+                new CGFtexture(this, 'images/' + textureName + '/left.png'),
+                new CGFtexture(this, 'images/' + textureName + '/bottom.png'),
+            ];
+            this.cubeMapTextures.push(cubeMapTexture);
+        }
+        
+        this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -60,6 +68,12 @@ export class MyScene extends CGFscene {
 
         // Objects connected to MyInterface
         this.displayAxis = true;
+        this.selectedCubeMap = 0;
+
+        this.cubeMapIds = {};
+        for (let textureIndex in cubeMapTextureNames) {
+            this.cubeMapIds[cubeMapTextureNames[textureIndex]] = textureIndex;
+        }
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -77,6 +91,10 @@ export class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setEmission(0, 0, 0, 1);
         this.setShininess(10.0);
+    }
+    
+    updateCubeMap() {
+        this.cubeMap.updateTextures(...this.cubeMapTextures[this.selectedCubeMap]);
     }
 
     // Called periodically (as per setUpdatePeriod() in init())
