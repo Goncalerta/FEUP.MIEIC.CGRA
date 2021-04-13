@@ -129,7 +129,7 @@ export class MyScene extends CGFscene {
         //this.incompleteSphere.display();
         this.movingObject.display();
 
-        let CUBE_MAP_LENGTH = 50;
+        let CUBE_MAP_LENGTH = 500;
         this.pushMatrix();
         this.translate(...this.camera.position);
         this.scale(CUBE_MAP_LENGTH, CUBE_MAP_LENGTH, CUBE_MAP_LENGTH);
