@@ -1,5 +1,6 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MyCubeMap } from "./MyCubeMap.js";
+import { MyCylinder } from "./MyCylinder.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
@@ -127,7 +128,7 @@ export class MyScene extends CGFscene {
 
         // This sphere does not have defined texture coordinates
         //this.incompleteSphere.display();
-        this.movingObject.display();
+        //this.movingObject.display();
 
         let CUBE_MAP_LENGTH = 500;
         this.pushMatrix();
