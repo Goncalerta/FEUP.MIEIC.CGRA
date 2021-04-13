@@ -24,12 +24,13 @@ export class MyMovingObject extends CGFobject {
 
     /**
      * Updates the velocity based on the orientation and speed.
+     * @param speedFactor - A factor to control the speed.
      */
-    updateVelocity() {
+    updateVelocity(speedFactor) {
         let directionVect = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
         
         for (let i = 0; i < 3; i++) {
-            this.position[i] += this.speed * directionVect[i];
+            this.position[i] += speedFactor * this.speed * directionVect[i];
         }
     }
 

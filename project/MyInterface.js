@@ -27,6 +27,9 @@ export class MyInterface extends CGFinterface {
         // Slider for moving object scaleFactor
         this.gui.add(this.scene, 'movingObjectScaleFactor', 0.5, 3, 0.1).name('scaleFactor').onChange(this.scene.updateMovingObject.bind(this.scene));
         
+        // Slider for moving object speedFactor
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3, 0.1).name('speedFactor');
+        
         this.initKeys();
         return true;
     }

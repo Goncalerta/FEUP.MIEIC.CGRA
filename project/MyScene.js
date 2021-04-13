@@ -34,8 +34,7 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
-        this.movingObjectScaleFactor = 1;
-        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10), this.movingObjectScaleFactor);
+        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
 
         this.cubeMapTextures = [];
         let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
@@ -71,6 +70,8 @@ export class MyScene extends CGFscene {
         // Objects connected to MyInterface
         this.displayAxis = true;
         this.selectedCubeMap = 0;
+        this.movingObjectScaleFactor = 1;
+        this.speedFactor = 1;
 
         this.cubeMapIds = {};
         for (let textureIndex in cubeMapTextureNames) {
@@ -106,7 +107,7 @@ export class MyScene extends CGFscene {
     // Called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingObject.updateVelocity();
+        this.movingObject.updateVelocity(this.speedFactor);
     }
 
     checkKeys() {
