@@ -32,7 +32,7 @@ export class MyScene extends CGFscene {
 
         // Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
+        this.sphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
         this.cubeMap = new MyCubeMap(this, 
             new CGFtexture(this, 'images/canyon_cubemap/top.png'),
@@ -55,6 +55,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
+        this.sphereAppearance.setTexture(new CGFtexture(this, 'images/earth.jpg'));
 
 
         // Objects connected to MyInterface
@@ -117,17 +118,15 @@ export class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
         
-        
         this.defaultAppearance.apply();
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
 
-        this.sphereAppearance.apply();
         // ---- BEGIN Primitive drawing section
 
-        // This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
+        this.sphereAppearance.apply();
+        this.sphere.display();
         //this.movingObject.display();
 
         let CUBE_MAP_LENGTH = 500;
