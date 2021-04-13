@@ -33,7 +33,9 @@ export class MyScene extends CGFscene {
         // Initialize scene objects
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
-        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+
+        this.movingObjectScaleFactor = 1;
+        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10), this.movingObjectScaleFactor);
 
         this.cubeMapTextures = [];
         let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
@@ -97,10 +99,14 @@ export class MyScene extends CGFscene {
         this.cubeMap.updateTextures(...this.cubeMapTextures[this.selectedCubeMap]);
     }
 
+    updateMovingObject() {
+        this.movingObject.updateScaleFactor(this.movingObjectScaleFactor);
+    }
+
     // Called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
-        this.movingObject.update();
+        this.movingObject.updateVelocity();
     }
 
     checkKeys() {
@@ -143,9 +149,10 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.sphereAppearance.apply();
-        this.sphere.display();
-        //this.movingObject.display();
+        this.movingObject.display();
+
+        //this.sphereAppearance.apply();
+        //this.sphere.display();
 
         let CUBE_MAP_LENGTH = 500;
         this.pushMatrix();

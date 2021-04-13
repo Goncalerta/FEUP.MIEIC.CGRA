@@ -18,12 +18,15 @@ export class MyInterface extends CGFinterface {
         
         var obj = this;
 
-        //Checkbox element in GUI
+        // Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
 
-        //Dropdown for textures
+        // Dropdown for textures
         this.gui.add(this.scene, 'selectedCubeMap', this.scene.cubeMapIds).name('Selected CubeMap').onChange(this.scene.updateCubeMap.bind(this.scene));
 
+        // Slider for moving object scaleFactor
+        this.gui.add(this.scene, 'movingObjectScaleFactor', 0.5, 3, 0.1).name('scaleFactor').onChange(this.scene.updateMovingObject.bind(this.scene));
+        
         this.initKeys();
         return true;
     }

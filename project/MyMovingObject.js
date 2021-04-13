@@ -7,10 +7,11 @@ import {CGFobject} from '../lib/CGF.js';
  * @param object - The CGFobject that will be moved and displayed on screen. 
  */
 export class MyMovingObject extends CGFobject {
-    constructor(scene, object) {
+    constructor(scene, object, scaleFactor = 1) {
         super(scene);
         this.reset();
         this.object = object;
+        this.scaleFactor = scaleFactor;
         this.initBuffers();
     }
 
@@ -24,7 +25,7 @@ export class MyMovingObject extends CGFobject {
     /**
      * Updates the velocity based on the orientation and speed.
      */
-    update() {
+    updateVelocity() {
         let directionVect = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
         
         for (let i = 0; i < 3; i++) {
@@ -62,7 +63,12 @@ export class MyMovingObject extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(...this.position);
         this.scene.rotate(this.orientation, 0, 1, 0);
+        this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.object.display();
         this.scene.popMatrix();
+    }
+
+    updateScaleFactor(scaleFactor) {
+        this.scaleFactor = scaleFactor;
     }
 }
