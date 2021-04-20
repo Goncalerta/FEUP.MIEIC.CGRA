@@ -157,7 +157,7 @@ export class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         this.pushMatrix();
-        //this.translate(0, 3, 0);
+        this.translate(0, 3, 0);
         this.fish.display();
         this.popMatrix();
 

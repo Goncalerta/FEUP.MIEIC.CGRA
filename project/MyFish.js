@@ -81,7 +81,7 @@ export class MyFish extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        //this.scene.scale(0.15625, 0.15625, 0.15625);
+        this.scene.scale(0.15625, 0.15625, 0.15625);
 
         // Eyes
         this.display_eye(true);
