@@ -5,6 +5,7 @@ import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
 * MyScene
@@ -153,7 +154,10 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+        this.pushMatrix();
+        this.translate(0, 3, 0);
         this.fish.display();
+        this.popMatrix();
 
         //this.movingObject.display();
 
