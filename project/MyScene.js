@@ -4,6 +4,7 @@ import { MyCylinder } from "./MyCylinder.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
+import { MyFish } from "./MyFish.js";
 
 /**
 * MyScene
@@ -37,7 +38,8 @@ export class MyScene extends CGFscene {
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
 
         this.cubeMapTextures = [];
-        let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
+        //let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
+        let cubeMapTextureNames = [];
         for (let textureName of cubeMapTextureNames) {
             let cubeMapTexture = [
                 new CGFtexture(this, 'images/' + textureName + '/top.png'),
@@ -50,7 +52,7 @@ export class MyScene extends CGFscene {
             this.cubeMapTextures.push(cubeMapTexture);
         }
         
-        this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
+        //this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -66,6 +68,7 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setShininess(120);
         this.sphereAppearance.setTexture(new CGFtexture(this, 'images/earth.jpg'));
 
+        this.fish = new MyFish(this);
 
         // Objects connected to MyInterface
         this.displayAxis = true;
@@ -150,17 +153,19 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.movingObject.display();
+        this.fish.display();
 
-        //this.sphereAppearance.apply();
+        //this.movingObject.display();
+
+        // this.sphereAppearance.apply();
         //this.sphere.display();
 
-        let CUBE_MAP_LENGTH = 500;
-        this.pushMatrix();
-        this.translate(...this.camera.position);
-        this.scale(CUBE_MAP_LENGTH, CUBE_MAP_LENGTH, CUBE_MAP_LENGTH);
-        this.cubeMap.display();
-        this.popMatrix();
+        //let CUBE_MAP_LENGTH = 500;
+        //this.pushMatrix();
+        //this.translate(...this.camera.position);
+        //this.scale(CUBE_MAP_LENGTH, CUBE_MAP_LENGTH, CUBE_MAP_LENGTH);
+        //this.cubeMap.display();
+        //this.popMatrix();
 
         // ---- END Primitive drawing section
     }
