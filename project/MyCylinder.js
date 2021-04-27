@@ -44,6 +44,8 @@ export class MyCylinder extends CGFobject {
         // Add final vertices, which are in the same position of the first two
         this.vertices.push(1, 0, 0);
         this.vertices.push(1, 1, 0);
+        this.normals.push(1, 0, 0);
+        this.normals.push(1, 0, 0);
         this.texCoords.push(1, 1);
         this.texCoords.push(1, 0);
 
