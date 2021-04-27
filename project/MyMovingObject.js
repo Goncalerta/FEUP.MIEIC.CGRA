@@ -12,14 +12,6 @@ export class MyMovingObject extends CGFobject {
         this.reset();
         this.object = object;
         this.scaleFactor = scaleFactor;
-        this.initBuffers();
-    }
-
-    /**
-     * Initializes buffers of the inner object.
-     */
-    initBuffers() {
-        this.object.initBuffers();
     }
 
     /**

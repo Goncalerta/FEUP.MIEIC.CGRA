@@ -50,15 +50,6 @@ export class MyFish extends CGFobject {
         this.t = 0;
     }
 
-    /**
-     * Initializes buffers of the inner object.
-     */
-    initBuffers() {
-        this.body.initBuffers();
-        this.eye.initBuffers();
-        this.fin.initBuffers();
-    }
-
     display_eye(left) {
         this.scene.pushMatrix();
 
