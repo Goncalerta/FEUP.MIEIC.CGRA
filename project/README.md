@@ -35,3 +35,10 @@
 - In order to change the scaleFactor of the moving object without changing its position, we had to scale it inside the display function. As such, we created a scaleFactor parameter in the moving object that was updated when the user changes its value in the slider.
 
 ## Screenshots
+
+### 1 - MyFish
+
+![Screenshot 1a](screenshots/proj-t7g03-1a.png)
+![Screenshot 1b](screenshots/proj-t7g03-1b.png)
+![Screenshot 1c](screenshots/proj-t7g03-1c.png)
+
