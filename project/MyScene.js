@@ -56,14 +56,14 @@ export class MyScene extends CGFscene {
 
         this.cubeMapTextures = [];
         this.cubeMapTextureNames = [
-            ['underwater_cubemap', 'png'], 
-            ['demo_cubemap', 'jpg'], 
-            ['test_cubemap', 'jpg'],
-            ['canyon_cubemap', 'jpg'],
-            ['car_cubemap', 'jpg'],
-            ['desert_cubemap', 'jpg'],
+            ['underwater_cubemap', 'jpg'], 
+            ['demo_cubemap', 'png'], 
+            ['test_cubemap', 'png'],
+            ['canyon_cubemap', 'png'],
+            ['car_cubemap', 'png'],
+            ['desert_cubemap', 'png'],
         ];
-        for (let textureName of this.cubeMapTextureNames) {
+        for (let _ in this.cubeMapTextureNames) {
             // Textures will be loaded lazily
             // so that startup is not so slow
             this.cubeMapTextures.push(null);
@@ -210,12 +210,12 @@ export class MyScene extends CGFscene {
         // this.sphereAppearance.apply();
         //this.sphere.display();
 
-        //let CUBE_MAP_LENGTH = 500;
-        //this.pushMatrix();
-        //this.translate(...this.camera.position);
-        //this.scale(CUBE_MAP_LENGTH, CUBE_MAP_LENGTH, CUBE_MAP_LENGTH);
-        //this.cubeMap.display();
-        //this.popMatrix();
+        let CUBE_MAP_LENGTH = 500;
+        this.pushMatrix();
+        this.translate(...this.camera.position);
+        this.scale(CUBE_MAP_LENGTH, CUBE_MAP_LENGTH, CUBE_MAP_LENGTH);
+        this.cubeMap.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
