@@ -1,16 +1,17 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture, CGFshader } from "../lib/CGF.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
+import { MySeaFloor } from "./MySeaFloor.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 export class MyScene extends CGFscene {
     constructor() {
         super();
@@ -55,6 +56,30 @@ export class MyScene extends CGFscene {
         
         //this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
+
+        // Sea Floor and its Apperance
+        // TODO: Garantee maximum height does not go beyond Y=1 (verification in shader)
+        // TODO: Pass maximum height or height offset to shader (uniform)
+        this.seaFloor = new MySeaFloor(this, 50);
+
+        this.seaFloorAppearance = new CGFappearance(this);
+		this.seaFloorAppearance.setAmbient(0.3, 0.3, 0.3, 1);
+		this.seaFloorAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
+		this.seaFloorAppearance.setSpecular(0.0, 0.0, 0.0, 1);
+		this.seaFloorAppearance.setShininess(120);
+
+		this.texture = new CGFtexture(this, "images/sand.png");
+		this.seaFloorAppearance.setTexture(this.texture);
+		this.seaFloorAppearance.setTextureWrap('REPEAT', 'REPEAT');
+		this.texture2 = new CGFtexture(this, "images/sandMap.png");
+
+		// shaders initialization
+		this.shader = new CGFshader(this.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
+
+		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
+		this.shader.setUniformsValues({ uSampler2: 1});
+
+
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.defaultAppearance.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -89,7 +114,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(1.7, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
 
     setDefaultAppearance() {
@@ -149,17 +174,29 @@ export class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
         
-        this.defaultAppearance.apply();
+        //this.defaultAppearance.apply();
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
 
         // ---- BEGIN Primitive drawing section
 
-        this.pushMatrix();
+        /*this.pushMatrix();
         this.translate(0, 3, 0);
         this.fish.display();
-        this.popMatrix();
+        this.popMatrix();*/
+
+        
+        this.seaFloorAppearance.apply();
+        this.setActiveShader(this.shader);
+        this.texture2.bind(1);
+
+        this.pushMatrix();
+        this.scale(50, 50, 50, 0);
+        this.rotate(-Math.PI/2, 1, 0, 0);
+		this.seaFloor.display();
+		this.popMatrix();
+
 
         //this.movingObject.display();
 
@@ -174,5 +211,7 @@ export class MyScene extends CGFscene {
         //this.popMatrix();
 
         // ---- END Primitive drawing section
+
+        this.setActiveShader(this.defaultShader);
     }
 }
