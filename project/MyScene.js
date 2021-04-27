@@ -6,6 +6,7 @@ import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
+import { MyWaterSurface } from "./MyWaterSurface.js";
 
 /**
 * MyScene
@@ -37,6 +38,8 @@ export class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
 
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+        this.fish = new MyFish(this);
+        this.waterSurface = new MyWaterSurface(this, 10, 20, 0.3, 0.3);
 
         this.cubeMapTextures = [];
         //let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
@@ -68,8 +71,6 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
         this.sphereAppearance.setTexture(new CGFtexture(this, 'images/earth.jpg'));
-
-        this.fish = new MyFish(this);
 
         // Objects connected to MyInterface
         this.displayAxis = true;
@@ -112,7 +113,7 @@ export class MyScene extends CGFscene {
     update(t) {
         this.checkKeys();
         this.movingObject.updateVelocity(this.speedFactor);
-
+        this.waterSurface.updateAnimation(t);
         this.fish.updateAnimation(t);
     }
 
@@ -160,6 +161,8 @@ export class MyScene extends CGFscene {
         this.translate(0, 3, 0);
         this.fish.display();
         this.popMatrix();
+
+        this.waterSurface.display();
 
         //this.movingObject.display();
 
