@@ -1,4 +1,4 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject, CGFtexture} from '../lib/CGF.js';
 import {CGFappearance} from '../lib/CGF.js';
 import {MyCylinder} from './MyCylinder.js'
 
@@ -16,14 +16,17 @@ import {MyCylinder} from './MyCylinder.js'
         this.z = z;
         this.radius = radius;
         this.height = height;
-        this.cylinder = new MyCylinder(this.scene, cylinderSlices);
+        this.cylinder = new MyCylinder(this.scene, cylinderSlices, height*2);
 
         this.appearance = new CGFappearance(this.scene);
-        this.appearance.setAmbient(0.52, 0.37, 0.26, 1.0);
-        this.appearance.setDiffuse(0.52*0.4, 0.37*0.4, 0.26*0.4, 1.0);
+        this.appearance.setAmbient(1, 0.90, 0.85, 1);
+		this.appearance.setDiffuse(0.52*0.4, 0.37*0.4, 0.26*0.4, 1.0);
 		this.appearance.setSpecular(0.52*0.2, 0.37*0.2, 0.26*0.2, 1.0);
 		this.appearance.setShininess(11.0);
-        //this.appearance.setTexture(new CGFtexture(this.scene, 'images/pier.jpg'));
+        // From
+        // http://www.cadhatch.com/seamless-bark-textures/4588167786
+        // Bark-0497
+        this.appearance.setTexture(new CGFtexture(this.scene, 'images/tree.jpg'));
     }
 
     display() {

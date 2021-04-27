@@ -6,9 +6,10 @@ import {CGFobject} from '../lib/CGF.js';
  * @param slices - Number of divisions around the Y axis.
  */
 export class MyCylinder extends CGFobject {
-    constructor(scene, slices) {
+    constructor(scene, slices, textureHeight=1) {
         super(scene);
         this.slices = slices;
+        this.textureHeight = textureHeight;
         this.initBuffers();
     }
 
@@ -36,7 +37,7 @@ export class MyCylinder extends CGFobject {
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             
-            this.texCoords.push(i/this.slices, 1);
+            this.texCoords.push(i/this.slices, this.textureHeight);
             this.texCoords.push(i/this.slices, 0);
             
             ang += alphaAng;
@@ -46,7 +47,7 @@ export class MyCylinder extends CGFobject {
         this.vertices.push(1, 1, 0);
         this.normals.push(1, 0, 0);
         this.normals.push(1, 0, 0);
-        this.texCoords.push(1, 1);
+        this.texCoords.push(1, this.textureHeight);
         this.texCoords.push(1, 0);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
