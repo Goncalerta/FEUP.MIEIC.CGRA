@@ -17,8 +17,6 @@ export class MyRockSet extends CGFobject {
         this.maxX = maxX;
         this.minZ = minZ;
         this.maxZ = maxZ;
-        this.sphereSlices = sphereSlices;
-        this.sphereStacks = sphereStacks;
 
         this.rockAppearance = new CGFappearance(this.scene);
         this.rockAppearance.setAmbient(0.3, 0.3, 0.3, 1);
@@ -26,10 +24,10 @@ export class MyRockSet extends CGFobject {
 		this.rockAppearance.setSpecular(1.0, 1.0, 1.0, 1);
 		this.rockAppearance.setShininess(3);
 
-        this.initRocks();
+        this.initRocks(sphereSlices, sphereStacks);
     }
 
-    initRocks() {
+    initRocks(sphereSlices, sphereStacks) {
         this.rocks = [];
         this.rockPositions = [];
         this.rockAngles = [];
@@ -42,7 +40,7 @@ export class MyRockSet extends CGFobject {
         let deltaScale = maxScale - minScale;
 
         for (let i = 0; i < this.numRocks; i++) {
-            this.rocks.push(new MyRock(this.scene, this.sphereSlices, this.sphereStacks, 0.5, 1));
+            this.rocks.push(new MyRock(this.scene, sphereSlices, sphereStacks, 0.5, 1));
             let x = Math.random() * deltaX + this.minX;
             let z = Math.random() * deltaZ + this.minZ;
             let angle = Math.random() * 2 * Math.PI;

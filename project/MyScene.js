@@ -9,6 +9,7 @@ import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
+import { MyPillar } from "./MyPillar.js";
 
 /**
 * MyScene
@@ -42,6 +43,15 @@ export class MyScene extends CGFscene {
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
         this.rockSet = new MyRockSet(this, 30, -5, 5, -5, 5, 10, 10);
         this.fish = new MyFish(this);
+        
+        this.pillars = [];
+        for (let x = 2; x <= 9; x+=3.5) {
+            this.pillars.push(
+                new MyPillar(this, x, -0.25, 0.2, 10, 20),
+                new MyPillar(this, x, -1.25, 0.2, 10, 20),
+            );
+        }
+
         this.waterSurface = new MyWaterSurface(this, 10, 20, 0.3, 0.3);
 
         this.cubeMapTextures = [];
@@ -168,6 +178,10 @@ export class MyScene extends CGFscene {
         this.waterSurface.display();
 
         this.rockSet.display();
+
+        for (let pillar of this.pillars) {
+            pillar.display();
+        }
 
         //this.movingObject.display();
 
