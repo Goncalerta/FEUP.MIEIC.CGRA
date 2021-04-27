@@ -8,6 +8,7 @@ import { MyFish } from "./MyFish.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRock } from "./MyRock.js";
+import { MyRockSet } from "./MyRockSet.js";
 
 /**
 * MyScene
@@ -39,7 +40,7 @@ export class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
 
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
-        this.rock = new MyRock(this, 8, 8, 0.14, 0.2);
+        this.rockSet = new MyRockSet(this, 30, -5, 5, -5, 5, 10, 10);
         this.fish = new MyFish(this);
         this.waterSurface = new MyWaterSurface(this, 10, 20, 0.3, 0.3);
 
@@ -73,12 +74,6 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(1);
         this.sphereAppearance.setTexture(new CGFtexture(this, 'images/earth.jpg'));
-
-        this.rockAppearance = new CGFappearance(this);
-        this.rockAppearance.setAmbient(0.3, 0.3, 0.3, 1);
-		this.rockAppearance.setDiffuse(0.2, 0.2, 0.2, 1);
-		this.rockAppearance.setSpecular(1.0, 1.0, 1.0, 1);
-		this.rockAppearance.setShininess(3);
 
         // Objects connected to MyInterface
         this.displayAxis = true;
@@ -172,8 +167,7 @@ export class MyScene extends CGFscene {
 
         this.waterSurface.display();
 
-        this.rockAppearance.apply();
-        this.rock.display();
+        this.rockSet.display();
 
         //this.movingObject.display();
 
