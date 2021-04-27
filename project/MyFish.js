@@ -14,9 +14,15 @@ import { MyTriangle } from './MyTriangle.js';
 export class MyFish extends CGFobject {
     constructor(scene) {
         super(scene);
+
+        // Body ratio in relation to the fish y axis
+        this.xDistortion = 0.6;
+        this.zDistortion = 1.6;
         
         this.body = new MySphere(scene, 20, 20);
-        this.bodyShader = new CGFshader(this.scene.gl, "shaders/fish_body.vert", "shaders/fish_body.frag"),
+        this.bodyShader = new CGFshader(this.scene.gl, "shaders/fish_body.vert", "shaders/fish_body.frag");
+        this.bodyShader.setUniformsValues({ xDistortion: this.xDistortion, zDistortion: this.zDistortion });
+        
         this.fishAppearance = new CGFappearance(this.scene);
 		this.fishAppearance.setAmbient(0.8, 0, 0, 1);
 		this.fishAppearance.setDiffuse(0.8, 0, 0, 1);
@@ -35,6 +41,11 @@ export class MyFish extends CGFobject {
         this.eye = new MySphere(scene, 20, 20);
 
         this.fin = new MyTriangle(scene);
+
+        this.finspeed = 1/400;
+        this.tailspeed = 1/160;
+        this.finphase = 0;
+        this.tailphase = 0.9;
 
         this.t = 0;
     }
@@ -63,11 +74,12 @@ export class MyFish extends CGFobject {
 
     display_lateral_fin(left, t) {
         this.scene.pushMatrix();
-        this.scene.translate(left? 0.6:-0.6, -0.5, 0);
+        this.scene.translate(left? 0.6 : -0.6, -0.5, 0);
         this.scene.scale(0.5, 0.5, 0.5);
         this.scene.translate(0, Math.sqrt(0.5), 0);
 
-        let rotation_angle = Math.PI/10 + Math.cos(this.t/400)*Math.cos(this.t/400)*Math.PI/5;
+        let rotation_state = this.t * this.finspeed + this.finphase;
+        let rotation_angle = Math.PI/10 + Math.cos(rotation_state)*Math.cos(rotation_state)*Math.PI/5;
         this.scene.rotate(left? rotation_angle:-rotation_angle, 0, 0, 1);
         this.scene.translate(0, -Math.sqrt(0.5), 0);
         this.scene.rotate(Math.PI/4, 1, 0, 0);
@@ -81,7 +93,8 @@ export class MyFish extends CGFobject {
 
     display() {
         this.scene.pushMatrix();
-        this.scene.scale(0.15625, 0.15625, 0.15625);
+        let fishscale = 0.5/(2*this.zDistortion);
+        this.scene.scale(fishscale, fishscale, fishscale);
 
         // Eyes
         this.display_eye(true);
@@ -92,7 +105,8 @@ export class MyFish extends CGFobject {
         // Tail
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -1.6);
-        let rotation_angle = Math.cos((this.t+150)/160)*Math.PI/9;
+        let rotation_state = this.t * this.tailspeed + this.tailphase;
+        let rotation_angle = Math.cos(rotation_state)*Math.PI/9;
         this.scene.rotate(rotation_angle, 0, 1, 0);
         this.scene.translate(0, 0, -1);
         this.fin.display();
@@ -100,7 +114,7 @@ export class MyFish extends CGFobject {
 
         // Top fin
         this.scene.pushMatrix();
-        this.scene.translate(0, (1+Math.sqrt(2))/2, 0);
+        this.scene.translate(0, (1 + Math.sqrt(2))/2, 0);
         this.scene.scale(-0.5, 0.5, -0.5);
         this.scene.rotate(Math.PI/4, 1, 0, 0);
         this.fin.display();
