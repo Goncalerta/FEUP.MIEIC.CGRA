@@ -55,21 +55,22 @@ export class MyScene extends CGFscene {
         this.waterSurface = new MyWaterSurface(this, 10, 20, 0.3, 0.3);
 
         this.cubeMapTextures = [];
-        //let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
-        let cubeMapTextureNames = [];
-        for (let textureName of cubeMapTextureNames) {
-            let cubeMapTexture = [
-                new CGFtexture(this, 'images/' + textureName + '/top.png'),
-                new CGFtexture(this, 'images/' + textureName + '/back.png'),
-                new CGFtexture(this, 'images/' + textureName + '/right.png'),
-                new CGFtexture(this, 'images/' + textureName + '/front.png'),
-                new CGFtexture(this, 'images/' + textureName + '/left.png'),
-                new CGFtexture(this, 'images/' + textureName + '/bottom.png'),
-            ];
-            this.cubeMapTextures.push(cubeMapTexture);
+        this.cubeMapTextureNames = [
+            ['underwater_cubemap', 'png'], 
+            ['demo_cubemap', 'jpg'], 
+            ['test_cubemap', 'jpg'],
+            ['canyon_cubemap', 'jpg'],
+            ['car_cubemap', 'jpg'],
+            ['desert_cubemap', 'jpg'],
+        ];
+        for (let textureName of this.cubeMapTextureNames) {
+            // Textures will be loaded lazily
+            // so that startup is not so slow
+            this.cubeMapTextures.push(null);
         }
         
-        //this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
+        this.loadCubeMap(0, this.cubeMapTextureNames[0][0], this.cubeMapTextureNames[0][1]);
+        this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -92,8 +93,8 @@ export class MyScene extends CGFscene {
         this.speedFactor = 1;
 
         this.cubeMapIds = {};
-        for (let textureIndex in cubeMapTextureNames) {
-            this.cubeMapIds[cubeMapTextureNames[textureIndex]] = textureIndex;
+        for (let textureIndex in this.cubeMapTextureNames) {
+            this.cubeMapIds[this.cubeMapTextureNames[textureIndex][0]] = textureIndex;
         }
     }
     initLights() {
@@ -114,8 +115,29 @@ export class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     
+    loadCubeMap(index, textureName, fileExtension) {
+        this.cubeMapTextures[index] = [
+            new CGFtexture(this, 'images/' + textureName + '/top.' + fileExtension),
+            new CGFtexture(this, 'images/' + textureName + '/back.' + fileExtension),
+            new CGFtexture(this, 'images/' + textureName + '/right.' + fileExtension),
+            new CGFtexture(this, 'images/' + textureName + '/front.' + fileExtension),
+            new CGFtexture(this, 'images/' + textureName + '/left.' + fileExtension),
+            new CGFtexture(this, 'images/' + textureName + '/bottom.' + fileExtension),
+        ];
+        return this.cubeMapTextures[index];
+    }
+
     updateCubeMap() {
-        this.cubeMap.updateTextures(...this.cubeMapTextures[this.selectedCubeMap]);
+        let index = this.selectedCubeMap;
+        let cubemap = this.cubeMapTextures[index];
+        if (cubemap == null) {
+            cubemap = this.loadCubeMap(
+                this.selectedCubeMap, 
+                this.cubeMapTextureNames[index][0], 
+                this.cubeMapTextureNames[index][1]
+            );
+        }
+        this.cubeMap.updateTextures(...cubemap);
     }
 
     updateMovingObject() {
