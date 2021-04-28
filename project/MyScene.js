@@ -71,10 +71,10 @@ export class MyScene extends CGFscene {
 		this.seaFloorAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.seaFloorAppearance.setShininess(120);
 
-		this.texture = new CGFtexture(this, "images/sand.png");
+		this.texture = new CGFtexture(this, "images/sand_with_shell.png");
 		this.seaFloorAppearance.setTexture(this.texture);
 		this.seaFloorAppearance.setTextureWrap('REPEAT', 'REPEAT');
-		this.texture2 = new CGFtexture(this, "images/sandMap.png");
+		this.texture2 = new CGFtexture(this, "images/sandMap_with_shell.png");
 
 		// shaders initialization
 		this.shader = new CGFshader(this.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
