@@ -1,6 +1,6 @@
 import { CGFobject } from '../lib/CGF.js';
-import {CGFappearance} from '../lib/CGF.js';
-import { MySeaweed } from './MySeaweed.js';
+import { CGFappearance } from '../lib/CGF.js';
+import { MyPyramid } from './MyPyramid.js';
 
 export class MySeaweedSet extends CGFobject {
     /**
@@ -8,6 +8,10 @@ export class MySeaweedSet extends CGFobject {
      * @param  {CGFscene} scene - MyScene object
      * @param  {integer} slices - number of slices around Y axis
      * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+     * @param  {integer} minX - minimum X
+     * @param  {integer} maxX - maximum X
+     * @param  {integer} minZ - minimum Z
+     * @param  {integer} maxZ - maximum Z
      */
     constructor(scene, numSeaweed, minX, maxX, minZ, maxZ) {
         super(scene);
@@ -37,6 +41,10 @@ export class MySeaweedSet extends CGFobject {
         this.initSeaweed();
     }
 
+    /**
+     * Creates numSeaweed number of seaweeds.
+     * Generates random positions limited by minimum and maximum of X and Y and dimensions for each seaweed.
+     */
     initSeaweed() {
         this.seaweeds = [];
         this.seaweedPositions = [];
@@ -52,7 +60,8 @@ export class MySeaweedSet extends CGFobject {
         for (let i = 0; i < this.numSeaweed; i++) {
 
             let slices = Math.floor(Math.random() * 3) + 3;
-            this.seaweeds.push(new MySeaweed(this.scene, slices, slices));
+            let height = Math.random() * 2 + 3;
+            this.seaweeds.push(new MyPyramid(this.scene, height, slices, slices));
             let x = Math.random() * deltaX + this.minX;
             let z = Math.random() * deltaZ + this.minZ;
             let angle = Math.random() * 2 * Math.PI;

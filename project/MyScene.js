@@ -38,7 +38,7 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
-        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 1, 10, 10));
 
         this.seaweedSet = new MySeaweedSet(this, 20, -22, 22, -22, 22);
 
