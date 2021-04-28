@@ -6,6 +6,7 @@ import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
+import { MySeaweedSet } from "./MySeaweedSet.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
@@ -38,6 +39,8 @@ export class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
 
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+
+        this.seaweedSet = new MySeaweedSet(this, 20, -22, 22, -22, 22);
 
         this.cubeMapTextures = [];
         //let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
@@ -197,6 +200,9 @@ export class MyScene extends CGFscene {
 		this.seaFloor.display();
 		this.popMatrix();
 
+        this.setActiveShader(this.defaultShader);
+ 
+        this.seaweedSet.display();
 
         //this.movingObject.display();
 
