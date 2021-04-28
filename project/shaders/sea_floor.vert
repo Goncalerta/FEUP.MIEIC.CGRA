@@ -8,6 +8,7 @@ uniform mat4 uNMatrix;
 
 varying vec2 vTextureCoord;
 uniform sampler2D uSampler2;
+uniform float maxHeightY;
 
 void main() {
 
@@ -17,6 +18,11 @@ void main() {
 
 	if (texture2D(uSampler2, vec2(0.0,0.1) + vTextureCoord).b > 0.5)
 		offset = aVertexNormal * 0.007;
+
+
+	if (aVertexPosition.b + offset.b > maxHeightY) {
+		offset.b = maxHeightY - aVertexPosition.b;
+	}
 
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 

@@ -77,7 +77,7 @@ export class MyScene extends CGFscene {
 		this.shader = new CGFshader(this.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
-		this.shader.setUniformsValues({ uSampler2: 1});
+		this.shader.setUniformsValues({ uSampler2: 1, maxHeightY: 1.0});
 
 
         this.defaultAppearance = new CGFappearance(this);

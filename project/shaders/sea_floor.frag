@@ -15,5 +15,4 @@ void main() {
 		color = color * vec4(0.9, 0.9, 0.9, 1);
 	
 	gl_FragColor = color;
-
 }
