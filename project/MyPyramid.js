@@ -1,16 +1,14 @@
 import {CGFobject} from '../lib/CGF.js';
 /**
- * MyPyramid
- * @constructor
+* MyPyramid
+* @constructor
  * @param scene - Reference to MyScene object
- * @param height - height of the pyramid
  * @param slices - number of divisions around the Y axis
  * @param stacks - number of divisions along the Y axis
- */
+*/
 export class MyPyramid extends CGFobject {
-    constructor(scene, height, slices, stacks) {
+    constructor(scene, slices, stacks) {
         super(scene);
-        this.height = height;
         this.slices = slices;
         this.stacks = stacks;
         this.initBuffers();
@@ -34,7 +32,7 @@ export class MyPyramid extends CGFobject {
             var ca=Math.cos(ang);
             var caa=Math.cos(ang+alphaAng);
 
-            this.vertices.push(0 , this.height, 0);
+            this.vertices.push(0,1,0);
             this.vertices.push(ca, 0, -sa);
             this.vertices.push(caa, 0, -saa);
 
@@ -91,5 +89,3 @@ export class MyPyramid extends CGFobject {
         this.initNormalVizBuffers();
     }
 }
-
-

@@ -2,14 +2,8 @@ import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
 import { MyPlane } from './MyPlane.js';
 import { MySphere } from './MySphere.js';
 /**
- * MySeaFloor
+ * MyFishNest
  * @constructor
- * @param scene - Reference to MyScene object
- * @param nDivs - number of divisions in both directions of the surface
- * @param minS - minimum texture coordinate in S
- * @param maxS - maximum texture coordinate in S
- * @param minT - minimum texture coordinate in T
- * @param maxT - maximum texture coordinate in T
  */
 export class MyFishNest extends CGFobject {
 	constructor(scene, x, z, radius) {
