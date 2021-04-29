@@ -30,7 +30,6 @@ export class MyFish extends CGFobject {
 		this.fishAppearance.setShininess(5);
         this.fishAppearance.setTexture(new CGFtexture(this.scene, 'images/fishbody_texture.jfif'));
 
-
         this.eyeAppearance = new CGFappearance(this.scene);
 		this.eyeAppearance.setAmbient(0.3, 0.3, 0.3, 1);
 		this.eyeAppearance.setDiffuse(0.7, 0.7, 0.7, 1);

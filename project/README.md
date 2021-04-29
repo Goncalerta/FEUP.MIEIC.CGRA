@@ -34,4 +34,21 @@
 - We renamed the textures in the folder images/test_cubemap so that they had the same name as the other cubemaps, in order to be able to use a for loop that loads all textures.
 - In order to change the scaleFactor of the moving object without changing its position, we had to scale it inside the display function. As such, we created a scaleFactor parameter in the moving object that was updated when the user changes its value in the slider.
 
+#### 4. MyFish
+
+- To create the shader for the fish body, we based it on the 'doubletext' shader from TP5. The main differences are: distortion of the sphere in the fish_body shader, we used the aVertexPosition to split the head and body rather than gl_Position (so as not to depend on the camera position nor on the distortion), and a texture was used for the body instead of another solid color.
+- Because the sphere (without distortion) has a diameter of 2, 40% of it is 0.8: this is the size we chose for the head (the body is 1.2). Because the sphere is centered at the origin, this corresponds to a split at z=0.2.
+- We created the fins and tails by applying geometric transformations to a double-sided triangle and used a material with the same color as the body.
+- For the eyes we used a sphere with a texture created by us (fisheye.png) and applied geometrical transformations to it.
+- The whole fish is scaled by a factor of 0.5/(2*zDistortion), where zDistortion=1.6 is the amount of distortion in the z axis we applied to the unit radius sphere. This factor is used so that the length of the fish in scene is around 0.5 units.
+- In order to animate fins and tail, we created the MyFish.updateAnimation() function, called in MyScene.update() to pass to the fish the current time. This time is used to calculate a rotation state based on constant parameters such as the fins/tail velocity and initial phase. We used the cossines of this rotations states to calculate the angles so that the animation is periodic. The tail moves between angles +-Math.PI/9 where angle 0 is when the tail is at the center. The fins move (each in its direction) between Math.PI/10 and (Math.PI/10+Math.PI/5), where angle 0 is when the fins are pointing downwards.
+
 ## Screenshots
+
+### 1 - MyFish
+
+![Screenshot 1a](screenshots/proj-t7g03-1a.png)
+![Screenshot 1b](screenshots/proj-t7g03-1b.png)
+![Screenshot 1c](screenshots/proj-t7g03-1c.png)
+![Screenshot 1d](screenshots/proj-t7g03-1d.png)
+![Screenshot 1e](screenshots/proj-t7g03-1e.png)

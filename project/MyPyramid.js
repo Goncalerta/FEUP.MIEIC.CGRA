@@ -89,5 +89,3 @@ export class MyPyramid extends CGFobject {
         this.initNormalVizBuffers();
     }
 }
-
-

@@ -5,16 +5,20 @@ import { MyMovingObject } from "./MyMovingObject.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
+import { MySeaFloor } from "./MySeaFloor.js";
+import { MyFishNest } from "./MyFishNest.js";
+import { MySeaweedSet } from "./MySeaweedSet.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
 import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
+import { MySeaweed } from "./MySeaweed.js";
 
 /**
-* MyScene
-* @constructor
-*/
+ * MyScene
+ * @constructor
+ */
 export class MyScene extends CGFscene {
     constructor() {
         super();
@@ -54,6 +58,8 @@ export class MyScene extends CGFscene {
 
         this.waterSurface = new MyWaterSurface(this, 10, 20, 0.3, 0.3);
 
+        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.3, 0.5, 1.85, 0.2);
+
         this.cubeMapTextures = [];
         this.cubeMapTextureNames = [
             ['underwater_cubemap', 'jpg'], 
@@ -71,6 +77,9 @@ export class MyScene extends CGFscene {
         
         this.loadCubeMap(0, this.cubeMapTextureNames[0][0], this.cubeMapTextureNames[0][1]);
         this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
+
+        this.seaFloor = new MySeaFloor(this, 50, 50, 1);
+        this.fishNest = new MyFishNest(this, 11.5, -8.2, 2.25);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -185,17 +194,22 @@ export class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
         
-        this.defaultAppearance.apply();
+        //this.defaultAppearance.apply();
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
 
         // ---- BEGIN Primitive drawing section
 
-        this.pushMatrix();
+        /*this.pushMatrix();
         this.translate(0, 3, 0);
         this.fish.display();
-        this.popMatrix();
+        this.popMatrix();*/
+
+        
+        this.seaFloor.display();
+        this.fishNest.display();
+        this.seaweedSet.display();
 
         this.waterSurface.display();
 
