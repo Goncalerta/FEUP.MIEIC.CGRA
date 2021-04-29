@@ -6,12 +6,14 @@ export class MySeaweed extends CGFobject {
     /**
      * @method constructor
      * @param  {CGFscene} scene - MyScene object
-     * @param  {integer} slices - number of slices around Y axis
-     * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
-     * @param  {integer} minX - minimum X
-     * @param  {integer} maxX - maximum X
-     * @param  {integer} minZ - minimum Z
-     * @param  {integer} maxZ - maximum Z
+     * @param  {integer} x - X coordinate of the object's position
+     * @param  {integer} z - Z coordinate of the object's position
+     * @param  {integer} numSeaweed - Number of seaweeds
+     * @param  {float} minRadius - Minimum radius of the object
+     * @param  {float} maxRadius - Maximum radius of the object
+     * @param  {float} minHeight - Minimum height of the object
+     * @param  {float} maxHeight - Maximum height of the object
+     * @param  {float} maxDisplacement - Maximum displacement of the object from the given x and z
      */
     constructor(scene, x, z, numSeaweed, minRadius, maxRadius, minHeight, maxHeight, maxDisplacement) {
         super(scene);

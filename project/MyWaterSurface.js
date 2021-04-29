@@ -6,13 +6,16 @@ import {MySphere} from './MySphere.js';
 import { MyTriangle } from './MyTriangle.js';
 import { MyQuad } from './MyQuad.js';
 
-/**
- * MyMovingObject
- * @constructor
- * @param scene - Reference to MyScene object
- * @param object - The CGFobject that will be moved and displayed on screen. 
- */
 export class MyWaterSurface extends CGFobject {
+    /**
+     * MyWaterSurface
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object
+     * @param  {integer} y - Y coordinate of the surface's position
+     * @param  {integer} size - Size of the side of the surface
+     * @param  {float} distortion - Maximum displacement of the distortion map
+     * @param  {float} waterSpeed - Speed of the water movement
+     */
     constructor(scene, y, size, distortion, waterSpeed) {
         super(scene);
 

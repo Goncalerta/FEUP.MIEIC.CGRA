@@ -1,16 +1,16 @@
 import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
 import { MyPlane } from './MyPlane.js';
-/**
- * MySeaFloor
- * @constructor
- * @param scene - Reference to MyScene object
- * @param nDivs - number of divisions in both directions of the surface
- * @param minS - minimum texture coordinate in S
- * @param maxS - maximum texture coordinate in S
- * @param minT - minimum texture coordinate in T
- * @param maxT - maximum texture coordinate in T
- */
+
 export class MySeaFloor extends CGFobject {
+
+	/**
+  	 * MySeaFloor
+	 * @constructor
+ 	 * @param  {CGFscene} scene - Reference to MyScene object
+	 * @param  {integer} size - Size of the side of the surface
+ 	 * @param  {integer} nDivs - Number of divisions in both directions of the surface
+ 	 * @param  {integer} maxHeightY - Maximum displacement of the texture in coordinate Y
+ 	 */	
 	constructor(scene, size, nrDivs, maxHeightY) {
 		super(scene);
 

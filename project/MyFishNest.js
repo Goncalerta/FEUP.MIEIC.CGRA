@@ -1,11 +1,16 @@
 import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
 import { MyPlane } from './MyPlane.js';
 import { MySphere } from './MySphere.js';
-/**
- * MyFishNest
- * @constructor
- */
+
 export class MyFishNest extends CGFobject {
+    /**
+     * MyFishNest
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object 
+     * @param  {integer} x - X coordinate of the object's position
+     * @param  {integer} z - Y coordinate of the object's position
+     * @param  {float} radius - Radius of the object
+     */
 	constructor(scene, x, z, radius) {
 		super(scene);
 
