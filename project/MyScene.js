@@ -6,6 +6,7 @@ import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
+import { MySeaweedSet } from "./MySeaweedSet.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
@@ -37,7 +38,9 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
-        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 1, 10, 10));
+
+        this.seaweedSet = new MySeaweedSet(this, 20, -22, 22, -22, 22);
 
         this.cubeMapTextures = [];
         //let cubeMapTextureNames = ['demo_cubemap', 'test_cubemap', 'canyon_cubemap', 'car_cubemap', 'desert_cubemap'];
@@ -68,16 +71,16 @@ export class MyScene extends CGFscene {
 		this.seaFloorAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.seaFloorAppearance.setShininess(120);
 
-		this.texture = new CGFtexture(this, "images/sand.png");
+		this.texture = new CGFtexture(this, "images/sand_with_shell.png");
 		this.seaFloorAppearance.setTexture(this.texture);
 		this.seaFloorAppearance.setTextureWrap('REPEAT', 'REPEAT');
-		this.texture2 = new CGFtexture(this, "images/sandMap.png");
+		this.texture2 = new CGFtexture(this, "images/sandMap_with_shell.png");
 
 		// shaders initialization
 		this.shader = new CGFshader(this.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
-		this.shader.setUniformsValues({ uSampler2: 1});
+		this.shader.setUniformsValues({ uSampler2: 1, maxHeightY: 1.0});
 
 
         this.defaultAppearance = new CGFappearance(this);
@@ -197,6 +200,9 @@ export class MyScene extends CGFscene {
 		this.seaFloor.display();
 		this.popMatrix();
 
+        this.setActiveShader(this.defaultShader);
+ 
+        this.seaweedSet.display();
 
         //this.movingObject.display();
 

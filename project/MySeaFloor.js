@@ -24,6 +24,7 @@ export class MySeaFloor extends CGFobject {
 		this.w = (this.maxT - this.minT) / this.nrDivs;
 		this.initBuffers();
 	}
+
 	initBuffers() {
 		// Generate vertices, normals, and texCoords
 		this.vertices = [];
@@ -63,11 +64,9 @@ export class MySeaFloor extends CGFobject {
 		this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
 	}
 
-	setLineMode() 
-	{ 
+	setLineMode() { 
 		this.primitiveType=this.scene.gl.LINES;
-	};
-
+	}
 }
 
 
