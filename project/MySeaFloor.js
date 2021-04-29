@@ -1,4 +1,5 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
+import { MyPlane } from './MyPlane.js';
 /**
  * MySeaFloor
  * @constructor
@@ -10,63 +11,38 @@ import {CGFobject} from '../lib/CGF.js';
  * @param maxT - maximum texture coordinate in T
  */
 export class MySeaFloor extends CGFobject {
-	constructor(scene, nrDivs, minS, maxS, minT, maxT) {
+	constructor(scene, size, nrDivs, maxHeightY) {
 		super(scene);
-		// nrDivs = 1 if not provided
-		nrDivs = typeof nrDivs !== 'undefined' ? nrDivs : 1;
-		this.nrDivs = nrDivs;
-		this.patchLength = 1.0 / nrDivs;
-		this.minS = minS || 0;
-		this.maxS = maxS || 1;
-		this.minT = minT || 0;
-		this.maxT = maxT || 1;
-		this.q = (this.maxS - this.minS) / this.nrDivs;
-		this.w = (this.maxT - this.minT) / this.nrDivs;
-		this.initBuffers();
+
+		this.size = size;
+        this.floor = new MyPlane(scene, nrDivs);
+
+        this.texture = new CGFtexture(this.scene, "images/sand_with_shell.png");
+		this.sandmap = new CGFtexture(this.scene, "images/sandMap_with_shell.png");
+
+        this.appearance = new CGFappearance(this.scene);
+		this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
+		this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
+		this.appearance.setSpecular(0.0, 0.0, 0.0, 1);
+		this.appearance.setShininess(1);
+        this.appearance.setTexture(this.texture);
+		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
+
+		this.shader = new CGFshader(this.scene.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
+		this.shader.setUniformsValues({ heightMap: 1, maxHeightY: maxHeightY});
 	}
 
-	initBuffers() {
-		// Generate vertices, normals, and texCoords
-		this.vertices = [];
-		this.normals = [];
-		this.texCoords = [];
-		var yCoord = 0.5;
-		for (var j = 0; j <= this.nrDivs; j++) {
-			var xCoord = -0.5;
-			for (var i = 0; i <= this.nrDivs; i++) {
-				this.vertices.push(xCoord, yCoord, 0);
-				this.normals.push(0, 0, 1);
-				this.texCoords.push(this.minS + i * this.q, this.minT + j * this.w);
-				xCoord += this.patchLength;
-			}
-			yCoord -= this.patchLength;
-		}
-		// Generating indices
-		this.indices = [];
+    display() {
+        this.appearance.apply();
+        this.scene.setActiveShader(this.shader);
+        this.sandmap.bind(1);
 
-		var ind = 0;
-		for (var j = 0; j < this.nrDivs; j++) {
-			for (var i = 0; i <= this.nrDivs; i++) {
-				this.indices.push(ind);
-				this.indices.push(ind + this.nrDivs + 1);
-				ind++;
-			}
-			if (j + 1 < this.nrDivs) {
-				this.indices.push(ind + this.nrDivs);
-				this.indices.push(ind);
-			}
-		}
-		this.primitiveType = this.scene.gl.TRIANGLE_STRIP;
-		this.initGLBuffers();
-	}
+        this.scene.pushMatrix();
+        this.scene.scale(this.size, 1, this.size);
+        this.scene.rotate(-Math.PI/2, 1, 0, 0);
+		this.floor.display();
+		this.scene.popMatrix();
 
-	setFillMode() { 
-		this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
-	}
-
-	setLineMode() { 
-		this.primitiveType=this.scene.gl.LINES;
-	}
+        this.scene.setActiveShader(this.scene.defaultShader);
+    }
 }
-
-

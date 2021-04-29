@@ -5,14 +5,15 @@ precision highp float;
 varying vec2 vTextureCoord;
 
 uniform sampler2D uSampler;
-uniform sampler2D uSampler2;
+uniform sampler2D heightMap;
 
 void main() {
     vec4 color = texture2D(uSampler, vTextureCoord);
-	vec4 filter = texture2D(uSampler2, vec2(0.0,0.1) + vTextureCoord);
+    float filter = texture2D(heightMap, vTextureCoord).b;
 
-	if (filter.b > 0.5)
-		color = color * vec4(0.9, 0.9, 0.9, 1);
-	
-	gl_FragColor = color;
+    // TODO sombreamento
+    if (filter < 0.48)
+        color = color * vec4(0.9, 0.9, 0.9, 1);
+
+    gl_FragColor = color;
 }
