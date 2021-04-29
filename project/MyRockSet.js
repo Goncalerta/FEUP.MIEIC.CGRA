@@ -58,7 +58,7 @@ export class MyRockSet extends CGFobject {
         for (let i = 0; i < this.numRocks; i++) {
             this.scene.pushMatrix();
 
-            this.scene.translate(this.rockPositions[3*i], 0, this.rockPositions[3*i + 1]);
+            this.scene.translate(this.rockPositions[2*i], 0.8*this.rockDimensions[3*i + 1], this.rockPositions[2*i + 1]);
             this.scene.rotate(this.rockAngles[i], 1, 0, 0);
             this.scene.scale(this.rockDimensions[3*i], this.rockDimensions[3*i + 1], this.rockDimensions[3*i + 2]);
             

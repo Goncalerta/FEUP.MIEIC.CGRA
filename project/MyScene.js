@@ -45,20 +45,20 @@ export class MyScene extends CGFscene {
         this.sphere = new MySphere(this, 16, 8);
 
         this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
-        this.rockSet = new MyRockSet(this, 30, -5, 5, -5, 5, 10, 10);
+        this.rockSet = new MyRockSet(this, 30, -22, 22, -22, 22, 10, 10);
         this.fish = new MyFish(this);
         
         this.pillars = [];
-        for (let x = 2; x <= 9; x+=3.5) {
+        for (let x = 3.5; x <= 25; x+=6) {
             this.pillars.push(
-                new MyPillar(this, x, -0.25, 0.2, 10, 20),
-                new MyPillar(this, x, -1.25, 0.2, 10, 20),
+                new MyPillar(this, x, -0.25, 0.35, 10, 20),
+                new MyPillar(this, x, -3.25, 0.35, 10, 20),
             );
         }
 
-        this.waterSurface = new MyWaterSurface(this, 10, 20, 0.3, 0.3);
+        this.waterSurface = new MyWaterSurface(this, 10, 50, 0.3, 0.3);
 
-        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.3, 0.5, 1.85, 0.2);
+        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.14, 0.25, 0.9, 0.2);
 
         this.cubeMapTextures = [];
         this.cubeMapTextureNames = [
@@ -201,10 +201,10 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        /*this.pushMatrix();
+        this.pushMatrix();
         this.translate(0, 3, 0);
         this.fish.display();
-        this.popMatrix();*/
+        this.popMatrix();
 
         
         this.seaFloor.display();
