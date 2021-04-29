@@ -6,6 +6,7 @@ import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
+import { MyFishNest } from "./MyFishNest.js";
 import { MySeaweedSet } from "./MySeaweedSet.js";
 import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
@@ -60,6 +61,7 @@ export class MyScene extends CGFscene {
         //this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
         this.seaFloor = new MySeaFloor(this, 50, 50, 1);
+        this.fishNest = new MyFishNest(this, 11.5, -8.2, 2.25);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -169,6 +171,7 @@ export class MyScene extends CGFscene {
 
         
         this.seaFloor.display();
+        this.fishNest.display();
 
         //this.seaweedSet.display();
 
