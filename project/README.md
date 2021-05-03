@@ -62,8 +62,14 @@ TODO: SOMBREAMENTO + LIGHTER ZONE FOR THE SHELL?
 
 #### 5.4 MyPillar, cubemap and MySeaweed
 
+- To create MyPillar, we used the cylinder created in part A. We added a shader to look more realistic. 
+- In order for the pillars to look like they belonged to the pier of the image of the surface, we had to translate them into a certain position and scale them to have the them reach the surface.  <br/> <br/>
 
+- For the cubemap, we added new textures ('images/underwater_cubemap/').  <br/> <br/>
 
+- So as to fill the scenery, we added groups of seaweeds. We created MySeaweed that represent a group of a certain number of seaweeds with radius, height and displacement limits. 
+- The seaweeds are pyramids with different colours and dimensions, obtained randomly.
+- In MySeaweedSet, the groups of seaweeds are created with random positioning and number of seaweeds.
 
 
 ## Screenshots
