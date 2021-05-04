@@ -121,7 +121,7 @@ TODO: ANIMAÇÃO BARBATANA
 ![Screenshot 4a](screenshots/proj-t7g03-4a.png)
 ![Screenshot 4b](screenshots/proj-t7g03-4b.png)
 ![Screenshot 4c](screenshots/proj-t7g03-4c.png)
-![Screenshot 4c](screenshots/proj-t7g03-4d.png)
+![Screenshot 4d](screenshots/proj-t7g03-4d.png)
 
 ### 5 - MyPillar
 
@@ -135,10 +135,11 @@ TODO: ANIMAÇÃO BARBATANA
 ![Screenshot 6b](screenshots/proj-t7g03-6b.png)
 ![Screenshot 6c](screenshots/proj-t7g03-6c.png)
 
-### 7 - MyMovingFish and rock collection
+### 7 - MyMovingFish: Rock Collection
 
 ![Screenshot 7a](screenshots/proj-t7g03-7a.png)
 ![Screenshot 7b](screenshots/proj-t7g03-7b.png)
 ![Screenshot 7c](screenshots/proj-t7g03-7c.png)
 ![Screenshot 7d](screenshots/proj-t7g03-7d.png)
 ![Screenshot 7e](screenshots/proj-t7g03-7e.png)
+![Screenshot 7f](screenshots/proj-t7g03-7f.png)

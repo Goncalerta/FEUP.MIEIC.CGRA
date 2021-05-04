@@ -33,7 +33,7 @@ export class MyFishNest extends CGFobject {
             this.rockPositionsAngle.push(Math.random() * 2 * Math.PI);
             // This allows a more uniform rock distribution
             // Source: https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly
-            let u = Math.random() * Math.random();
+            let u = Math.random() + Math.random();
             let r = u > 1? 2 - u : u;
             this.rockPositionsRadius.push(r * this.radius);
             
