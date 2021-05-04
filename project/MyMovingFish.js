@@ -10,7 +10,7 @@ export class MyMovingFish extends MyMovingObject {
      * @param object - The CGFobject that will be moved and displayed on screen
      * @param  {integer} scaleFactor - Scale factor of the object
      */
-    constructor(scene, rockSet, scaleFactor = 1, verticalVelocity = 0.1, minPosition = 0.5, maxPosition = 5) {
+    constructor(scene, fishNest, rockSet, scaleFactor = 1, verticalVelocity = 0.1, minPosition = 0.5, maxPosition = 5) {
         super(scene, new MyFish(scene), scaleFactor);
         this.fish = this.object;
         this.verticalMovementState = 1;
@@ -25,8 +25,9 @@ export class MyMovingFish extends MyMovingObject {
         this.rockPosition = null;
         this.rockAngle = null;
         this.rockDimensions = null;
-        this.rockAppearance = null;
         this.rockSet = rockSet;
+
+        this.fishNest = fishNest;
 
         this.fish.setTailSpeed(this.minTailspeed);
         this.restartFinCountdown = 0;
@@ -76,7 +77,6 @@ export class MyMovingFish extends MyMovingObject {
             this.rockPosition = null;
             this.rockAngle = null;
             this.rockDimensions = null;
-            this.rockAppearance = null;
         }
     }
 
@@ -95,7 +95,7 @@ export class MyMovingFish extends MyMovingObject {
     display() {
         super.display();
         if (this.catchedRock != null) {
-            this.rockAppearance.apply();
+            this.rockSet.getRockAppearance().apply();
 
             this.scene.pushMatrix();
 
@@ -119,13 +119,19 @@ export class MyMovingFish extends MyMovingObject {
         this.verticalMovementState = -1;
     }
 
-    catchRock() {
+    interactWithRock() {
         if (this.position[1] != this.minPosition) {
             return;
         }
-        if (this.catchedRock != null) {
-            return;
+
+        if (this.catchedRock == null) {
+            this.catchRock();
+        } else {
+            this.dropRock();
         }
+    }
+
+    catchRock() {
         let closest = null;
         let closestDist = 1.5;
 
@@ -144,7 +150,16 @@ export class MyMovingFish extends MyMovingObject {
         this.rockPosition = [this.rockSet.rockPositions[2*closest], this.rockSet.rockPositions[2*closest+1]];
         this.rockAngle = this.rockSet.rockAngles[closest];
         this.rockDimensions = [this.rockSet.rockDimensions[3*closest], this.rockSet.rockDimensions[3*closest+1], this.rockSet.rockDimensions[3*closest+2]];
-        this.rockAppearance = this.rockSet.rockAppearance;
         this.rockSet.removeRock(closest);
+    }
+
+    dropRock() {
+        if (this.fishNest.contains(this.position)) {
+            this.fishNest.addRock(this.catchedRock, this.rockAngle, this.rockDimensions);
+            this.catchedRock = null;
+            this.rockPosition = null;
+            this.rockAngle = null;
+            this.rockDimensions = null;
+        }
     }
 }

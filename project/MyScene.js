@@ -46,8 +46,14 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
+        this.seaFloor = new MySeaFloor(this, 50, 50, 6);
+        this.waterSurface = new MyWaterSurface(this, 10, 50, 0.3, 0.3);
+        
         this.rockSet = new MyRockSet(this, 30, -22, 22, -22, 22, 10, 10);
-        this.movingObject = new MyMovingFish(this, this.rockSet);
+        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.14, 0.25, 0.9, 0.2);
+        
+        this.fishNest = new MyFishNest(this, -8, -11.5, 2.25, this.rockSet);
+        this.movingObject = new MyMovingFish(this, this.fishNest, this.rockSet);
         
         this.pillars = [];
         for (let x = 3.5; x <= 25; x+=6) {
@@ -56,10 +62,6 @@ export class MyScene extends CGFscene {
                 new MyPillar(this, x, -3.25, 0.35, 10, 20),
             );
         }
-
-        this.waterSurface = new MyWaterSurface(this, 10, 50, 0.3, 0.3);
-
-        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.14, 0.25, 0.9, 0.2);
 
         this.cubeMapTextures = [];
         this.cubeMapTextureNames = [
@@ -78,9 +80,6 @@ export class MyScene extends CGFscene {
         
         this.loadCubeMap(0, this.cubeMapTextureNames[0][0], this.cubeMapTextureNames[0][1]);
         this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
-
-        this.seaFloor = new MySeaFloor(this, 50, 50, 6); // TODO 6 -> 0.5; 11 -> 1.0
-        this.fishNest = new MyFishNest(this, -8, -11.5, 2.25);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -192,7 +191,7 @@ export class MyScene extends CGFscene {
         }
 
         if (this.gui.isKeyPressed("KeyC")) {
-            this.movingObject.catchRock();
+            this.movingObject.interactWithRock();
         }
     }
 

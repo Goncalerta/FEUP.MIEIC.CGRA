@@ -64,6 +64,14 @@ export class MyRockSet extends CGFobject {
         }
     }
 
+    getRockAppearance() {
+        return this.rockAppearance;
+    }
+
+    getNumRocks() {
+        return this.numRocks;
+    }
+
     removeRock(i) {
         this.rocks.splice(i, 1);
         this.rockPositions.splice(2 * i, 2);
