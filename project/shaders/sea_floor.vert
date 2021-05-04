@@ -8,11 +8,12 @@ uniform mat4 uNMatrix;
 
 varying vec2 vTextureCoord;
 uniform sampler2D heightMap;
-uniform float maxHeightY;
+uniform float offsetScale;
 
 void main() {
 	vTextureCoord = aTextureCoord;
-    float offset = maxHeightY * (texture2D(heightMap, vTextureCoord).b - 0.45)/0.55;
+    float offset = offsetScale*(texture2D(heightMap, vTextureCoord).b-0.5);
+    //float offset = maxHeightY * (texture2D(heightMap, vTextureCoord).b - 0.45)/0.55;
 
 	//if (texture2D(heightMap, vTextureCoord).b > 0.5) {
 	//	offset = aVertexNormal * 0.007;

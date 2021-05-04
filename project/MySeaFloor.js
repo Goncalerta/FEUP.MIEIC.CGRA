@@ -11,7 +11,7 @@ import { MyPlane } from './MyPlane.js';
  * @param maxT - maximum texture coordinate in T
  */
 export class MySeaFloor extends CGFobject {
-	constructor(scene, size, nrDivs, maxHeightY) {
+	constructor(scene, size, nrDivs, offsetScale) {
 		super(scene);
 
 		this.size = size;
@@ -29,8 +29,12 @@ export class MySeaFloor extends CGFobject {
 		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.shader = new CGFshader(this.scene.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
-		this.shader.setUniformsValues({ heightMap: 1, maxHeightY: maxHeightY});
+		this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale});
 	}
+
+    setOffsetScale(offsetScale) {
+        this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale});
+    }
 
     display() {
         this.appearance.apply();

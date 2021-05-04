@@ -14,7 +14,7 @@ void main() {
     if (filter < 0.48)
         color = color * vec4(0.9, 0.9, 0.9, 1);
 
-    // gl_FragColor = color * filter;
+    gl_FragColor = color * filter;
 
     gl_FragColor = color;
 }

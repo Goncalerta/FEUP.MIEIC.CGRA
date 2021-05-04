@@ -41,6 +41,7 @@ export class MyScene extends CGFscene {
         this.enableTextures(true);
 
         // Initialize scene objects
+        this.debugCube = new MyUnitCubeQuad(this);
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
@@ -79,7 +80,7 @@ export class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
         this.seaFloor = new MySeaFloor(this, 50, 50, 1);
-        this.fishNest = new MyFishNest(this, 11.5, -8.2, 2.25);
+        this.fishNest = new MyFishNest(this, -8, -11.5, 2.25);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -218,6 +219,11 @@ export class MyScene extends CGFscene {
         for (let pillar of this.pillars) {
             pillar.display();
         }
+
+        this.pushMatrix();
+        this.translate(0, 0.5, 0);
+        this.debugCube.display();
+        this.popMatrix();
 
         //this.movingObject.display();
 
