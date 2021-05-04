@@ -65,11 +65,25 @@
 
 #### 5.4 MyPillar, cubemap and MySeaweed
 
+
 - To create MyPillar, we used the cylinder created in part A. We added a texture that resembles a trunk (from http://www.cadhatch.com/seamless-bark-textures/4588167786) to look more realistic, with an appearance that makes it browner as the trunk has been underwater.
 - In order for the pillars to look like they belonged to the pier of the image of the surface, we had to translate them into positions below that pier and scale them to have the them reach the surface. As this scaling would otherwise make the texture very stretched out and ugly, we added a textureHeight parameter to the constructor, which scales the texture coordinates so that (with a REPEATING texture wrap) the texture would not be stretched and instead repeat all the way to the top of the cylinder. We added a total of 8 pillars.
 - For the cubemap, we added the given textures ('images/underwater_cubemap/') to the list of cubemaps in MyScene and set that one as the default. Because of there being so many cubemaps to choose from, loading all textures at the beggining started to get very slow, so we changed the code so that it would only load the textures of any given cubemap after selecting it for the first time.
 - So as to fill the scenery, we added groups of seaweeds. We created MySeaweed to represent a group of seaweed, with radius, height and displacement limits (how far can each element be from the center of the group) that are parameterized in the constructor. The seaweed uses MyPyramid as the base shape, each with different colors randomly generated but always close to green.
 - In MySeaweedSet, groups of seaweeds are created with random positioning, number of seaweeds and parameter limits of each group. In the constructor, there are parameters to limit those values.
+
+#### 6.1. MyMovingFish
+
+- 
+
+
+#### 6.2. Animation adjustments of fish behaviour
+
+- 
+
+#### 6.3. Rock collection
+
+- 
 
 ## Screenshots
 
@@ -103,7 +117,6 @@
 ![Screenshot 4c](screenshots/proj-t7g03-4c.png)
 ![Screenshot 4c](screenshots/proj-t7g03-4d.png)
 
-
 ### 5 - MyPillar
 
 ![Screenshot 5a](screenshots/proj-t7g03-5a.png)
@@ -115,3 +128,11 @@
 ![Screenshot 6a](screenshots/proj-t7g03-6a.png)
 ![Screenshot 6b](screenshots/proj-t7g03-6b.png)
 ![Screenshot 6c](screenshots/proj-t7g03-6c.png)
+
+### 7 - MyMovingFish and rock collection
+
+![Screenshot 7a](screenshots/proj-t7g03-7a.png)
+![Screenshot 7b](screenshots/proj-t7g03-7b.png)
+![Screenshot 7c](screenshots/proj-t7g03-7c.png)
+![Screenshot 7d](screenshots/proj-t7g03-7d.png)
+![Screenshot 7e](screenshots/proj-t7g03-7e.png)

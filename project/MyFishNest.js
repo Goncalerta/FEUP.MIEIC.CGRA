@@ -1,6 +1,4 @@
 import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
-import { MyPlane } from './MyPlane.js';
-import { MySphere } from './MySphere.js';
 
 export class MyFishNest extends CGFobject {
     /**
@@ -10,6 +8,7 @@ export class MyFishNest extends CGFobject {
      * @param  {integer} x - X coordinate of the object's position
      * @param  {integer} z - Y coordinate of the object's position
      * @param  {float} radius - Radius of the object
+     * @param  {MyRockSet} myRockSet - Rock set of rocks in the fish nest
      */
 	constructor(scene, x, z, radius, myRockSet) {
 		super(scene);

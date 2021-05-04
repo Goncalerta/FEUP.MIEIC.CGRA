@@ -1,6 +1,4 @@
 import { CGFobject } from '../lib/CGF.js';
-import { CGFappearance } from '../lib/CGF.js';
-import { MyPyramid } from './MyPyramid.js';
 import { MySeaweed } from './MySeaweed.js';
 
 export class MySeaweedSet extends CGFobject {
