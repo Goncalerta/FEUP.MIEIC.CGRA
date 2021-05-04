@@ -1,12 +1,13 @@
 import {CGFobject} from '../lib/CGF.js';
 
-/**
- * MyMovingObject
- * @constructor
- * @param scene - Reference to MyScene object
- * @param object - The CGFobject that will be moved and displayed on screen. 
- */
 export class MyMovingObject extends CGFobject {
+    /**
+     * MyMovingObject
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object
+     * @param object - The CGFobject that will be moved and displayed on screen
+     * @param  {integer} scaleFactor - Scale factor of the object
+     */
     constructor(scene, object, scaleFactor = 1) {
         super(scene);
         this.reset();

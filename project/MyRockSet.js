@@ -6,8 +6,13 @@ export class MyRockSet extends CGFobject {
     /**
      * @method constructor
      * @param  {CGFscene} scene - MyScene object
-     * @param  {integer} slices - number of slices around Y axis
-     * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
+     * @param  {integer} numRocks - Number of rocks
+     * @param  {integer} minX - Minimum X coordinate for the rock's position
+     * @param  {integer} maxX - Maximum X coordinate for the rock's position
+     * @param  {integer} minZ - Minimum Z coordinate for the rock's position
+     * @param  {integer} maxZ - Maximum Z coordinate for the rock's position
+     * @param  {integer} sphereSlices - Number of slices around Y axis of the sphere
+     * @param  {integer} sphereStacks - Number of stacks along Y axis, from the center to the poles (half of sphere)
      */
     constructor(scene, numRocks, minX, maxX, minZ, maxZ, sphereSlices, sphereStacks) {
         super(scene);
@@ -27,6 +32,12 @@ export class MyRockSet extends CGFobject {
         this.initRocks(sphereSlices, sphereStacks);
     }
 
+    /**
+     * Creates numRocks number of rocks.
+     * Generates random positions limited by minimum and maximum of X and Y, angles and dimensions for each rock.
+     * @param  {integer} sphereSlices - number of slices around Y axis of the sphere
+     * @param  {integer} sphereStacks - number of stacks along Y axis, from the center to the poles (half of sphere) 
+     */
     initRocks(sphereSlices, sphereStacks) {
         this.rocks = [];
         this.rockPositions = [];

@@ -5,13 +5,12 @@ import {CGFtexture} from '../lib/CGF.js';
 import {MySphere} from './MySphere.js';
 import { MyTriangle } from './MyTriangle.js';
 
-/**
- * MyMovingObject
- * @constructor
- * @param scene - Reference to MyScene object
- * @param object - The CGFobject that will be moved and displayed on screen. 
- */
 export class MyFish extends CGFobject {
+    /**
+     * MyFish
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object 
+     */
     constructor(scene) {
         super(scene);
 

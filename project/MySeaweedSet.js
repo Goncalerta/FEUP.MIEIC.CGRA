@@ -7,12 +7,18 @@ export class MySeaweedSet extends CGFobject {
     /**
      * @method constructor
      * @param  {CGFscene} scene - MyScene object
-     * @param  {integer} slices - number of slices around Y axis
-     * @param  {integer} stacks - number of stacks along Y axis, from the center to the poles (half of sphere)
-     * @param  {integer} minX - minimum X
-     * @param  {integer} maxX - maximum X
-     * @param  {integer} minZ - minimum Z
-     * @param  {integer} maxZ - maximum Z
+     * @param  {integer} numGroups - Number of groups of seaweeds
+     * @param  {integer} minGroupSize - Minimum number of seaweeds in a group
+     * @param  {integer} maxGroupSize - Maximum number of seaweeds in a group
+     * @param  {integer} minX - Minimum X coordinate for the seaweed's position
+     * @param  {integer} maxX - Maximum X coordinate for the seaweed's position
+     * @param  {integer} minZ - Minimum Z coordinate for the seaweed's position
+     * @param  {integer} maxZ - Maximum Z coordinate for the seaweed's position
+     * @param  {float} minRadius - Minimum radius of the seaweeds
+     * @param  {float} maxRadius - Maximum radius of the seaweeds
+     * @param  {float} minHeight - Minimum height of the seaweeds
+     * @param  {float} maxHeight - Maximum height of the seaweeds
+     * @param  {float} maxDisplacementInGroup - Maximum displacement of a seaweed in a group
      */
     constructor(scene, numGroups, minGroupSize, maxGroupSize, minX, maxX, minZ, maxZ, minRadius, maxRadius, minHeight, maxHeight, maxDisplacementInGroup) {
         super(scene);

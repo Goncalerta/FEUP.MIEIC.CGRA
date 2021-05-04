@@ -1,11 +1,13 @@
 import {CGFobject} from '../lib/CGF.js';
-/**
- * MyCylinder
- * @constructor
- * @param scene - Reference to MyScene object
- * @param slices - Number of divisions around the Y axis.
- */
+
 export class MyCylinder extends CGFobject {
+    /**
+     * MyCylinder
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object
+     * @param  {integer} slices - Number of divisions around the Y axis
+     * @param  {integer} textureHeight - Height of the texture
+     */
     constructor(scene, slices, textureHeight=1) {
         super(scene);
         this.slices = slices;

@@ -43,6 +43,33 @@
 - The whole fish is scaled by a factor of 0.5/(2*zDistortion), where zDistortion=1.6 is the amount of distortion in the z axis we applied to the unit radius sphere. This factor is used so that the length of the fish in scene is around 0.5 units.
 - In order to animate fins and tail, we created the MyFish.updateAnimation() function, called in MyScene.update() to pass to the fish the current time. This time is used to calculate a rotation state based on constant parameters such as the fins/tail velocity and initial phase. We used the cossines of this rotations states to calculate the angles so that the animation is periodic. The tail moves between angles +-Math.PI/9 where angle 0 is when the tail is at the center. The fins move (each in its direction) between Math.PI/10 and (Math.PI/10+Math.PI/5), where angle 0 is when the fins are pointing downwards.
 
+#### 5.1 Sea floor and fish nest
+
+- In this part, we based it in the 'texture3' shader from TP5. We had to create a plane with textures using an image with the colors ('sand.png') and an image with the map of height to create a sensation of ondulation ('sandMap.png'). 
+- Based on the intensities of the height's map, we added a displacement to the position of each point of the surface.
+- In order to have a limit for the height displacement, we had to pass a variable to the vertex shader so as to prevent that the sand's surface would not surpass the plane Y=1;
+- TODO: SOMBREAMENTO
+- To create the fish nest, we added an image of a shell('shell.png') to the image of the colors('sand.png'), keeping in mind the maximum radius asked of 5 units.
+- For the ondulation of the floor to match the existence of the shell, we also added, in the same position, a lighter zone to the height's map so as to create a hole. 
+
+TODO: SOMBREAMENTO + LIGHTER ZONE FOR THE SHELL?
+
+#### 5.2 Water surface
+
+
+#### 5.3 Rocks
+
+
+#### 5.4 MyPillar, cubemap and MySeaweed
+
+- To create MyPillar, we used the cylinder created in part A. We added a shader to look more realistic.
+- In order for the pillars to look like they belonged to the pier of the image of the surface, we had to translate them into a certain position and scale them to have the them reach the surface.<br/><br/>
+- For the cubemap, we added new textures ('images/underwater_cubemap/').<br/><br/>
+- So as to fill the scenery, we added groups of seaweeds. We created MySeaweed that represent a group of a certain number of seaweeds with radius, height and displacement limits.
+- The seaweeds are pyramids with different colours and dimensions, obtained randomly.
+- In MySeaweedSet, the groups of seaweeds are created with random positioning and number of seaweeds.
+
+
 ## Screenshots
 
 ### 1 - MyFish

@@ -2,13 +2,17 @@ import {CGFobject, CGFtexture} from '../lib/CGF.js';
 import {CGFappearance} from '../lib/CGF.js';
 import {MyCylinder} from './MyCylinder.js'
 
-/**
- * MyMovingObject
- * @constructor
- * @param scene - Reference to MyScene object
- * @param object - The CGFobject that will be moved and displayed on screen. 
- */
  export class MyPillar extends CGFobject {
+    /**
+     * MyPillar
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object
+     * @param  {float} x - X coordinate of the object's position
+     * @param  {float} z - Z coordinate of the object's position
+     * @param  {float} radius - Radius of the object
+     * @param  {integer} height - Height of the object
+     * @param  {integer} cylinderSlices - Number of divisions around the Y axis
+     */ 
     constructor(scene, x, z, radius, height, cylinderSlices) {
         super(scene);
 

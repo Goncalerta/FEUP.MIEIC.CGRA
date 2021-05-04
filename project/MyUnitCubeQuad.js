@@ -1,18 +1,18 @@
 import {CGFobject, CGFappearance} from '../lib/CGF.js';
 import {MyQuad} from './MyQuad.js';
 
-/**
- * MyUnitCubeQuad
- * @constructor
- * @param scene - Reference to MyScene object
- * @param texturePY - Texture of +Y side.
- * @param texturePZ - Texture of +Z side.
- * @param texturePX - Texture of +X side.
- * @param textureNZ - Texture of -Z side.
- * @param textureNX - Texture of -X side.
- * @param textureNY - Texture of -Y side.
- */
 export class MyUnitCubeQuad extends CGFobject {
+    /**
+     * MyUnitCubeQuad
+     * @constructor
+     * @param  {CGFscene} scene - Reference to MyScene object
+     * @param  {CGFtexture} texturePY - Texture of +Y side.
+     * @param  {CGFtexture} texturePZ - Texture of +Z side.
+     * @param  {CGFtexture} texturePX - Texture of +X side.
+     * @param  {CGFtexture} textureNZ - Texture of -Z side.
+     * @param  {CGFtexture} textureNX - Texture of -X side.
+     * @param  {CGFtexture} textureNY - Texture of -Y side.
+     */    
 	constructor(scene, texturePY = null, texturePZ = null, texturePX = null, textureNZ = null, textureNX = null, textureNY = null) {
 		super(scene);
         this.quad = new MyQuad(scene);
