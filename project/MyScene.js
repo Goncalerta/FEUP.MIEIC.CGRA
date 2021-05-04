@@ -190,6 +190,10 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyR")) {
             this.movingObject.reset();
         }
+
+        if (this.gui.isKeyPressed("KeyC")) {
+            this.movingObject.catchRock(this.rockSet);
+        }
     }
 
     display() {
@@ -203,7 +207,7 @@ export class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
         
-        //this.defaultAppearance.apply();
+        this.defaultAppearance.apply();
         // Draw axis
         if (this.displayAxis)
             this.axis.display();

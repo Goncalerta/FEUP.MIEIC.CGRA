@@ -21,6 +21,12 @@ export class MyMovingFish extends MyMovingObject {
         this.tailspeedFactor = 0.3;
         this.position[1] = maxPosition;
 
+        this.catchedRock = null;
+        this.rockPosition = null;
+        this.rockAngle = null;
+        this.rockDimensions = null;
+        this.rockAppearance = null;
+
         this.fish.setTailSpeed(this.minTailspeed);
         this.restartFinCountdown = 0;
         this.t = 0;
@@ -77,11 +83,59 @@ export class MyMovingFish extends MyMovingObject {
         }
     }
 
+    display() {
+        super.display();
+        if (this.catchedRock != null) {
+            this.rockAppearance.apply();
+
+            this.scene.pushMatrix();
+
+            this.scene.translate(...this.position);
+            this.scene.rotate(this.orientation, 0, 1, 0);
+            this.scene.translate(0, 0, 0.3);
+            this.scene.rotate(this.rockAngle, 1, 0, 0);
+            this.scene.scale(...this.rockDimensions);
+            
+            this.catchedRock.display(this.scene);
+            
+            this.scene.popMatrix();
+        }
+    }
+
     setMovingUp() {
         this.verticalMovementState = 1;
     }
 
     setMovingDown() {
         this.verticalMovementState = -1;
+    }
+
+    catchRock(rockSet) {
+        if (this.position[1] != this.minPosition) {
+            return;
+        }
+        if (this.catchedRock != null) {
+            return;
+        }
+        let closest = null;
+        let closestDist = 1.5;
+
+        for (let i in rockSet.rocks) {
+            let delta_x = this.position[0] - rockSet.rockPositions[2*i];
+            let delta_z = this.position[2] - rockSet.rockPositions[2*i+1];
+            let dist = Math.sqrt(delta_x * delta_x + delta_z * delta_z);
+            if (dist >= closestDist) continue;
+            closest = i;
+        }
+        if (closest == null) {
+            return;
+        }
+
+        this.catchedRock = rockSet.rocks[closest];
+        this.rockPosition = [rockSet.rockPositions[2*closest], rockSet.rockPositions[2*closest+1]];
+        this.rockAngle = rockSet.rockAngles[closest];
+        this.rockDimensions = [rockSet.rockDimensions[3*closest], rockSet.rockDimensions[3*closest+1],rockSet.rockDimensions[3*closest+2]];
+        this.rockAppearance = rockSet.rockAppearance;
+        rockSet.removeRock(closest);
     }
 }
