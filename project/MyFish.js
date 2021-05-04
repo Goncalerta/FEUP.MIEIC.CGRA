@@ -45,7 +45,18 @@ export class MyFish extends CGFobject {
         this.finphase = 0;
         this.tailphase = 0.9;
 
+        this.stopFinState = 0;
+        this.tailRotationState = this.tailphase;
+
         this.t = 0;
+    }
+
+    setStopFinState(stopFinState) {
+        this.stopFinState = stopFinState;
+    }
+
+    setTailSpeed(tailspeed) {
+        this.tailspeed = tailspeed;
     }
 
     display_eye(left) {
@@ -61,14 +72,19 @@ export class MyFish extends CGFobject {
         this.scene.popMatrix();
     }
 
-    display_lateral_fin(left, t) {
+    display_lateral_fin(left) {
         this.scene.pushMatrix();
         this.scene.translate(left? 0.6 : -0.6, -0.5, 0);
         this.scene.scale(0.5, 0.5, 0.5);
         this.scene.translate(0, Math.sqrt(0.5), 0);
 
-        let rotation_state = this.t * this.finspeed + this.finphase;
-        let rotation_angle = Math.PI/10 + Math.cos(rotation_state)*Math.cos(rotation_state)*Math.PI/5;
+        let rotation_angle; 
+        if ((this.stopFinState == -1 && left) || (this.stopFinState == 1 && !left)) {
+            rotation_angle = Math.PI/5;
+        } else {
+            let rotation_state = this.t * this.finspeed + this.finphase;
+            rotation_angle = Math.PI/10 + Math.cos(rotation_state)*Math.cos(rotation_state)*Math.PI/5;
+        }
         this.scene.rotate(left? rotation_angle:-rotation_angle, 0, 0, 1);
         this.scene.translate(0, -Math.sqrt(0.5), 0);
         this.scene.rotate(Math.PI/4, 1, 0, 0);
@@ -77,6 +93,7 @@ export class MyFish extends CGFobject {
     }
 
     updateAnimation(t) {
+        this.tailRotationState += this.tailspeed * (t-this.t);
         this.t = t;
     }
 
@@ -94,8 +111,8 @@ export class MyFish extends CGFobject {
         // Tail
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -1.6);
-        let rotation_state = this.t * this.tailspeed + this.tailphase;
-        let rotation_angle = Math.cos(rotation_state)*Math.PI/9;
+
+        let rotation_angle = Math.cos(this.tailRotationState)*Math.PI/9;
         this.scene.rotate(rotation_angle, 0, 1, 0);
         this.scene.translate(0, 0, -1);
         this.fin.display();

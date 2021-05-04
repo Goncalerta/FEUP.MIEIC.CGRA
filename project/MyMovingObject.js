@@ -10,9 +10,12 @@ export class MyMovingObject extends CGFobject {
      */
     constructor(scene, object, scaleFactor = 1) {
         super(scene);
-        this.reset();
+        this.position = [0, 0, 0];
+        this.speed = 0;
+        this.orientation = 0;
         this.object = object;
         this.scaleFactor = scaleFactor;
+        this.turnDirection = 0;
     }
 
     /**

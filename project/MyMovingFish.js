@@ -13,15 +13,56 @@ export class MyMovingFish extends MyMovingObject {
     constructor(scene, scaleFactor = 1, verticalVelocity = 0.1, minPosition = 0.5, maxPosition = 5) {
         super(scene, new MyFish(scene), scaleFactor);
         this.fish = this.object;
-        this.verticalMovementState = 0;
+        this.verticalMovementState = 1;
         this.verticalVelocity = verticalVelocity;
         this.maxPosition = maxPosition;
         this.minPosition = minPosition;
-        this.position[1] = 3;
+        this.minTailspeed = 1/600;
+        this.tailspeedFactor = 0.3;
+        this.position[1] = maxPosition;
+
+        this.fish.setTailSpeed(this.minTailspeed);
+        this.restartFinCountdown = 0;
+        this.t = 0;
     }
 
     updateAnimation(t) {
         this.fish.updateAnimation(t);
+        if (this.restartFinCountdown > 0) {
+            this.restartFinCountdown -= t - this.t;
+            if (this.restartFinCountdown <= 0) {
+                this.restartFinCountdown = 0;
+                this.fish.setStopFinState(0);
+            }
+        }
+        this.t = t;
+    }
+
+    accelerate(val) {
+        super.accelerate(val);
+        let tailspeed = this.minTailspeed + this.speed * this.tailspeedFactor;
+        this.fish.setTailSpeed(tailspeed);
+    }
+
+    turn(val) {
+        super.turn(val);
+        let stopFinState;
+        if (val > 0) {
+            stopFinState = -1;
+        } else if (val < 0) {
+            stopFinState = 1;
+        } else {
+            stopFinState = 0;
+        }
+        this.restartFinCountdown = 250;
+        this.fish.setStopFinState(stopFinState);
+    }
+
+    reset() {
+        super.reset();
+        this.fish.setTailSpeed(this.minTailspeed);
+        this.position[1] = this.maxPosition;
+        this.verticalMovementState = 1;
     }
 
     updateVelocity(speedFactor) {
@@ -34,11 +75,6 @@ export class MyMovingFish extends MyMovingObject {
         if (this.position[1] < this.minPosition) {
             this.position[1] = this.minPosition;
         }
-        //let directionVect = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
-        
-        //for (let i = 0; i < 3; i++) {
-        //    this.position[i] += speedFactor * this.speed * directionVect[i];
-        //}
     }
 
     setMovingUp() {
@@ -47,9 +83,5 @@ export class MyMovingFish extends MyMovingObject {
 
     setMovingDown() {
         this.verticalMovementState = -1;
-    }
-
-    setVerticallyStill() {
-        this.verticalMovementState = 0;
     }
 }

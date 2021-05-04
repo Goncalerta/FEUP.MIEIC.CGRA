@@ -181,10 +181,10 @@ export class MyScene extends CGFscene {
 
         if (this.gui.isKeyPressed("KeyP")) {
             this.movingObject.setMovingUp();
-        } else if (this.gui.isKeyPressed("KeyL")) {
+        }
+        
+        if (this.gui.isKeyPressed("KeyL")) {
             this.movingObject.setMovingDown();
-        } else {
-            this.movingObject.setVerticallyStill();
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
