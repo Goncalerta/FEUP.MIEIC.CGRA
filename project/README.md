@@ -74,16 +74,23 @@ TODO
 
 #### 6.1. MyMovingFish
 
-- 
-
+- To create MyMovingFish, we adapted the MyMovingObject.
+- In order to add the vertical movement, we established a vertical velocity and a minimum (for the fish not to appear below the floor) and maximum Y coordinate of the object's position.
 
 #### 6.2. Animation adjustments of fish behaviour
 
-- 
+- The fish's tail has always a minimum speed created in MyMovingFish.
+- So as to adjust the animation of the fish's tail according to its velocity, we added a speed factor that whenever the speed increased, the speed of the tail would increase too and vice-versa.
+TODO: COMO FIZEMOS PARA NÃO TERMOS TELETRANSPORTE
+
+TODO: ANIMAÇÃO BARBATANA
+- For the fin's animation, 
 
 #### 6.3. Rock collection
 
-- 
+- To allow the fish to catch a rock, we had to verify if the fish is in its minimum height and if it has rocks within a distance of 1.5 units. If so, the closest rock is selected and removed from the rock set and its information is kept in MyMovingFish in order to display it in front of the fish's mouth. 
+- Whenever 'C' is pressed and the fish contains a rock and is in its lowest position, if the fish location is in the fish nest, the rock will be put in the fish nest in a previus calculated position (with a more uniform rock distribution).
+- If 'R' is pressed while the fish is carrying a rock, the rock will be placed in its original position. For that, we included the rock's information when it is picked up and the rock set to add it again.
 
 
 ## Screenshots
