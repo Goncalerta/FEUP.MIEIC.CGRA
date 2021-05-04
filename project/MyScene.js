@@ -14,6 +14,7 @@ import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
 import { MySeaweed } from "./MySeaweed.js";
+import { MyPlane } from "./MyPlane.js";
 
 /**
  * MyScene
@@ -41,7 +42,6 @@ export class MyScene extends CGFscene {
         this.enableTextures(true);
 
         // Initialize scene objects
-        this.debugCube = new MyUnitCubeQuad(this);
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
@@ -79,7 +79,7 @@ export class MyScene extends CGFscene {
         this.loadCubeMap(0, this.cubeMapTextureNames[0][0], this.cubeMapTextureNames[0][1]);
         this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
-        this.seaFloor = new MySeaFloor(this, 50, 50, 1);
+        this.seaFloor = new MySeaFloor(this, 50, 50, 6); // TODO 6 -> 0.5; 11 -> 1.0
         this.fishNest = new MyFishNest(this, -8, -11.5, 2.25);
 
         this.defaultAppearance = new CGFappearance(this);
@@ -219,11 +219,6 @@ export class MyScene extends CGFscene {
         for (let pillar of this.pillars) {
             pillar.display();
         }
-
-        this.pushMatrix();
-        this.translate(0, 0.5, 0);
-        this.debugCube.display();
-        this.popMatrix();
 
         //this.movingObject.display();
 

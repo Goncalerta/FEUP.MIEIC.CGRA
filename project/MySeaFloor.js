@@ -31,10 +31,6 @@ export class MySeaFloor extends CGFobject {
 		this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale});
 	}
 
-    setOffsetScale(offsetScale) {
-        this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale});
-    }
-
     display() {
         this.appearance.apply();
         this.scene.setActiveShader(this.shader);

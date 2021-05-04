@@ -10,11 +10,10 @@ uniform sampler2D heightMap;
 void main() {
     vec4 color = texture2D(uSampler, vTextureCoord);
     float filter = texture2D(heightMap, vTextureCoord).b;
+    float offset = 1.25*(0.5 - texture2D(heightMap, vTextureCoord).b);
 
-    if (filter < 0.48)
-        color = color * vec4(0.9, 0.9, 0.9, 1);
+    if (offset < 0.0)
+       offset = 0.0;
 
-    gl_FragColor = color * filter;
-
-    gl_FragColor = color;
+    gl_FragColor = color - offset * vec4(1.0, 1.0, 1.0, 0.0);
 }
