@@ -72,6 +72,19 @@ TODO
 - The seaweeds are pyramids with different colours and dimensions, obtained randomly.
 - In MySeaweedSet, the groups of seaweeds are created with random positioning and number of seaweeds.
 
+#### 6.1. MyMovingFish
+
+- 
+
+
+#### 6.2. Animation adjustments of fish behaviour
+
+- 
+
+#### 6.3. Rock collection
+
+- 
+
 
 ## Screenshots
 
@@ -116,3 +129,12 @@ TODO
 ![Screenshot 6a](screenshots/proj-t7g03-6a.png)
 ![Screenshot 6b](screenshots/proj-t7g03-6b.png)
 ![Screenshot 6c](screenshots/proj-t7g03-6c.png)
+
+
+### 7 - MyMovingFish and rock collection
+
+![Screenshot 7a](screenshots/proj-t7g03-7a.png)
+![Screenshot 7b](screenshots/proj-t7g03-7b.png)
+![Screenshot 7c](screenshots/proj-t7g03-7c.png)
+![Screenshot 7d](screenshots/proj-t7g03-7d.png)
+![Screenshot 7e](screenshots/proj-t7g03-7e.png)
