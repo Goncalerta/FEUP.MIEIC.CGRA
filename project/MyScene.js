@@ -46,7 +46,7 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
-        this.seaFloor = new MySeaFloor(this, 50, 50, 6);
+        this.seaFloor = new MySeaFloor(this, 50, 50, 6, 1.25);
         this.waterSurface = new MyWaterSurface(this, 10, 50, 0.3, 0.3);
         
         this.rockSet = new MyRockSet(this, 30, -22, 22, -22, 22, 10, 10);
