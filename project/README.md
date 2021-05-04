@@ -48,17 +48,20 @@
 - In this part, we based it in the 'texture3' shader from TP5. We had to create a plane with textures using an image with the colors ('sand.png') and an image with the map of height to create a sensation of ondulation ('sandMap.png'). 
 - Based on the intensities of the height's map, we added a displacement to the position of each point of the surface.
 - In order to have a limit for the height displacement, we had to pass a variable to the vertex shader so as to prevent that the sand's surface would not surpass the plane Y=1;
-- TODO: SOMBREAMENTO
+- Futhermore, we added some shanding based on the height's map. We used an offset that darkened the colors according to the heights.
 - To create the fish nest, we added an image of a shell('shell.png') to the image of the colors('sand.png'), keeping in mind the maximum radius asked of 5 units.
-- For the ondulation of the floor to match the existence of the shell, we also added, in the same position, a lighter zone to the height's map so as to create a hole. 
-
-TODO: SOMBREAMENTO + LIGHTER ZONE FOR THE SHELL?
+- For the ondulation of the floor to match the existence of the shell, we also added, in the same position, a darker zone to the height's map so as to create a hole. 
 
 #### 5.2 Water surface
 
+- In order to create the water surface with ondulation and distorcion of the light, we based it in the 'water' shader from TP5.
+TODO
 
 #### 5.3 Rocks
 
+- To create MyRock, we based it on MySphere. The main differences are: the vertices have limited random displacement to deform the sphere and create projections in the normal's direction.
+- In MyRockSet, a number of rocks are created in random positions, orientations and dimensions. 
+- In order to not surpass the limit of 0.2 units of radius, random number are obtained for each rock's dimensions while creating the rocks, limited by minimum and maximum radius. These values are used to later scale each rock.
 
 #### 5.4 MyPillar, cubemap and MySeaweed
 
@@ -79,3 +82,37 @@ TODO: SOMBREAMENTO + LIGHTER ZONE FOR THE SHELL?
 ![Screenshot 1c](screenshots/proj-t7g03-1c.png)
 ![Screenshot 1d](screenshots/proj-t7g03-1d.png)
 ![Screenshot 1e](screenshots/proj-t7g03-1e.png)
+
+### 2 - MySeaFloor
+
+![Screenshot 2a](screenshots/proj-t7g03-2a.png)
+![Screenshot 2b](screenshots/proj-t7g03-2b.png)
+![Screenshot 2c](screenshots/proj-t7g03-2c.png)
+![Screenshot 2d](screenshots/proj-t7g03-2d.png)
+![Screenshot 2e](screenshots/proj-t7g03-2e.png)
+
+### 3 - MyWaterSurface
+
+![Screenshot 3a](screenshots/proj-t7g03-3a.png)
+![Screenshot 3b](screenshots/proj-t7g03-3b.png)
+![Screenshot 3c](screenshots/proj-t7g03-3c.png)
+![Screenshot 3d](screenshots/proj-t7g03-3d.png)
+
+### 4 - MyRockSet
+
+![Screenshot 4a](screenshots/proj-t7g03-4a.png)
+![Screenshot 4b](screenshots/proj-t7g03-4b.png)
+![Screenshot 4c](screenshots/proj-t7g03-4c.png)
+
+
+### 5 - MyPillar
+
+![Screenshot 5a](screenshots/proj-t7g03-5a.png)
+![Screenshot 5b](screenshots/proj-t7g03-5b.png)
+![Screenshot 5c](screenshots/proj-t7g03-5c.png)
+
+### 6 - Other Elements: MySeaweedSet
+
+![Screenshot 6a](screenshots/proj-t7g03-6a.png)
+![Screenshot 6b](screenshots/proj-t7g03-6b.png)
+![Screenshot 6c](screenshots/proj-t7g03-6c.png)
