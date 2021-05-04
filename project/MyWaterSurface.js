@@ -2,8 +2,6 @@ import {CGFobject} from '../lib/CGF.js';
 import {CGFappearance} from '../lib/CGF.js';
 import {CGFshader} from '../lib/CGF.js';
 import {CGFtexture} from '../lib/CGF.js';
-import {MySphere} from './MySphere.js';
-import { MyTriangle } from './MyTriangle.js';
 import { MyQuad } from './MyQuad.js';
 
 export class MyWaterSurface extends CGFobject {

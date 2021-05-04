@@ -7,8 +7,12 @@ export class MyMovingFish extends MyMovingObject {
      * MyMovingObject
      * @constructor
      * @param  {CGFscene} scene - Reference to MyScene object
-     * @param object - The CGFobject that will be moved and displayed on screen
+     * @param  {MyFishNest} fishNest - Fish nest
+     * @param  {MyRockSet} rockSet - Rock set
      * @param  {integer} scaleFactor - Scale factor of the object
+     * @param  {float} verticalVelocity - Uniform vertical velocity of the fish
+     * @param  {float} minPosition - Minimum Y coordinate of the object's position
+     * @param  {float} maxPosition - Maximum Y coordinate of the object's position
      */
     constructor(scene, fishNest, rockSet, scaleFactor = 1, verticalVelocity = 0.1, minPosition = 0.5, maxPosition = 5) {
         super(scene, new MyFish(scene), scaleFactor);
