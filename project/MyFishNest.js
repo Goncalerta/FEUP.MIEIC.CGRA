@@ -50,7 +50,6 @@ export class MyFishNest extends CGFobject {
         this.rocks.push(rock);
         this.rockAngles.push(rockAngle);
         this.rockDimensions.push(...rockDimensions);
-        this.numRocks += 1;
     }
 
     display() {
