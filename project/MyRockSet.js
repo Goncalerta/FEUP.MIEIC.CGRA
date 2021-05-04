@@ -75,7 +75,7 @@ export class MyRockSet extends CGFobject {
     addRock(rock, rockPosition, rockAngle, rockDimensions) {
         this.rocks.push(rock);
         this.rockPositions.push(...rockPosition);
-        this.rockAngle.push(rockAngle);
+        this.rockAngles.push(rockAngle);
         this.rockDimensions.push(...rockDimensions);
         this.numRocks += 1;
     }

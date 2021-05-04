@@ -10,7 +10,7 @@ export class MyMovingFish extends MyMovingObject {
      * @param object - The CGFobject that will be moved and displayed on screen
      * @param  {integer} scaleFactor - Scale factor of the object
      */
-    constructor(scene, scaleFactor = 1, verticalVelocity = 0.1, minPosition = 0.5, maxPosition = 5) {
+    constructor(scene, rockSet, scaleFactor = 1, verticalVelocity = 0.1, minPosition = 0.5, maxPosition = 5) {
         super(scene, new MyFish(scene), scaleFactor);
         this.fish = this.object;
         this.verticalMovementState = 1;
@@ -26,6 +26,7 @@ export class MyMovingFish extends MyMovingObject {
         this.rockAngle = null;
         this.rockDimensions = null;
         this.rockAppearance = null;
+        this.rockSet = rockSet;
 
         this.fish.setTailSpeed(this.minTailspeed);
         this.restartFinCountdown = 0;
@@ -69,6 +70,14 @@ export class MyMovingFish extends MyMovingObject {
         this.fish.setTailSpeed(this.minTailspeed);
         this.position[1] = this.maxPosition;
         this.verticalMovementState = 1;
+        if (this.catchedRock != null) {
+            this.rockSet.addRock(this.catchedRock, this.rockPosition, this.rockAngle, this.rockDimensions);
+            this.catchedRock = null;
+            this.rockPosition = null;
+            this.rockAngle = null;
+            this.rockDimensions = null;
+            this.rockAppearance = null;
+        }
     }
 
     updateVelocity(speedFactor) {
@@ -110,7 +119,7 @@ export class MyMovingFish extends MyMovingObject {
         this.verticalMovementState = -1;
     }
 
-    catchRock(rockSet) {
+    catchRock() {
         if (this.position[1] != this.minPosition) {
             return;
         }
@@ -120,9 +129,9 @@ export class MyMovingFish extends MyMovingObject {
         let closest = null;
         let closestDist = 1.5;
 
-        for (let i in rockSet.rocks) {
-            let delta_x = this.position[0] - rockSet.rockPositions[2*i];
-            let delta_z = this.position[2] - rockSet.rockPositions[2*i+1];
+        for (let i in this.rockSet.rocks) {
+            let delta_x = this.position[0] - this.rockSet.rockPositions[2*i];
+            let delta_z = this.position[2] - this.rockSet.rockPositions[2*i+1];
             let dist = Math.sqrt(delta_x * delta_x + delta_z * delta_z);
             if (dist >= closestDist) continue;
             closest = i;
@@ -131,11 +140,11 @@ export class MyMovingFish extends MyMovingObject {
             return;
         }
 
-        this.catchedRock = rockSet.rocks[closest];
-        this.rockPosition = [rockSet.rockPositions[2*closest], rockSet.rockPositions[2*closest+1]];
-        this.rockAngle = rockSet.rockAngles[closest];
-        this.rockDimensions = [rockSet.rockDimensions[3*closest], rockSet.rockDimensions[3*closest+1],rockSet.rockDimensions[3*closest+2]];
-        this.rockAppearance = rockSet.rockAppearance;
-        rockSet.removeRock(closest);
+        this.catchedRock = this.rockSet.rocks[closest];
+        this.rockPosition = [this.rockSet.rockPositions[2*closest], this.rockSet.rockPositions[2*closest+1]];
+        this.rockAngle = this.rockSet.rockAngles[closest];
+        this.rockDimensions = [this.rockSet.rockDimensions[3*closest], this.rockSet.rockDimensions[3*closest+1], this.rockSet.rockDimensions[3*closest+2]];
+        this.rockAppearance = this.rockSet.rockAppearance;
+        this.rockSet.removeRock(closest);
     }
 }

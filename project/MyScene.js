@@ -46,8 +46,8 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
-        this.movingObject = new MyMovingFish(this);
         this.rockSet = new MyRockSet(this, 30, -22, 22, -22, 22, 10, 10);
+        this.movingObject = new MyMovingFish(this, this.rockSet);
         
         this.pillars = [];
         for (let x = 3.5; x <= 25; x+=6) {
@@ -192,7 +192,7 @@ export class MyScene extends CGFscene {
         }
 
         if (this.gui.isKeyPressed("KeyC")) {
-            this.movingObject.catchRock(this.rockSet);
+            this.movingObject.catchRock();
         }
     }
 
