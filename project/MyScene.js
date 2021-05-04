@@ -79,7 +79,7 @@ export class MyScene extends CGFscene {
         this.loadCubeMap(0, this.cubeMapTextureNames[0][0], this.cubeMapTextureNames[0][1]);
         this.cubeMap = new MyCubeMap(this, ...this.cubeMapTextures[0]);
 
-        this.seaFloor = new MySeaFloor(this, 50, 50, 6); // TODO 6 -> 0.5; 11 -> 1.0
+        this.seaFloor = new MySeaFloor(this, 50, 50, 6, 1.25);
         this.fishNest = new MyFishNest(this, -8, -11.5, 2.25);
 
         this.defaultAppearance = new CGFappearance(this);
