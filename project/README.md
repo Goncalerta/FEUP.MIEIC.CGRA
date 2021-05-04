@@ -73,23 +73,21 @@
 
 #### 6.1. MyMovingFish
 
-- To create MyMovingFish, we adapted the MyMovingObject.
-- In order to add the vertical movement, we established a vertical velocity and a minimum (for the fish not to appear below the floor) and maximum Y coordinate of the object's position.
+- We created the class MyMovingFish extending MyMovingObject and passing it a MyFish as the object to display. As extending MyMovingObject functionality was needed, we overrode its methods, calling the method in the superclass and adding the new functionality to it.
+- In order to add the vertical movement, we established a vertical velocity, as well as a minimum (for the fish not to appear below the floor) and maximum Y coordinate of the object's position. All those values can be parameterized in the constructor of MyMovingFish.
 
 #### 6.2. Animation adjustments of fish behaviour
 
-- The fish's tail has always a minimum speed created in MyMovingFish.
-- So as to adjust the animation of the fish's tail according to its velocity, we added a speed factor that whenever the speed increased, the speed of the tail would increase too and vice-versa.
-TODO: COMO FIZEMOS PARA NÃO TERMOS TELETRANSPORTE
-
-TODO: ANIMAÇÃO BARBATANA
-- For the fin's animation, 
+- When the fish changes velocity, its tail's velocity is also recalculated based on the new velocity. The fish's tail always has a minimum speed even when the fish is still.
+- In order to prevent abrupt changes in the position of the tail when the tail velocity is changed, we had to made slight changes to the animation logic from section 4. Now, instead of calculating the rotation state of the tail based on the absolute time passed to updateAnimation(), we used a strategy similar to the one used to update the position of the fish based on its velocity: the fish now keeps track of its tail's current rotation state and everytime updateAnimation() is called, its tail's rotation state is updated based on the tail's speed.
+- For the fins' animation, every time the fish turns, a call to MyFish.setStopFinState() is made, with the argument being the state of the fins: -1 to stop the left fin from moving, 1 to stop the right fin and 0 to keep both fins moving. After that, a countdown of 250ms is set so that when the fish stops rotating for that amount of time, both fins start moving again (the state goes back to 0).
 
 #### 6.3. Rock collection
 
-- To allow the fish to catch a rock, we had to verify if the fish is in its minimum height and if it has rocks within a distance of 1.5 units. If so, the closest rock is selected and removed from the rock set and its information is kept in MyMovingFish in order to display it in front of the fish's mouth. 
-- Whenever 'C' is pressed and the fish contains a rock and is in its lowest position, if the fish location is in the fish nest, the rock will be put in the fish nest in a previus calculated position (with a more uniform rock distribution).
-- If 'R' is pressed while the fish is carrying a rock, the rock will be placed in its original position. For that, we included the rock's information when it is picked up and the rock set to add it again.
+- Whenever 'C' is pressed and the fish is in its lowest position, depending on whether it has or not a rock in its mouth, it will execute one of two algorithms, respectively: try to put the rock in the nest or try to catch the nearest rock.
+- When trying to catch the nearest rock, it verifies which is the closest rock within a distance of 1.5 units. If none is found, nothing happens. Otherwise, that rock and its information (position, orientation and scale) is removed from MyRockSet and added to MyMovingFish. Even though the original position is not used when displaying the rock on the fish's mouth, it is also stored so that the rock can be put back in MyRockSet if needed.
+- When trying to put the rock in the nest, if the the fish location is inside the fish nest (the location's distance to the center of the nest is smaller than its radius), the rock information will be removed from MyMovingFish and added to MyFishNest, but in a predetermined position inside the nest. Otherwise, nothing happens.
+- When the user resets the fish while it has a rock in its mouth, that rock is removed from the fish and added back to MyRockSet.
 
 ## Screenshots
 
