@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyMovingObject } from "./MyMovingObject.js";
+import { MyMovingFish } from "./MyMovingFish.js";
 import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
 import { MyFish } from "./MyFish.js";
@@ -45,9 +46,8 @@ export class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
 
-        this.movingObject = new MyMovingObject(this, new MyPyramid(this, 10, 10));
+        this.movingObject = new MyMovingFish(this);
         this.rockSet = new MyRockSet(this, 30, -22, 22, -22, 22, 10, 10);
-        this.fish = new MyFish(this);
         
         this.pillars = [];
         for (let x = 3.5; x <= 25; x+=6) {
@@ -158,8 +158,8 @@ export class MyScene extends CGFscene {
     update(t) {
         this.checkKeys();
         this.movingObject.updateVelocity(this.speedFactor);
+        this.movingObject.updateAnimation(t);
         this.waterSurface.updateAnimation(t);
-        this.fish.updateAnimation(t);
     }
 
     checkKeys() {
@@ -177,6 +177,14 @@ export class MyScene extends CGFscene {
 
         if (this.gui.isKeyPressed("KeyD")) {
             this.movingObject.turn(-Math.PI/8);
+        }
+
+        if (this.gui.isKeyPressed("KeyP")) {
+            this.movingObject.setMovingUp();
+        } else if (this.gui.isKeyPressed("KeyL")) {
+            this.movingObject.setMovingDown();
+        } else {
+            this.movingObject.setVerticallyStill();
         }
 
         if (this.gui.isKeyPressed("KeyR")) {
@@ -201,12 +209,6 @@ export class MyScene extends CGFscene {
             this.axis.display();
 
         // ---- BEGIN Primitive drawing section
-
-        this.pushMatrix();
-        this.translate(0, 3, 0);
-        this.fish.display();
-        this.popMatrix();
-
         
         this.seaFloor.display();
         this.fishNest.display();
@@ -220,7 +222,7 @@ export class MyScene extends CGFscene {
             pillar.display();
         }
 
-        //this.movingObject.display();
+        this.movingObject.display();
 
         // this.sphereAppearance.apply();
         //this.sphere.display();
