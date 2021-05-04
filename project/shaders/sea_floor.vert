@@ -12,7 +12,7 @@ uniform float offsetScale;
 
 void main() {
 	vTextureCoord = aTextureCoord;
-    float offset = offsetScale*(texture2D(heightMap, vTextureCoord).b-0.5);
+    float offset = offsetScale * (texture2D(heightMap, vTextureCoord).b - 0.5);
 
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + aVertexNormal * offset, 1.0);
 

@@ -10,7 +10,7 @@ export class MySeaFloor extends CGFobject {
  	 * @param  {integer} nDivs - Number of divisions in both directions of the surface
  	 * @param  {integer} offsetScale - Maximum displacement of the texture in coordinate Y
  	 */	
-	constructor(scene, size, nrDivs, offsetScale) {
+	constructor(scene, size, nrDivs, offsetScale, shadowScale) {
 		super(scene);
 
 		this.size = size;
@@ -28,7 +28,7 @@ export class MySeaFloor extends CGFobject {
 		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.shader = new CGFshader(this.scene.gl, "shaders/sea_floor.vert", "shaders/sea_floor.frag");
-		this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale});
+		this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale, shadowScale: shadowScale});
 	}
 
     display() {
