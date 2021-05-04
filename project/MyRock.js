@@ -19,8 +19,8 @@ export class MyRock extends CGFobject {
     }
 
     /**
-     * @method changeVertices
-     * Changes the sphere vertex buffer
+     * @method initBuffers
+     * Initializes the sphere buffers
      */
     initBuffers() {
         this.vertices = [];

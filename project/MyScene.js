@@ -209,7 +209,7 @@ export class MyScene extends CGFscene {
 
         
         this.seaFloor.display();
-        this.fishNest.display();
+        //this.fishNest.display();
         this.seaweedSet.display();
 
         this.waterSurface.display();
