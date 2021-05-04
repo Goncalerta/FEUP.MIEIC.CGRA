@@ -31,8 +31,13 @@ export class MyFishNest extends CGFobject {
 
     initRockPositions() {
         for (let i = 0; i < this.myRockSet.getNumRocks(); i++) {
-            this.rockPositionsRadius.push(Math.random() * this.radius);
             this.rockPositionsAngle.push(Math.random() * 2 * Math.PI);
+            // This allows a more uniform rock distribution
+            // Source: https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly
+            let u = Math.random() * Math.random();
+            let r = u > 1? 2 - u : u;
+            this.rockPositionsRadius.push(r * this.radius);
+            
         }
     }
 
@@ -52,13 +57,13 @@ export class MyFishNest extends CGFobject {
     display() {
         this.myRockSet.getRockAppearance().apply();
         this.scene.pushMatrix();
-        this.scene.translate(this.x, 0, this.z);
+        this.scene.translate(this.x, -0.7, this.z);
 
         for (let i in this.rocks) {
             this.scene.pushMatrix();
 
             this.scene.rotate(this.rockPositionsAngle[i], 0, 1, 0);
-            this.scene.translate(0, -0.5, this.rockPositionsRadius[i]);
+            this.scene.translate(0, 0, this.rockPositionsRadius[i]);
             this.scene.rotate(this.rockAngles[i], 1, 0, 0);
             this.scene.scale(this.rockDimensions[3*i], this.rockDimensions[3*i + 1], this.rockDimensions[3*i + 2]);
             

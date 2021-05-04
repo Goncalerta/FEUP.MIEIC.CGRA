@@ -127,7 +127,7 @@ export class MyMovingFish extends MyMovingObject {
         if (this.catchedRock == null) {
             this.catchRock();
         } else {
-            this.dropRock();
+            this.putRock();
         }
     }
 
@@ -153,13 +153,13 @@ export class MyMovingFish extends MyMovingObject {
         this.rockSet.removeRock(closest);
     }
 
-    dropRock() {
+    putRock() {
         if (this.fishNest.contains(this.position)) {
             this.fishNest.addRock(this.catchedRock, this.rockAngle, this.rockDimensions);
             this.catchedRock = null;
             this.rockPosition = null;
             this.rockAngle = null;
             this.rockDimensions = null;
-        }
+       }
     }
 }

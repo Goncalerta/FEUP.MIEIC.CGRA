@@ -214,7 +214,7 @@ export class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         
         this.seaFloor.display();
-        //this.fishNest.display();
+        this.fishNest.display();
         this.seaweedSet.display();
 
         this.waterSurface.display();
