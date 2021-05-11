@@ -68,8 +68,8 @@
 - To create MyPillar, we used the cylinder created in part A. We added a texture that resembles a trunk (from [http://www.cadhatch.com/seamless-bark-textures/4588167786](http://www.cadhatch.com/seamless-bark-textures/4588167786)) to look more realistic, with an appearance that makes it browner as the trunk has been underwater.
 - In order for the pillars to look like they belonged to the pier of the image of the surface, we had to translate them into positions below that pier and scale them to have the them reach the surface. As this scaling would otherwise make the texture very stretched out and ugly, we added a textureHeight parameter to the constructor, which scales the texture coordinates so that (with a REPEATING texture wrap) the texture would not be stretched and instead repeat all the way to the top of the cylinder. We added a total of 8 pillars.
 - For the cubemap, we added the given textures ('images/underwater_cubemap/') to the list of cubemaps in MyScene and set that one as the default. Because of there being so many cubemaps to choose from, loading all textures at the beggining started to get very slow, so we changed the code so that it would only load the textures of any given cubemap after selecting it for the first time.
-- So as to fill the scenery, we added groups of seaweeds. We created MySeaweed to represent a group of seaweed, with radius, height and displacement limits (how far can each element be from the center of the group) that are parameterized in the constructor. The seaweed uses MyPyramid as the base shape, each with different colors randomly generated but always close to green.
-- In MySeaweedSet, groups of seaweeds are created with random positioning, number of seaweeds and parameter limits of each group. In the constructor, there are parameters to limit those values.
+- So as to fill the scenery, we added groups of seaweeds. We created MySeaweed to represent a group of seaweed, with radius, height and displacement limits (how far can each element be from the center of the group) that are parameterized in the constructor. The seaweed uses MyPyramid as the base shape for each leaf, each with different colors randomly generated but always close to green.
+- In MySeaweedSet, groups of seaweeds are created with random positioning, number of leaves and parameter limits of each group. In the constructor, there are parameters to limit those values.
 
 #### 6.1. MyMovingFish
 
@@ -93,23 +93,28 @@
 
 We decided to implement the following items:
 
-##### 7.1 Seaweed
+- 7.1.  Seaweed (0.5 marks)
+- 7.2.  Animated Seaweeds (1.5 marks)
+- 7.6.  Improved fish's shader (1 mark)
 
-- We had already implemented this feature in 5.4 where we created the seaweeds using MyPyramid as the base shape, each with different colors randomly generated but always close to green.
-- So as to create groups of seaweeds, we created MySeaweedSet that created them with random positioning, number of seaweeds and parameter limits of each group.
+For the total of 0.5 + 1.5 + 1 = 3 marks as instructed.
 
-##### 7.2 Animated Seaweeds
+##### 7.1 Seaweed (0.5 marks)
 
-- To create ondulation in the seaweeds we had to change MyPyramid in order to divide the object and create "stacks". 
-- We had to change the vertices, normals and indices.
-- To create the ondulation, we passed the curvature and the amplitude of the ondulation as well as the phase to the shader, in order to know which phase of the ondulation the seaweed is in according to time.
-- We creted an offset with a sinusoidal, scaled by the height (coordinate Y).
-- Because we wanted to keep the appearence previously created for each seaweed, we modified the shader based on “lib/CGF/shaders/Gouraud/textured”.
+- We had already implemented this feature in 5.4 where we created seaweeds using MyPyramid as the base shape for each leaf, each with different colors randomly generated but always close to green.
+- As described in that section, so as to generate various groups of seaweeds in the scene, we created MySeaweedSet to generate them with random positioning, number of leaves and parameter limits (minimum/maximum height, radius, displacement of each leaf) of each group.
 
-##### 7.6 Better fish's shader
+##### 7.2 Animated Seaweeds (1.5 marks)
 
-- To improve the fish's shader, we modified it so as to the fish's body and head to react to the light. We based our shader in “lib/CGF/shaders/Gouraud/textured” but with some modifications.
-- We had to adjust the calculation of the lighting according to which part of the fish we were representing. For this, we created a flag to know if we wanted to use the material correspondent to the texture of the body or the material correspondent to the fish's head.
+- For this item we had to animate the ondulation of the seaweeds. However, in order to "bend" each leaf we had to make changes to the MyPyramid class. In fact, this class did not implement stacks, so each face was a triangle made of three vertices, thus being unable to show a curved ondulation. We changed its initBuffers() function, changing the vertices, normals and indices in order to add the number of stacks passed to the constructor. After the changes, the number of vertices of each triangle is now (1 + 2*num_stacks).
+- In order to create the animation itself we created a shader. However, as we wanted to keep the appearance (especially the colors) previously set to the seaweeds, we copied the shader in "lib/CGF/shaders/Gouraud" to use as a starting point and added to it the animation of ondulation.
+- To ease tweaking and fine tuning the ondulation effect, we passed the curvature and the amplitude of the ondulation as uniform values to the shader, as well as its phase, which is what changes over time to produce the animation.
+- The animation consists of adding an offset to the x and z coordinates of each vertex, in a sinusoid dependent on its y coodinate (height). The base is fixed (y=0 => amplitude=0) and as y increases the amplitude also increases, being maximum at the tip of the leaf.
+
+##### 7.6 Improved fish's shader (1 mark)
+
+- The fish shader created in section 4 does not react to light, giving the fish an artificial aspect. The objective of this item was to improve the fish's shader, modifying it so that the fish's body and head would react to the light. As instructed, we used the shader in "lib/CGF/shaders/Gouraud/textured" as a starting point, adding the modifications of section 4.
+- The distortion of the sphere was added to the vertex variable in line 127 of the vertex shader. The fragment shader then uses the texture with the body color if z < 0.2, or the solid head color otherwise. This means that the vertex shader calculates both colors and passes them to the fragment shader. The head color is calculated from the fish appearence already used in the fins and tail. The body color is calculated from a white material defined in the shader, in order to keep the colors of the texture.
 
 ## Screenshots
 

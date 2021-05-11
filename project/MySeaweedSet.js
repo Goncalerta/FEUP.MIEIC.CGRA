@@ -21,7 +21,7 @@ export class MySeaweedSet extends CGFobject {
      * @param  {float} ondulationCurvature - Curvature of the ondulation 
      */
     constructor(scene, numGroups, minGroupSize, maxGroupSize, minX, maxX, minZ, maxZ, minRadius, maxRadius, minHeight, maxHeight, 
-                maxDisplacementInGroup, ondulationAmplitude, ondulationCurvature) {
+                maxDisplacementInGroup, ondulationAmplitude, ondulationCurvature, ondulationSpeed) {
         super(scene);
 
         this.numGroups = numGroups;
@@ -49,6 +49,7 @@ export class MySeaweedSet extends CGFobject {
 
         this.ondulationAmplitude = ondulationAmplitude;
         this.ondulationCurvature = ondulationCurvature;
+        this.ondulationSpeed = ondulationSpeed;
         this.t = 0;
 
         this.shader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
@@ -56,7 +57,7 @@ export class MySeaweedSet extends CGFobject {
     }
 
     update(t) {
-        this.t += 0.1;
+        this.t += this.ondulationSpeed;
         this.shader.setUniformsValues({ heightMap: 1, amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.t});
     }
 
