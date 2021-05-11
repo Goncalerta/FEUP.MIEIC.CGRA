@@ -89,6 +89,28 @@
 - When trying to put the rock in the nest, if the the fish location is inside the fish nest (the location's distance to the center of the nest is smaller than its radius), the rock information will be removed from MyMovingFish and added to MyFishNest, but in a predetermined position inside the nest. Otherwise, nothing happens.
 - When the user resets the fish while it has a rock in its mouth, that rock is removed from the fish and added back to MyRockSet.
 
+#### 7. Additional functionalities
+
+We decided to implement the following items:
+
+## 7.1 Seaweed
+
+- We had already implemented this feature in 5.4 where we created the seaweeds using MyPyramid as the base shape, each with different colors randomly generated but always close to green.
+- So as to create groups of seaweeds, we created MySeaweedSet that created them with random positioning, number of seaweeds and parameter limits of each group.
+
+## 7.2 Animated Seaweeds
+
+- To create ondulation in the seaweeds we had to change MyPyramid in order to divide the object and create "stacks". 
+- We had to change the vertices, normals and indices.
+- To create the ondulation, we passed the curvature and the amplitude of the ondulation as well as the phase to the shader, in order to know which phase of the ondulation the seaweed is in according to time.
+- We creted an offset with a sinusoidal, scaled by the height (coordinate Y).
+- Because we wanted to keep the appearence previously created for each seaweed, we modified the shader based on “lib/CGF/shaders/Gouraud/textured”.
+
+## 7.6 Better fish's shader
+
+- To improve the fish's shader, we modified it so as to the fish's body and head to react to the light. We based our shader in “lib/CGF/shaders/Gouraud/textured” but with some modifications.
+- We had to adjust the calculation of the lighting according to which part of the fish we were representing. For this, we created a flag to know if we wanted to use the material correspondent to the texture of the body or the material correspondent to the fish's head.
+
 ## Screenshots
 
 ### 1 - MyFish
@@ -141,3 +163,19 @@
 ![Screenshot 7d](screenshots/proj-t7g03-7d.png)
 ![Screenshot 7e](screenshots/proj-t7g03-7e.png)
 ![Screenshot 7f](screenshots/proj-t7g03-7f.png)
+
+
+### 8 - Additional functionalities
+
+![Screenshot 8a](screenshots/proj-t7g03-8a.png)
+![Screenshot 8b](screenshots/proj-t7g03-8b.png)
+![Screenshot 8c](screenshots/proj-t7g03-8c.png)
+![Screenshot 8d](screenshots/proj-t7g03-8d.png)
+
+![Screenshot 8e](screenshots/proj-t7g03-8e.png)
+![Screenshot 8f](screenshots/proj-t7g03-8f.png)
+![Screenshot 8g](screenshots/proj-t7g03-8g.png)
+
+![Screenshot 8h](screenshots/proj-t7g03-8h.png)
+![Screenshot 8i](screenshots/proj-t7g03-8i.png)
+![Screenshot 8j](screenshots/proj-t7g03-8j.png)

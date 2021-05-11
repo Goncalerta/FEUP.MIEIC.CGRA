@@ -17,6 +17,8 @@ export class MySeaweedSet extends CGFobject {
      * @param  {float} minHeight - Minimum height of the seaweeds
      * @param  {float} maxHeight - Maximum height of the seaweeds
      * @param  {float} maxDisplacementInGroup - Maximum displacement of a seaweed in a group
+     * @param  {float} ondulationAmplitude - Maximum amplitude of the ondulation
+     * @param  {float} ondulationCurvature - Curvature of the ondulation 
      */
     constructor(scene, numGroups, minGroupSize, maxGroupSize, minX, maxX, minZ, maxZ, minRadius, maxRadius, minHeight, maxHeight, 
                 maxDisplacementInGroup, ondulationAmplitude, ondulationCurvature) {
