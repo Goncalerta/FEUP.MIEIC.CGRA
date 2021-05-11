@@ -34,8 +34,11 @@ export class MyPyramid extends CGFobject {
             var caa=Math.cos(ang+alphaAng);
 
             this.vertices.push(0,1,0);
-            this.vertices.push(ca, 0, -sa);
-            this.vertices.push(caa, 0, -saa);
+            for (var j = 0; j < this.stacks; j++) {
+                let height = j/this.stacks;
+                this.vertices.push(ca*(1-height), height, -sa*(1-height));
+                this.vertices.push(caa*(1-height), height, -saa*(1-height));
+            }
 
             // triangle normal computed by cross product of two edges
             var normal= [
@@ -56,12 +59,23 @@ export class MyPyramid extends CGFobject {
 
             // push normal once for each vertex of this triangle
             this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
+            for (let j = 0; j < this.stacks; j++) {
+                this.normals.push(...normal);
+                this.normals.push(...normal);
+            }
 
-            this.indices.push(3*i, (3*i+1) , (3*i+2) );
+            let verticesPerStack = (1+2*this.stacks);
+            
+            for (let j = 0; j < this.stacks-1; j++) {
+                let stackVertices = verticesPerStack*i + 2*j;
+                this.indices.push(stackVertices + 3, stackVertices + 1, stackVertices + 4);
+                this.indices.push(stackVertices + 4, stackVertices + 1, stackVertices + 2);
+            }
+            let stackVertices = verticesPerStack*i + 2*(this.stacks-1);
+            this.indices.push(verticesPerStack*i, stackVertices + 1, stackVertices + 2);
 
             ang+=alphaAng;
+            
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;
@@ -84,6 +98,7 @@ export class MyPyramid extends CGFobject {
      */
     updateBuffers(complexity){
         this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
+        this.stacks = 3 + Math.round(9 * complexity); //complexity varies 0-1, so stacks varies 3-12
 
         // reinitialize buffers
         this.initBuffers();

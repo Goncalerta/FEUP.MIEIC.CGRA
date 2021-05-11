@@ -35,7 +35,7 @@ export class MyFishNest extends CGFobject {
             // Source: https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly
             let u = Math.random() + Math.random();
             let r = u > 1? 2 - u : u;
-            this.rockPositionsRadius.push(r * this.radius);
+            this.rockPositionsRadius.push(r * this.radius * 0.8); // Multiply by 0.8 so rocks don't become 'buried' in the edges of the nest
             
         }
     }
