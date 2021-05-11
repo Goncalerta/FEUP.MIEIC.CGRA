@@ -89,7 +89,7 @@
 - When trying to put the rock in the nest, if the the fish location is inside the fish nest (the location's distance to the center of the nest is smaller than its radius), the rock information will be removed from MyMovingFish and added to MyFishNest, but in a predetermined position inside the nest. Otherwise, nothing happens.
 - When the user resets the fish while it has a rock in its mouth, that rock is removed from the fish and added back to MyRockSet.
 
-#### 7. Additional functionalities
+#### 7. Additional features
 
 We decided to implement the following items:
 
