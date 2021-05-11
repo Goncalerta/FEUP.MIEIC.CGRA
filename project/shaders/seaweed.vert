@@ -1,8 +1,14 @@
 #version 300 es 
 precision highp float;
 
+#define PI 3.1415926538
+
 in vec3 aVertexPosition;
 in vec3 aVertexNormal;
+
+uniform float amplitude;
+uniform float curvature;
+uniform float phase;
 
 struct lightProperties {
     vec4 position;                  // Default: (0, 0, 1, 0)
@@ -104,9 +110,11 @@ vec4 lighting(vec4 vertex, vec3 E, vec3 N) {
 }
 
 void main() {
-
+	
     // Transformed Vertex position
-    vec4 vertex = uMVMatrix * vec4(aVertexPosition, 1.0);
+	float height = aVertexPosition.y;
+	float offset = sin(2.0*PI*curvature*(height+phase))*amplitude*height;
+    vec4 vertex = uMVMatrix * vec4(aVertexPosition + vec3(-offset, 0.0, offset), 1.0);
 
     // Transformed normal position
 	vec3 N = normalize(vec3(uNMatrix * vec4(aVertexNormal, 1.0)));

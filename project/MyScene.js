@@ -50,7 +50,7 @@ export class MyScene extends CGFscene {
         this.waterSurface = new MyWaterSurface(this, 10, 50, 0.3, 0.3);
         
         this.rockSet = new MyRockSet(this, 30, -22, 22, -22, 22, 10, 10);
-        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.14, 0.25, 0.9, 0.2);
+        this.seaweedSet = new MySeaweedSet(this, 25, 2, 5, -22, 22, -22, 22, 0.08, 0.14, 0.25, 0.9, 0.2, 1.1, 0.15);
         
         this.fishNest = new MyFishNest(this, -8, -11.5, 2.25, this.rockSet);
         this.movingObject = new MyMovingFish(this, this.fishNest, this.rockSet);
@@ -159,6 +159,7 @@ export class MyScene extends CGFscene {
         this.movingObject.updateVelocity(this.speedFactor);
         this.movingObject.updateAnimation(t);
         this.waterSurface.updateAnimation(t);
+        this.seaweedSet.update(t);
     }
 
     checkKeys() {

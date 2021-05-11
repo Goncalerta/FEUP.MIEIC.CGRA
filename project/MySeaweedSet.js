@@ -18,7 +18,8 @@ export class MySeaweedSet extends CGFobject {
      * @param  {float} maxHeight - Maximum height of the seaweeds
      * @param  {float} maxDisplacementInGroup - Maximum displacement of a seaweed in a group
      */
-    constructor(scene, numGroups, minGroupSize, maxGroupSize, minX, maxX, minZ, maxZ, minRadius, maxRadius, minHeight, maxHeight, maxDisplacementInGroup) {
+    constructor(scene, numGroups, minGroupSize, maxGroupSize, minX, maxX, minZ, maxZ, minRadius, maxRadius, minHeight, maxHeight, 
+                maxDisplacementInGroup, ondulationAmplitude, ondulationCurvature) {
         super(scene);
 
         this.numGroups = numGroups;
@@ -44,7 +45,17 @@ export class MySeaweedSet extends CGFobject {
             this.groups.push(group);
         }
 
+        this.ondulationAmplitude = ondulationAmplitude;
+        this.ondulationCurvature = ondulationCurvature;
+        this.t = 0;
+
         this.shader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
+        this.shader.setUniformsValues({ heightMap: 1, amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.t});
+    }
+
+    update(t) {
+        this.t += 0.1;
+        this.shader.setUniformsValues({ heightMap: 1, amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.t});
     }
 
     display() {
