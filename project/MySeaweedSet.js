@@ -1,4 +1,4 @@
-import { CGFobject } from '../lib/CGF.js';
+import { CGFobject, CGFshader } from '../lib/CGF.js';
 import { MySeaweed } from './MySeaweed.js';
 
 export class MySeaweedSet extends CGFobject {
@@ -43,11 +43,15 @@ export class MySeaweedSet extends CGFobject {
 
             this.groups.push(group);
         }
+
+        this.shader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
     }
 
     display() {
+        this.scene.setActiveShader(this.shader);
         for (let group of this.groups) {
             group.display();
         }
+        this.scene.setActiveShader(this.scene.defaultShader);
     }
 }
