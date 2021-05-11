@@ -93,12 +93,12 @@
 
 We decided to implement the following items:
 
-## 7.1 Seaweed
+##### 7.1 Seaweed
 
 - We had already implemented this feature in 5.4 where we created the seaweeds using MyPyramid as the base shape, each with different colors randomly generated but always close to green.
 - So as to create groups of seaweeds, we created MySeaweedSet that created them with random positioning, number of seaweeds and parameter limits of each group.
 
-## 7.2 Animated Seaweeds
+##### 7.2 Animated Seaweeds
 
 - To create ondulation in the seaweeds we had to change MyPyramid in order to divide the object and create "stacks". 
 - We had to change the vertices, normals and indices.
@@ -106,7 +106,7 @@ We decided to implement the following items:
 - We creted an offset with a sinusoidal, scaled by the height (coordinate Y).
 - Because we wanted to keep the appearence previously created for each seaweed, we modified the shader based on “lib/CGF/shaders/Gouraud/textured”.
 
-## 7.6 Better fish's shader
+##### 7.6 Better fish's shader
 
 - To improve the fish's shader, we modified it so as to the fish's body and head to react to the light. We based our shader in “lib/CGF/shaders/Gouraud/textured” but with some modifications.
 - We had to adjust the calculation of the lighting according to which part of the fish we were representing. For this, we created a flag to know if we wanted to use the material correspondent to the texture of the body or the material correspondent to the fish's head.
