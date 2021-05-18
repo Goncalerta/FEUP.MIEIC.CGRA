@@ -11,17 +11,21 @@ export class MyTriangle extends CGFobject {
 		this.initBuffers();
 	}
 	
+	/**
+     * @method initBuffers
+     * Initializes the triangle buffers
+     */
 	initBuffers() {
 		this.vertices = [
-			0, 1, 0,	//0
-			0, -1, 0,	//1
-			0, 0, 1,	//2
-            0, 0, 1,	//3
-			0, -1, 0,	//4
-			0, 1, 0,	//5
+			0, 1, 0,	// 0
+			0, -1, 0,	// 1
+			0, 0, 1,	// 2
+            0, 0, 1,	// 3
+			0, -1, 0,	// 4
+			0, 1, 0,	// 5
 		];
 
-		//Counter-clockwise reference of vertices
+		// Counter-clockwise reference of vertices
 		this.indices = [
 			0, 1, 2,
             3, 4, 5
@@ -36,8 +40,8 @@ export class MyTriangle extends CGFobject {
             1, 0, 0,
         ];
 
-		//The defined indices (and corresponding vertices)
-		//will be read in groups of three to draw triangles
+		// The defined indices (and corresponding vertices)
+		// will be read in groups of three to draw triangles
 		this.primitiveType = this.scene.gl.TRIANGLES;
 
 		this.initGLBuffers();

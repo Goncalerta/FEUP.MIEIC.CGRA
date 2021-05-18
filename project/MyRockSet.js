@@ -33,6 +33,7 @@ export class MyRockSet extends CGFobject {
     }
 
     /**
+     * @method initRocks
      * Creates numRocks number of rocks.
      * Generates random positions limited by minimum and maximum of X and Y, angles and dimensions for each rock.
      * @param  {integer} sphereSlices - number of slices around Y axis of the sphere
@@ -64,14 +65,28 @@ export class MyRockSet extends CGFobject {
         }
     }
 
+    /**
+     * @method getRockAppearance
+     * Gets rock appearance.
+     */
     getRockAppearance() {
         return this.rockAppearance;
     }
 
+    /**
+     * @method getNumRocks
+     * Gets the number of rocks of the set.
+     */
     getNumRocks() {
         return this.numRocks;
     }
 
+    /**
+     * @method removeRock
+     * Removes certain rock from the set and its properties (position, angle and dimensions).
+     * Updates the number of rocks in the set.
+     * @param {Integer} i - Index of the rock in 'rocks' to remove.
+     */
     removeRock(i) {
         this.rocks.splice(i, 1);
         this.rockPositions.splice(2 * i, 2);
@@ -80,6 +95,15 @@ export class MyRockSet extends CGFobject {
         this.numRocks -= 1;
     }
 
+    /**
+     * @method removeRock
+     * Adds rock to the set and its properties (position, angle and dimensions).
+     * Updates the number of rocks in the set.
+     * @param {MyRock} rock - Rock to add to the set.
+     * @param {Array} rockPosition - Position of the rock. Array with x and z coordinates.
+     * @param {float} rockAngle - Angle of the rock.
+     * @param {Array} rockDimensions - Rock's dimensions. Array with x, y and z scale factor.
+     */
     addRock(rock, rockPosition, rockAngle, rockDimensions) {
         this.rocks.push(rock);
         this.rockPositions.push(...rockPosition);

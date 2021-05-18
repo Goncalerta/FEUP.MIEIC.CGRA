@@ -29,8 +29,8 @@ export class MySeaweed extends CGFobject {
         this.maxHeight = maxHeight;
         this.maxDisplacement = maxDisplacement;
 
+        // Generate seaweed's appearances
         this.seaweedAppearances = [];
-
         for (let i = 0; i < this.numSeaweed; i++) {
             let blueComponent = Math.random() * 0.3 + 0.1;
             let redComponent = blueComponent + Math.random() * 0.25 + 0.1;
@@ -51,6 +51,7 @@ export class MySeaweed extends CGFobject {
     }
 
     /**
+     * @method initSeaweed
      * Creates numSeaweed number of seaweeds.
      * Generates random positions limited by minimum and maximum of X and Y and dimensions for each seaweed.
      */

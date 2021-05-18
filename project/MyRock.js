@@ -20,7 +20,7 @@ export class MyRock extends CGFobject {
 
     /**
      * @method initBuffers
-     * Initializes the sphere buffers
+     * Initializes the rocks buffers
      */
     initBuffers() {
         this.vertices = [];

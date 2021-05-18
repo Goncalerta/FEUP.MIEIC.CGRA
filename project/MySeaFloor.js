@@ -9,6 +9,7 @@ export class MySeaFloor extends CGFobject {
 	 * @param  {integer} size - Size of the side of the surface
  	 * @param  {integer} nDivs - Number of divisions in both directions of the surface
  	 * @param  {integer} offsetScale - Maximum displacement of the texture in coordinate Y
+	 * @param  {float} shadowScale - Scale to control the color of the darker zones of the floor
  	 */	
 	constructor(scene, size, nrDivs, offsetScale, shadowScale) {
 		super(scene);

@@ -1,4 +1,4 @@
-import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
+import {CGFobject, CGFappearance} from '../lib/CGF.js';
 
 export class MyFishNest extends CGFobject {
     /**
@@ -8,9 +8,10 @@ export class MyFishNest extends CGFobject {
      * @param  {integer} x - X coordinate of the object's position
      * @param  {integer} z - Y coordinate of the object's position
      * @param  {float} radius - Radius of the object
-     * @param  {MyRockSet} myRockSet - Rock set of rocks in the fish nest
+     * @param  {integer} numRocks - Number of rocks in the scene
+     * @param  {CGFappearance} rockAppearance - Appearance of the rocks
      */
-	constructor(scene, x, z, radius, myRockSet) {
+	constructor(scene, x, z, radius, numRocks, rockAppearance) {
 		super(scene);
 
         this.x = x;
@@ -23,13 +24,18 @@ export class MyFishNest extends CGFobject {
         this.rockAngles = [];
         this.rockDimensions = [];
 
-        this.myRockSet = myRockSet;
+        this.rockAppearance = rockAppearance;
 
-        this.initRockPositions();
+        this.initRockPositions(numRocks);
 	}
 
-    initRockPositions() {
-        for (let i = 0; i < this.myRockSet.getNumRocks(); i++) {
+    /**
+     * @method initRockPositions
+     * Initializes the set of positions occupied by the rocks that the fish collects in the nest
+     * @param {integer} numRocks - Number of rocks in the scene
+     */
+    initRockPositions(numRocks) {
+        for (let i = 0; i < numRocks; i++) {
             this.rockPositionsAngle.push(Math.random() * 2 * Math.PI);
             // This allows a more uniform rock distribution
             // Source: https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly
@@ -40,12 +46,24 @@ export class MyFishNest extends CGFobject {
         }
     }
 
+    /**
+     * @method initRockPositions
+     * Returns whether the given position is inside the nest
+     * @param {array} position - the position (array with x, y, z coordinates) to check
+     */
     contains(position) {
         let delta_x = this.x - position[0];
         let delta_z = this.z - position[2];
         return Math.sqrt(delta_x * delta_x + delta_z * delta_z) <= this.radius;
     }
 
+    /**
+     * @method addRock
+     * Adds a rock to the nest
+     * @param {MyRock} rock - rock to add to the nest
+     * @param {float} rockAngle - angle of the rock
+     * @param {float} rockDimensions - dimensions of the rock
+     */
     addRock(rock, rockAngle, rockDimensions) {
         this.rocks.push(rock);
         this.rockAngles.push(rockAngle);
@@ -53,7 +71,7 @@ export class MyFishNest extends CGFobject {
     }
 
     display() {
-        this.myRockSet.getRockAppearance().apply();
+        this.rockAppearance.apply();
         this.scene.pushMatrix();
         this.scene.translate(this.x, -0.7, this.z);
 
@@ -71,7 +89,5 @@ export class MyFishNest extends CGFobject {
         }
 
 		this.scene.popMatrix();
-
-        this.scene.setActiveShader(this.scene.defaultShader);
     }
 }

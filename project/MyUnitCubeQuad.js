@@ -21,6 +21,7 @@ export class MyUnitCubeQuad extends CGFobject {
     }
 	
     /**
+     * @method displayFace
      * Displays a single face of the cube.
      * @param angle The angle needed to rotate from the +Z face to the side to display.
      * @param topOrBottom Whether the face is one of top or bottom (otherwise, it's a side face).

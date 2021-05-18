@@ -86,7 +86,7 @@
 
 - Whenever 'C' is pressed and the fish is in its lowest position, depending on whether it has or not a rock in its mouth, it will execute one of two algorithms, respectively: try to put the rock in the nest or try to catch the nearest rock.
 - When trying to catch the nearest rock, it verifies which is the closest rock within a distance of 1.5 units. If none is found, nothing happens. Otherwise, that rock and its information (position, orientation and scale) is removed from MyRockSet and added to MyMovingFish. Even though the original position is not used when displaying the rock on the fish's mouth, it is also stored so that the rock can be put back in MyRockSet if needed.
-- When trying to put the rock in the nest, if the the fish location is inside the fish nest (the location's distance to the center of the nest is smaller than its radius), the rock information will be removed from MyMovingFish and added to MyFishNest, but in a predetermined position inside the nest. Otherwise, nothing happens.
+- When trying to put the rock in the nest, if the the fish location is inside the fish nest (the location's distance to the center of the nest is smaller than its radius), the rock information will be removed from MyMovingFish and added to MyFishNest, but in a predetermined position inside the nest. Otherwise, nothing happens. The predetermined position is calculated randomly at the start of the program, with aid of the algorithm found in https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly so that the distribution is uniform instead of being biased towards the center.
 - When the user resets the fish while it has a rock in its mouth, that rock is removed from the fish and added back to MyRockSet.
 
 #### 7. Additional features
@@ -104,7 +104,7 @@ For the total of 0.5 + 1.5 + 1 = 3 marks as instructed.
 - We had already implemented this feature in 5.4 where we created seaweeds using MyPyramid as the base shape for each leaf, each with different colors randomly generated but always close to green.
 - As described in that section, so as to generate various groups of seaweeds in the scene, we created MySeaweedSet to generate them with random positioning, number of leaves and parameter limits (minimum/maximum height, radius, displacement of each leaf) of each group.
 
-##### 7.2 Animated Seaweeds (1.5 marks)
+##### 7.2 Animated Seaweed (1.5 marks)
 
 - For this item we had to animate the ondulation of the seaweeds. However, in order to "bend" each leaf we had to make changes to the MyPyramid class. In fact, this class did not implement stacks, so each face was a triangle made of three vertices, thus being unable to show a curved ondulation. We changed its initBuffers() function, changing the vertices, normals and indices in order to add the number of stacks passed to the constructor. After the changes, the number of vertices of each triangle is now (1 + 2*num_stacks).
 - In order to create the animation itself we created a shader. However, as we wanted to keep the appearance (especially the colors) previously set to the seaweeds, we copied the shader in "lib/CGF/shaders/Gouraud" to use as a starting point and added to it the animation of ondulation.

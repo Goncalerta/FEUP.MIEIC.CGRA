@@ -1,22 +1,25 @@
 import {CGFinterface, dat} from '../lib/CGF.js';
 
-/**
-* MyInterface
-* @constructor
-*/
 export class MyInterface extends CGFinterface {
+    /**
+     * MyInterface
+     * @constructor
+     */
     constructor() {
         super();
     }
 
+    /**
+     * @method init
+     * Initializes the interface.
+     * @param {CGFapplication} application - Application.
+     */
     init(application) {
-        // call CGFinterface init
+        // Call CGFinterface init
         super.init(application);
-        // init GUI. For more information on the methods, check:
+        // Init GUI. For more information on the methods, check:
         // http://workshop.chromeexperiments.com/examples/gui
         this.gui = new dat.GUI();
-        
-        var obj = this;
 
         // Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
@@ -34,20 +37,39 @@ export class MyInterface extends CGFinterface {
         return true;
     }
 
+    /**
+     * @method initKeys
+     * Initializes the keys.
+     */
     initKeys() {
         this.scene.gui = this;
         this.processKeyboard = function() {};
         this.activeKeys = {};
     }
 
+    /**
+     * @method processKeyDown
+     * Processes the event key down pressed.
+     * @param event - Event.
+     */
     processKeyDown(event) {
         this.activeKeys[event.code] = true;
     }
 
+    /**
+     * @method processKeyUp
+     * Processes the event key up pressed.
+     * @param event - Event.
+     */
     processKeyUp(event) {
         this.activeKeys[event.code] = false;
     }
 
+    /**
+     * @method isKeyPressed
+     * Updates array of active keys according to the one pressed.
+     * @param {String} keyCode - Code of the key pressed.
+     */
     isKeyPressed(keyCode) {
         if (this.activeKeys[keyCode] === true && (keyCode == "keyL" || keyCode == "keyP")) {
             this.activeKeys[keyCode] = false;

@@ -14,6 +14,10 @@ export class MyQuad extends CGFobject {
 			this.updateTexCoords(coords);
 	}
 	
+	/**
+     * @method initBuffers
+     * Initializes the quad's buffers
+     */
 	initBuffers() {
 		this.vertices = [
 			-0.5, -0.5, 0,	// 0

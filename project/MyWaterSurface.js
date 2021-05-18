@@ -37,6 +37,11 @@ export class MyWaterSurface extends CGFobject {
         this.shader.setUniformsValues({ distortionMap: 1, distortionScale: this.distortionScale, timeFactor: 0 });
     }
 
+    /**
+     * @method updateAnimation
+     * Updates the values passed to the shader based on current time
+     * @param {Number} - Current time in milliseconds
+     */
     updateAnimation(t) {
         this.shader.setUniformsValues({ distortionMap: 1, distortionScale: this.distortionScale, timeFactor: t / 10000 * this.waterSpeed % 1 });
     }

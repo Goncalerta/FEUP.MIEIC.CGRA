@@ -5,8 +5,8 @@ export class MyMovingObject extends CGFobject {
      * MyMovingObject
      * @constructor
      * @param  {CGFscene} scene - Reference to MyScene object
-     * @param object - The CGFobject that will be moved and displayed on screen
-     * @param  {integer} scaleFactor - Scale factor of the object
+     * @param  {CGFobject} object - The CGFobject that will be moved and displayed on screen
+     * @param  {float} scaleFactor - Scale factor of the object
      */
     constructor(scene, object, scaleFactor = 1) {
         super(scene);
@@ -19,10 +19,11 @@ export class MyMovingObject extends CGFobject {
     }
 
     /**
-     * Updates the velocity based on the orientation and speed.
-     * @param speedFactor - A factor to control the speed.
+     * @method updatePosition
+     * Updates the position of the object based on its speed, orientation and vertical movement state
+     * @param {float} speedFactor - A factor to control the speed
      */
-    updateVelocity(speedFactor) {
+    updatePosition(speedFactor) {
         let directionVect = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
         
         for (let i = 0; i < 3; i++) {
@@ -31,16 +32,18 @@ export class MyMovingObject extends CGFobject {
     }
 
     /**
-     * Changes the orientation of the object on the xOz plane.
-     * @param {integer} val - Increment in orientation.
+     * @method turn
+     * Changes the orientation of the object on the xOz plane
+     * @param {float} val - Increment in orientation
      */
     turn(val) {
         this.orientation += val;
     }
 
     /**
-     * Changes the speed of the object.
-     * @param {integer} val - Change in speed.
+     * @method accelerate
+     * Changes the speed of the object
+     * @param {float} val - Change in speed
      */
     accelerate(val) {
         this.speed += val;
@@ -48,7 +51,8 @@ export class MyMovingObject extends CGFobject {
     }
 
     /**
-     * Resets the object to its initial position, speed and orientation.
+     * @method reset
+     * Resets the object to its initial position, speed and orientation
      */
     reset() {
         this.position = [0, 0, 0];
@@ -65,6 +69,11 @@ export class MyMovingObject extends CGFobject {
         this.scene.popMatrix();
     }
 
+    /**
+     * @method updateScaleFactor
+     * Updates the object's scale factor
+     * @param {float} scaleFactor - New object's scale factor
+     */
     updateScaleFactor(scaleFactor) {
         this.scaleFactor = scaleFactor;
     }
