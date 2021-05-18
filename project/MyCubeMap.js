@@ -1,7 +1,7 @@
-import {CGFobject, CGFappearance} from '../lib/CGF.js';
+import {CGFappearance} from '../lib/CGF.js';
 import {MyQuad} from './MyQuad.js';
 
-export class MyCubeMap extends CGFobject {
+export class MyCubeMap {
     /**
      * MyCubeMap
      * @constructor
@@ -14,7 +14,7 @@ export class MyCubeMap extends CGFobject {
      * @param  {CGFtexture} textureNY - Texture of -Y side.
      */
     constructor(scene, texturePY = null, texturePZ = null, texturePX = null, textureNZ = null, textureNX = null, textureNY = null) {
-		super(scene);
+		this.scene = scene;
         this.quad = new MyQuad(scene);
         
         this.updateTextures(texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY);
@@ -22,6 +22,7 @@ export class MyCubeMap extends CGFobject {
     }
 
     /**
+     * @method initMaterial
      * Initializes material of the MyCubeMap.
      */
     initMaterial() {
@@ -34,10 +35,11 @@ export class MyCubeMap extends CGFobject {
     }
     
 	/**
+     * @method displayFace
      * Displays a single face of the cube.
-     * @param angle The angle needed to rotate from the +Z face to the side to display.
-     * @param topOrBottom Whether the face is one of top or bottom (otherwise, it's a side face).
-     * @param textureIndex The index of the texture to display (from the `this.textures` array).
+     * @param  {float} angle The angle needed to rotate from the +Z face to the side to display.
+     * @param  {boolean} topOrBottom Whether the face is one of top or bottom (otherwise, it's a side face).
+     * @param  {integer} textureIndex The index of the texture to display (from the `this.textures` array).
      */
     displayFace(angle, topOrBottom, textureIndex) {
         this.scene.pushMatrix();
@@ -71,12 +73,12 @@ export class MyCubeMap extends CGFobject {
     /**
      * @method updateTextures
      * Updates the textures of this MyCubeMap.
-     * @param texturePY - Texture of +Y side.
-     * @param texturePZ - Texture of +Z side.
-     * @param texturePX - Texture of +X side.
-     * @param textureNZ - Texture of -Z side.
-     * @param textureNX - Texture of -X side.
-     * @param textureNY - Texture of -Y side.
+     * @param  {CGFtexture} texturePY - Texture of +Y side.
+     * @param  {CGFtexture} texturePZ - Texture of +Z side.
+     * @param  {CGFtexture} texturePX - Texture of +X side.
+     * @param  {CGFtexture} textureNZ - Texture of -Z side.
+     * @param  {CGFtexture} textureNX - Texture of -X side.
+     * @param  {CGFtexture} textureNY - Texture of -Y side.
      */
     updateTextures(texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY) {
         this.textures = [texturePY, texturePZ, texturePX, textureNZ, textureNX, textureNY];

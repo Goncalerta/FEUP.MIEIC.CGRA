@@ -97,6 +97,7 @@ export class MyPyramid extends CGFobject {
     }
 
     /**
+     * @method updateBuffers
      * Called when user interacts with GUI to change object's complexity.
      * @param {integer} complexity - changes number of slices
      */

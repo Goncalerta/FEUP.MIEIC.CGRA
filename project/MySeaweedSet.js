@@ -1,7 +1,7 @@
-import { CGFobject, CGFshader } from '../lib/CGF.js';
+import { CGFshader } from '../lib/CGF.js';
 import { MySeaweed } from './MySeaweed.js';
 
-export class MySeaweedSet extends CGFobject {
+export class MySeaweedSet {
     /**
      * @method constructor
      * @param  {CGFscene} scene - MyScene object
@@ -16,14 +16,14 @@ export class MySeaweedSet extends CGFobject {
      * @param  {float} maxRadius - Maximum radius of the seaweeds
      * @param  {float} minHeight - Minimum height of the seaweeds
      * @param  {float} maxHeight - Maximum height of the seaweeds
-     * @param  {float} maxDisplacementInGroup - Maximum displacement of a seaweed in a group
-     * @param  {float} ondulationAmplitude - Maximum amplitude of the ondulation
+     * @param  {float} maxDisplacementInGroup - Maximum displacement of a leaf in a single group from that group's center
+     * @param  {float} ondulationAmplitude - Amplitude of the ondulation
      * @param  {float} ondulationCurvature - Curvature of the ondulation 
      * @param  {float} ondulationSpeed - Speed of ondulation
      */
     constructor(scene, numGroups, minGroupSize, maxGroupSize, minX, maxX, minZ, maxZ, minRadius, maxRadius, minHeight, maxHeight, 
                 maxDisplacementInGroup, ondulationAmplitude, ondulationCurvature, ondulationSpeed) {
-        super(scene);
+        this.scene = scene;
 
         this.numGroups = numGroups;
         this.minGroupSize = minGroupSize;
@@ -54,16 +54,16 @@ export class MySeaweedSet extends CGFobject {
         this.ondulationPhase = 0;
 
         this.shader = new CGFshader(this.scene.gl, "shaders/seaweed.vert", "shaders/seaweed.frag");
-        this.shader.setUniformsValues({ heightMap: 1, amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.ondulationPhase});
+        this.shader.setUniformsValues({ amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.ondulationPhase});
     }
 
     /**
      * @method update
-     * Updates phase of ondulation according to its speed and the values passed to the shader based on current time
+     * Updates phase of ondulation according to its speed
      */
     update() {
         this.ondulationPhase += this.ondulationSpeed;
-        this.shader.setUniformsValues({ heightMap: 1, amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.ondulationPhase});
+        this.shader.setUniformsValues({ amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.ondulationPhase});
     }
 
     display() {
@@ -71,6 +71,5 @@ export class MySeaweedSet extends CGFobject {
         for (let group of this.groups) {
             group.display();
         }
-        this.scene.setActiveShader(this.scene.defaultShader);
     }
 }

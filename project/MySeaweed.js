@@ -1,22 +1,21 @@
-import { CGFobject } from '../lib/CGF.js';
 import { CGFappearance } from '../lib/CGF.js';
 import { MyPyramid } from './MyPyramid.js';
 
-export class MySeaweed extends CGFobject {
+export class MySeaweed {
     /**
      * @method constructor
      * @param  {CGFscene} scene - MyScene object
-     * @param  {integer} x - X coordinate of the object's position
-     * @param  {integer} z - Z coordinate of the object's position
-     * @param  {integer} numSeaweed - Number of seaweeds
-     * @param  {float} minRadius - Minimum radius of the object
-     * @param  {float} maxRadius - Maximum radius of the object
-     * @param  {float} minHeight - Minimum height of the object
-     * @param  {float} maxHeight - Maximum height of the object
-     * @param  {float} maxDisplacement - Maximum displacement of the object from the given x and z
+     * @param  {integer} x - X coordinate of the center of the seaweed
+     * @param  {integer} z - Z coordinate of the center of the seaweed
+     * @param  {integer} numSeaweed - Number of leaves
+     * @param  {float} minRadius - Minimum radius of each leaf
+     * @param  {float} maxRadius - Maximum radius of each leaf
+     * @param  {float} minHeight - Minimum height of each leaf
+     * @param  {float} maxHeight - Maximum height of each leaf
+     * @param  {float} maxDisplacement - Maximum displacement of each leaf from the given x and z
      */
     constructor(scene, x, z, numSeaweed, minRadius, maxRadius, minHeight, maxHeight, maxDisplacement) {
-        super(scene);
+        this.scene = scene;
 
         this.numSeaweed = numSeaweed;
         this.minX = x - maxDisplacement;
@@ -52,7 +51,7 @@ export class MySeaweed extends CGFobject {
 
     /**
      * @method initSeaweed
-     * Creates numSeaweed number of seaweeds.
+     * Creates numSeaweed number of seaweed leaves.
      * Generates random positions limited by minimum and maximum of X and Y and dimensions for each seaweed.
      */
     initSeaweed() {

@@ -1,8 +1,6 @@
-import {CGFobject, CGFtexture} from '../lib/CGF.js';
-import {CGFappearance} from '../lib/CGF.js';
 import {MyCylinder} from './MyCylinder.js'
 
- export class MyPillar extends CGFobject {
+ export class MyPillar {
     /**
      * MyPillar
      * @constructor
@@ -14,16 +12,18 @@ import {MyCylinder} from './MyCylinder.js'
      * @param  {integer} cylinderSlices - Number of divisions around the Y axis
      */ 
     constructor(scene, x, z, radius, height, cylinderSlices) {
-        super(scene);
+        this.scene = scene;
 
         this.x = x;
         this.z = z;
         this.radius = radius;
         this.height = height;
-        this.cylinder = new MyCylinder(this.scene, cylinderSlices, height*2);
+        this.cylinder = new MyCylinder(this.scene, cylinderSlices, height);
     }
 
     display() {
+        // The CGF appearance was removed from MyPillar class
+        // so that the texture could be used once for all pillars
         this.scene.pushMatrix();
 
         this.scene.translate(this.x, 0, this.z);

@@ -57,6 +57,7 @@ export class MyCylinder extends CGFobject {
     }
 
     /**
+     * @method updateBuffers
      * Changes object's complexity.
      * @param {integer} complexity - changes number of slices.
      */

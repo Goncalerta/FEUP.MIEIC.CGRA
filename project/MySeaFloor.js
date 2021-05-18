@@ -1,18 +1,18 @@
-import {CGFobject, CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
+import {CGFtexture, CGFshader, CGFappearance} from '../lib/CGF.js';
 import { MyPlane } from './MyPlane.js';
 
-export class MySeaFloor extends CGFobject {
+export class MySeaFloor {
 	/**
   	 * MySeaFloor
 	 * @constructor
  	 * @param  {CGFscene} scene - Reference to MyScene object
 	 * @param  {integer} size - Size of the side of the surface
- 	 * @param  {integer} nDivs - Number of divisions in both directions of the surface
- 	 * @param  {integer} offsetScale - Maximum displacement of the texture in coordinate Y
+ 	 * @param  {integer} nrDivs - Number of divisions in both directions of the surface
+ 	 * @param  {float} offsetScale - Maximum displacement of the texture in coordinate Y
 	 * @param  {float} shadowScale - Scale to control the color of the darker zones of the floor
  	 */	
 	constructor(scene, size, nrDivs, offsetScale, shadowScale) {
-		super(scene);
+		this.scene = scene;
 
 		this.size = size;
         this.floor = new MyPlane(scene, nrDivs);
@@ -42,7 +42,5 @@ export class MySeaFloor extends CGFobject {
         this.scene.rotate(-Math.PI/2, 1, 0, 0);
 		this.floor.display();
 		this.scene.popMatrix();
-
-        this.scene.setActiveShader(this.scene.defaultShader);
     }
 }

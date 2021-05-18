@@ -5,7 +5,6 @@ precision highp float;
 uniform sampler2D uSampler;
 uniform sampler2D distortionMap;
 varying vec2 vTextureCoord;
-varying vec4 pos;
 
 uniform float distortionScale;
 uniform float timeFactor;

@@ -53,18 +53,7 @@ out vec4 vFinalColorHead;
 out vec4 vFinalColorBody;
 out vec2 vTextureCoord;
 
-vec4 lighting(vec4 vertex, vec3 E, vec3 N, bool head) {
-    materialProperties material;
-    if (head) {
-        material = uFrontMaterial;
-    } else {
-       material.ambient = vec4(0.8, 0.8, 0.8, 1.0);
-       material.diffuse = vec4(0.8, 0.8, 0.8, 1.0);
-       material.specular = vec4(0.2, 0.2, 0.2, 1.0);
-       material.emission = vec4(0.0, 0.0, 0.0, 1.0);
-       material.shininess = 5.0;
-    }
-
+vec4 lighting(vec4 vertex, vec3 E, vec3 N, materialProperties material) {
     vec4 result = vec4(0.0, 0.0, 0.0, 0.0);
 
     for (int i = 0; i < NUMBER_OF_LIGHTS; i++) {
@@ -132,13 +121,17 @@ void main() {
     vec3 eyeVec = -vec3(vertex.xyz);
     vec3 E = normalize(eyeVec);
 
-    vFinalColorHead = lighting(vertex, E, N, true);
-    vFinalColorBody = lighting(vertex, E, N, false);
+    materialProperties bodyMaterial;
+    bodyMaterial.ambient = vec4(0.8, 0.8, 0.8, 1.0);
+    bodyMaterial.diffuse = vec4(0.8, 0.8, 0.8, 1.0);
+    bodyMaterial.specular = vec4(0.2, 0.2, 0.2, 1.0);
+    bodyMaterial.emission = vec4(0.0, 0.0, 0.0, 1.0);
+    bodyMaterial.shininess = 5.0;
+    vFinalColorBody = lighting(vertex, E, N, bodyMaterial);
+	vFinalColorHead = lighting(vertex, E, N, uFrontMaterial);
 
 	gl_Position = uPMatrix * vertex;
 
     if (uUseTexture)
         vTextureCoord = aTextureCoord;
-
 }
-

@@ -1,18 +1,17 @@
-import {CGFobject} from '../lib/CGF.js';
 import {CGFappearance} from '../lib/CGF.js';
 import {CGFshader} from '../lib/CGF.js';
 import {CGFtexture} from '../lib/CGF.js';
 import {MySphere} from './MySphere.js';
 import { MyTriangle } from './MyTriangle.js';
 
-export class MyFish extends CGFobject {
+export class MyFish {
     /**
      * MyFish
      * @constructor
      * @param  {CGFscene} scene - Reference to MyScene object 
      */
     constructor(scene) {
-        super(scene);
+        this.scene = scene;
 
         // Body ratio in relation to the fish y axis
         this.xDistortion = 0.6;
@@ -160,7 +159,6 @@ export class MyFish extends CGFobject {
         // Body
         this.scene.setActiveShader(this.bodyShader);
         this.body.display();
-        this.scene.setActiveShader(this.scene.defaultShader);
 
         this.scene.popMatrix();
     }

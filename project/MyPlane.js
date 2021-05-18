@@ -72,5 +72,4 @@ export class MyPlane extends CGFobject {
 	setLineMode() { 
 		this.primitiveType=this.scene.gl.LINES;
 	}
-
 }

@@ -1,22 +1,14 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
+import { CGFscene, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { CGFcamera2 } from "./CFGcamera2.js"
 import { MyCubeMap } from "./MyCubeMap.js";
-import { MyCylinder } from "./MyCylinder.js";
-import { MyMovingObject } from "./MyMovingObject.js";
 import { MyMovingFish } from "./MyMovingFish.js";
-import { MyPyramid } from "./MyPyramid.js";
 import { MySphere } from "./MySphere.js";
-import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyFishNest } from "./MyFishNest.js";
 import { MySeaweedSet } from "./MySeaweedSet.js";
-import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 import { MyWaterSurface } from "./MyWaterSurface.js";
-import { MyRock } from "./MyRock.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyPillar } from "./MyPillar.js";
-import { MySeaweed } from "./MySeaweed.js";
-import { MyPlane } from "./MyPlane.js";
 
 export class MyScene extends CGFscene {
     /**
@@ -51,7 +43,6 @@ export class MyScene extends CGFscene {
 
         // Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.sphere = new MySphere(this, 16, 8);
 
         this.seaFloor = new MySeaFloor(this, 50, 50, 6, 1.25);
         this.waterSurface = new MyWaterSurface(this, 10, 50, 0.3, 0.3);
@@ -105,13 +96,6 @@ export class MyScene extends CGFscene {
         this.defaultAppearance.setEmission(0, 0, 0, 1);
 		this.defaultAppearance.setShininess(1);
 
-		this.sphereAppearance = new CGFappearance(this);
-		this.sphereAppearance.setAmbient(0.3, 0.3, 0.3, 1);
-		this.sphereAppearance.setDiffuse(0.7, 0.7, 0.7, 1);
-		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
-		this.sphereAppearance.setShininess(1);
-        this.sphereAppearance.setTexture(new CGFtexture(this, 'images/earth.jpg'));
-
         // Objects connected to MyInterface
         this.displayAxis = true;
         this.selectedCubeMap = 0;
@@ -157,19 +141,19 @@ export class MyScene extends CGFscene {
     
     /**
      * @method loadCubeMap
-     * Loads certain texture into a vector of textures for the cube map.
-     * @param {Integer} index - Index of the texture to load for the cube map.
-     * @param {String} textureName - Name of the texture.
-     * @param {String} fileExtension - File extension of the texute.
+     * Loads certain set of cubemap textures into a vector.
+     * @param {Integer} index - Index of the cube map to load.
+     * @param {String} cubemapName - Name of the cubemap.
+     * @param {String} fileExtension - File extension of the textures.
      */
-    loadCubeMap(index, textureName, fileExtension) {
+    loadCubeMap(index, cubemapName, fileExtension) {
         this.cubeMapTextures[index] = [
-            new CGFtexture(this, 'images/' + textureName + '/top.' + fileExtension),
-            new CGFtexture(this, 'images/' + textureName + '/back.' + fileExtension),
-            new CGFtexture(this, 'images/' + textureName + '/right.' + fileExtension),
-            new CGFtexture(this, 'images/' + textureName + '/front.' + fileExtension),
-            new CGFtexture(this, 'images/' + textureName + '/left.' + fileExtension),
-            new CGFtexture(this, 'images/' + textureName + '/bottom.' + fileExtension),
+            new CGFtexture(this, 'images/' + cubemapName + '/top.' + fileExtension),
+            new CGFtexture(this, 'images/' + cubemapName + '/back.' + fileExtension),
+            new CGFtexture(this, 'images/' + cubemapName + '/right.' + fileExtension),
+            new CGFtexture(this, 'images/' + cubemapName + '/front.' + fileExtension),
+            new CGFtexture(this, 'images/' + cubemapName + '/left.' + fileExtension),
+            new CGFtexture(this, 'images/' + cubemapName + '/bottom.' + fileExtension),
         ];
         return this.cubeMapTextures[index];
     }
@@ -269,23 +253,23 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         
+        // ---- Objects with shaders
+        this.movingObject.display(); // Must be drawn first as part of it doesn't use shaders
         this.seaFloor.display();
-        this.fishNest.display();
+        this.setActiveShader(this.defaultShader); // TODO try to find why this line is needed
         this.seaweedSet.display();
-
         this.waterSurface.display();
-
+        
+        // ---- Objects without shaders
+        this.setActiveShader(this.defaultShader);
+        
+        this.fishNest.display();
         this.rockSet.display();
 
         this.pillarAppearance.apply();
         for (let pillar of this.pillars) {
             pillar.display();
         }
-
-        this.movingObject.display();
-
-        // this.sphereAppearance.apply();
-        // this.sphere.display();
 
         let CUBE_MAP_LENGTH = 500;
         this.pushMatrix();

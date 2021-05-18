@@ -1,21 +1,20 @@
-import { CGFobject } from '../lib/CGF.js';
 import {CGFappearance} from '../lib/CGF.js';
 import { MyRock } from './MyRock.js';
 
-export class MyRockSet extends CGFobject {
+export class MyRockSet {
     /**
      * @method constructor
      * @param  {CGFscene} scene - MyScene object
      * @param  {integer} numRocks - Number of rocks
-     * @param  {integer} minX - Minimum X coordinate for the rock's position
-     * @param  {integer} maxX - Maximum X coordinate for the rock's position
-     * @param  {integer} minZ - Minimum Z coordinate for the rock's position
-     * @param  {integer} maxZ - Maximum Z coordinate for the rock's position
+     * @param  {float} minX - Minimum X coordinate for the rock's position
+     * @param  {float} maxX - Maximum X coordinate for the rock's position
+     * @param  {float} minZ - Minimum Z coordinate for the rock's position
+     * @param  {float} maxZ - Maximum Z coordinate for the rock's position
      * @param  {integer} sphereSlices - Number of slices around Y axis of the sphere
      * @param  {integer} sphereStacks - Number of stacks along Y axis, from the center to the poles (half of sphere)
      */
     constructor(scene, numRocks, minX, maxX, minZ, maxZ, sphereSlices, sphereStacks) {
-        super(scene);
+        this.scene = scene;
 
         this.numRocks = numRocks;
         this.minX = minX;
@@ -67,7 +66,7 @@ export class MyRockSet extends CGFobject {
 
     /**
      * @method getRockAppearance
-     * Gets rock appearance.
+     * Returns the rock appearance.
      */
     getRockAppearance() {
         return this.rockAppearance;
@@ -75,7 +74,7 @@ export class MyRockSet extends CGFobject {
 
     /**
      * @method getNumRocks
-     * Gets the number of rocks of the set.
+     * Returns the number of rocks of the set.
      */
     getNumRocks() {
         return this.numRocks;
@@ -96,7 +95,7 @@ export class MyRockSet extends CGFobject {
     }
 
     /**
-     * @method removeRock
+     * @method addRock
      * Adds rock to the set and its properties (position, angle and dimensions).
      * Updates the number of rocks in the set.
      * @param {MyRock} rock - Rock to add to the set.

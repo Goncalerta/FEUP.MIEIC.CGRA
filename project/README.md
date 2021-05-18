@@ -2,6 +2,13 @@
 
 ## Group T07G03
 
+| Name             | Number    | E-Mail               |
+| ---------------- | --------- | -------------------- |
+| Pedro Correia    | 201905348 | up201905348@fe.up.pt |
+| Catarina Pires   | 201907925 | up201907925@fe.up.pt |
+
+----
+
 ## Project Notes
 
 ### Part A
@@ -23,7 +30,7 @@
 
 - In this part we created a new class MyCylinder with the properties specified in the instructions (radius and height with value 1; the base of the cylinder is in the plane XZ and centered at the origin).
 - We also added texture coordinates and used the file images/earth.jpg to debug the object.
-
+a
 #### 2.3. MySphere
 
 - In this part we experimented displaying the sphere in the scene and studied its source code in order to understand how it was created. We concluded that each stack is created with all its slices before going to the next stack.

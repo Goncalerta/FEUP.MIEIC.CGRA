@@ -1,6 +1,6 @@
 import {CGFobject} from '../lib/CGF.js';
 
-export class MyMovingObject extends CGFobject {
+export class MyMovingObject {
     /**
      * MyMovingObject
      * @constructor
@@ -9,7 +9,7 @@ export class MyMovingObject extends CGFobject {
      * @param  {float} scaleFactor - Scale factor of the object
      */
     constructor(scene, object, scaleFactor = 1) {
-        super(scene);
+        this.scene = scene;
         this.position = [0, 0, 0];
         this.speed = 0;
         this.orientation = 0;

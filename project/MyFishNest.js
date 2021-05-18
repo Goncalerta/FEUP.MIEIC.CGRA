@@ -1,6 +1,6 @@
-import {CGFobject, CGFappearance} from '../lib/CGF.js';
+import {CGFappearance} from '../lib/CGF.js';
 
-export class MyFishNest extends CGFobject {
+export class MyFishNest {
     /**
      * MyFishNest
      * @constructor
@@ -12,7 +12,7 @@ export class MyFishNest extends CGFobject {
      * @param  {CGFappearance} rockAppearance - Appearance of the rocks
      */
 	constructor(scene, x, z, radius, numRocks, rockAppearance) {
-		super(scene);
+		this.scene = scene;
 
         this.x = x;
         this.z = z;

@@ -49,7 +49,7 @@ export class MyRock extends CGFobject {
                 // at each vertex, the direction of the normal is equal to 
                 // the vector from the center of the sphere to the vertex.
                 // this means that changing the vertices in the direction of
-                // the norm corresponds to scaling them
+                // the norm is the same as scaling them
                 let scale;
                 if (longitude == 0 || longitude == this.longDivs) {
                     scale = longitude_0_scale;
@@ -81,7 +81,7 @@ export class MyRock extends CGFobject {
                 // at each vertex, the direction of the normal is equal to 
                 // the vector from the center of the sphere to the vertex.
                 // in a sphere of radius equal to one, the vector length is one.
-                // therefore, the value of the normal is equal to the position vectro
+                // therefore, the value of the normal is equal to the position vector
                 this.normals.push(x, y, z);
                 theta += thetaInc;
             }
@@ -90,6 +90,5 @@ export class MyRock extends CGFobject {
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
-        
     }
 }

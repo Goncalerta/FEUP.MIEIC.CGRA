@@ -12,7 +12,6 @@ void main() {
     vec4 color = texture2D(uSampler, vTextureCoord);
     float offset = shadowScale * (0.5 - texture2D(heightMap, vTextureCoord).b);
 
-
     if (offset < 0.0)
        offset = 0.0;
 

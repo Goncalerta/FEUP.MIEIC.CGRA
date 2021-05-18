@@ -1,10 +1,9 @@
-import {CGFobject} from '../lib/CGF.js';
 import {CGFappearance} from '../lib/CGF.js';
 import {CGFshader} from '../lib/CGF.js';
 import {CGFtexture} from '../lib/CGF.js';
 import { MyQuad } from './MyQuad.js';
 
-export class MyWaterSurface extends CGFobject {
+export class MyWaterSurface {
     /**
      * MyWaterSurface
      * @constructor
@@ -15,7 +14,7 @@ export class MyWaterSurface extends CGFobject {
      * @param  {float} waterSpeed - Speed of the water movement
      */
     constructor(scene, y, size, distortion, waterSpeed) {
-        super(scene);
+        this.scene = scene;
 
         this.y = y;
         this.size = size;
@@ -39,8 +38,8 @@ export class MyWaterSurface extends CGFobject {
 
     /**
      * @method updateAnimation
-     * Updates the values passed to the shader based on current time
-     * @param {Number} - Current time in milliseconds
+     * Updates the timeFactor passed to the shader based on current time
+     * @param {Number} t - Current time in milliseconds
      */
     updateAnimation(t) {
         this.shader.setUniformsValues({ distortionMap: 1, distortionScale: this.distortionScale, timeFactor: t / 10000 * this.waterSpeed % 1 });
@@ -58,8 +57,6 @@ export class MyWaterSurface extends CGFobject {
         
         this.appearance.apply();
         this.surface.display(this.scene);
-        
-        this.scene.setActiveShader(this.scene.defaultShader);
         
         this.scene.popMatrix();
     }

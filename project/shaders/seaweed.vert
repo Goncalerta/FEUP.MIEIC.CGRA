@@ -126,4 +126,3 @@ void main() {
 
 	gl_Position = uPMatrix * vertex;
 }
-
