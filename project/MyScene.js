@@ -2,7 +2,6 @@ import { CGFscene, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { CGFcamera2 } from "./CFGcamera2.js"
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyMovingFish } from "./MyMovingFish.js";
-import { MySphere } from "./MySphere.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyFishNest } from "./MyFishNest.js";
 import { MySeaweedSet } from "./MySeaweedSet.js";
