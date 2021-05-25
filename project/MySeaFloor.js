@@ -17,8 +17,8 @@ export class MySeaFloor {
 		this.size = size;
         this.floor = new MyPlane(scene, nrDivs);
 
-        this.texture = new CGFtexture(this.scene, "images/sand_with_shell.png");
-		this.sandmap = new CGFtexture(this.scene, "images/sandMap_with_shell.png");
+        this.texture = new CGFtexture(this.scene, "images/sand.png");
+		this.sandmap = new CGFtexture(this.scene, "images/sandMap.png");
 
         this.appearance = new CGFappearance(this.scene);
 		this.appearance.setAmbient(0.3, 0.3, 0.3, 1);

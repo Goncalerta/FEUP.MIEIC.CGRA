@@ -256,11 +256,11 @@ export class MyScene extends CGFscene {
         // ---- Objects with shaders
         this.movingObject.display(); // Must be drawn first as part of it doesn't use shaders
         this.seaFloor.display();
-        this.setActiveShader(this.defaultShader); // TODO try to find why this line is needed
+        this.setActiveShader(this.defaultShader);
         this.seaweedSet.display();
         this.waterSurface.display();
         
-        // ---- Objects without shaders
+        // // ---- Objects without shaders
         this.setActiveShader(this.defaultShader);
         
         this.fishNest.display();

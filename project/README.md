@@ -2,14 +2,21 @@
 
 ## Group T07G03
 
-| Name             | Number    | E-Mail               |
-| ---------------- | --------- | -------------------- |
-| Pedro Correia    | 201905348 | up201905348@fe.up.pt |
-| Catarina Pires   | 201907925 | up201907925@fe.up.pt |
+| Name             | Number    | E-Mail                   |
+| ---------------- | --------- | ------------------------ |
+| Pedro Correia    | 201905348 | up201905348@edu.fe.up.pt |
+| Catarina Pires   | 201907925 | up201907925@edu.fe.up.pt |
 
 ----
 
 ## Project Notes
+
+### Online version
+
+The online version of the project may be viewed in any of the following two links:
+
+- [paginas.fe.up.pt server](https://paginas.fe.up.pt/~up201905348/cgra/project)
+- [Github Pages server](https://goncalerta.github.io/cgra/project/)
 
 ### Part A
 
@@ -30,7 +37,7 @@
 
 - In this part we created a new class MyCylinder with the properties specified in the instructions (radius and height with value 1; the base of the cylinder is in the plane XZ and centered at the origin).
 - We also added texture coordinates and used the file images/earth.jpg to debug the object.
-a
+
 #### 2.3. MySphere
 
 - In this part we experimented displaying the sphere in the scene and studied its source code in order to understand how it was created. We concluded that each stack is created with all its slices before going to the next stack.
@@ -54,8 +61,8 @@ a
 
 - In this part, we based the sea_floor shader we created in the 'texture3' shader from TP5. To represent the sea floor, we created a plane with textures and the sea_floor shader, using an image with the actual texture to display ('sand.png') and an image with the height map to create a sensation of ondulation ('sandMap.png'). The height map was also used to create shades on the parts where the sand is lower.
 - We decided to use 50x50 divisions in the plane instead of the 20x20 suggested in the instructions, so that the height differences weren't so sharp. We pass uniform values to the shader (the offsetScale to scale the height of the sand, and the shadowScale to control its shade) so that they are easier to tweak. We chose the offsetScale carefuly so that it would not surpass the plane Y=1. However, because reaching Y=1 would reach heights that are too big, we decided to have a lower maximum height, which is closer to Y=0.5.
-- To create the fish nest, we added an image of a shell ('shell.png') to the image of the colors ('sand.png'), keeping in mind not to surpass maximum radius asked of 5 units. We created a class MyFishNest to represent the position and radius of the nest programatically, which will be useful in section 6 even though it doesn't draw anything right now.
-- For the ondulation of the floor to match the existence of the shell, we also added, in the same position, a darker zone to the height map (sandMap_with_shell.png) so as to create a hole.
+- To create the fish nest, we added an image of a shell to the image of the sand, keeping in mind not to surpass maximum radius asked of 5 units. We created a class MyFishNest to represent the position and radius of the nest programatically, which will be useful in section 6 even though it doesn't draw anything right now.
+- For the ondulation of the floor to match the existence of the shell, we also added, in the same position, a darker zone to the height map so as to create a hole.
 
 #### 5.2 Water surface
 
@@ -175,7 +182,6 @@ For the total of 0.5 + 1.5 + 1 = 3 marks as instructed.
 ![Screenshot 7d](screenshots/proj-t7g03-7d.png)
 ![Screenshot 7e](screenshots/proj-t7g03-7e.png)
 ![Screenshot 7f](screenshots/proj-t7g03-7f.png)
-
 
 ### 8 - Additional functionalities
 
