@@ -37,9 +37,9 @@ export class MyCubeMap {
 	/**
      * @method displayFace
      * Displays a single face of the cube.
-     * @param  {float} angle The angle needed to rotate from the +Z face to the side to display.
-     * @param  {boolean} topOrBottom Whether the face is one of top or bottom (otherwise, it's a side face).
-     * @param  {integer} textureIndex The index of the texture to display (from the `this.textures` array).
+     * @param  {float} angle - The angle needed to rotate from the +Z face to the side to display.
+     * @param  {boolean} topOrBottom - Whether the face is one of top or bottom (otherwise, it's a side face).
+     * @param  {integer} textureIndex - The index of the texture to display (from the `this.textures` array).
      */
     displayFace(angle, topOrBottom, textureIndex) {
         this.scene.pushMatrix();
