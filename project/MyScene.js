@@ -253,7 +253,7 @@ export class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         
         // ---- Objects with shaders
-        this.movingObject.display(); // Must be drawn first as part of it doesn't use shaders
+        this.movingObject.display(); // Must be drawn first because part of it doesn't use shaders
         this.seaFloor.display();
         this.setActiveShader(this.defaultShader);
         this.seaweedSet.display();

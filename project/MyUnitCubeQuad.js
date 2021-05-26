@@ -42,6 +42,10 @@ export class MyUnitCubeQuad {
         this.scene.popMatrix();
     }
 	
+    /**
+     * @method display
+     * Displays MyUnitCubeQuad.
+     */
 	display() {
         this.displayFace(-Math.PI/2, true, 0);
 

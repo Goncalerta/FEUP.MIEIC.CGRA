@@ -74,6 +74,10 @@ export class MySeaweed {
         }
     }
 
+    /**
+     * @method display
+     * Displays MySeaweed.
+     */
     display() {
         for (let i = 0; i < this.numSeaweed; i++) {
             this.seaweedAppearances[i].apply();

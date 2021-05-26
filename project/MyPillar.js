@@ -21,6 +21,10 @@ import {MyCylinder} from './MyCylinder.js'
         this.cylinder = new MyCylinder(this.scene, cylinderSlices, height);
     }
 
+    /**
+     * @method display
+     * Displays MyPillar.
+     */
     display() {
         // The CGF appearance was removed from MyPillar class
         // so that the texture could be used once for all pillars

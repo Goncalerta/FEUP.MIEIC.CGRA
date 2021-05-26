@@ -111,6 +111,10 @@ export class MyRockSet {
         this.numRocks += 1;
     }
 
+    /**
+     * @method display
+     * Displays MyRockSet.
+     */
     display() {
         this.rockAppearance.apply();
         for (let i = 0; i < this.numRocks; i++) {

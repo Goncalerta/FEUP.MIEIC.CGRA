@@ -122,6 +122,10 @@ export class MyFish {
         this.t = t;
     }
 
+    /**
+     * @method display
+     * Displays MyFish.
+     */
     display() {
         this.scene.pushMatrix();
         let fishscale = 0.5/(2*this.zDistortion);

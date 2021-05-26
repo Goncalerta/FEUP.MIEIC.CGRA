@@ -130,6 +130,10 @@ export class MyMovingFish extends MyMovingObject {
         }
     }
 
+    /**
+     * @method display
+     * Displays MyMovingFish.
+     */
     display() {
         // Display the moving object
         super.display();

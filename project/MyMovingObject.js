@@ -60,6 +60,10 @@ export class MyMovingObject {
         this.orientation = 0;
     }
 
+    /**
+     * @method display
+     * Displays MyMovingObject.
+     */
     display() {
         this.scene.pushMatrix();
         this.scene.translate(...this.position);

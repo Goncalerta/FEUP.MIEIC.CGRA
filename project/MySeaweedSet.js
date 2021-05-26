@@ -66,6 +66,10 @@ export class MySeaweedSet {
         this.shader.setUniformsValues({ amplitude: this.ondulationAmplitude, curvature: this.ondulationCurvature, phase: this.ondulationPhase});
     }
 
+    /**
+     * @method display
+     * Displays MySeaweedSet.
+     */
     display() {
         this.scene.setActiveShader(this.shader);
         for (let group of this.groups) {

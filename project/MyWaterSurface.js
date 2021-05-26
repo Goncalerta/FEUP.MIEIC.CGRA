@@ -45,6 +45,10 @@ export class MyWaterSurface {
         this.shader.setUniformsValues({ distortionMap: 1, distortionScale: this.distortionScale, timeFactor: t / 10000 * this.waterSpeed % 1 });
     }
 
+    /**
+     * @method display
+     * Displays MyWaterSurface.
+     */
     display() {
         this.scene.pushMatrix();
 

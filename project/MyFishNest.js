@@ -70,6 +70,10 @@ export class MyFishNest {
         this.rockDimensions.push(...rockDimensions);
     }
 
+    /**
+     * @method display
+     * Displays MyFishNest.
+     */
     display() {
         this.rockAppearance.apply();
         this.scene.pushMatrix();

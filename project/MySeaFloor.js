@@ -32,6 +32,10 @@ export class MySeaFloor {
 		this.shader.setUniformsValues({ heightMap: 1, offsetScale: offsetScale, shadowScale: shadowScale});
 	}
 
+    /**
+     * @method display
+     * Displays MySeaFloor.
+     */
     display() {
         this.appearance.apply();
         this.scene.setActiveShader(this.shader);

@@ -28,7 +28,7 @@ The online version of the project may be viewed in any of the following two link
 #### 2.1. MyCubeMap
 
 - In this part, we adapted the code from MyUnitCubeQuad (TP4) to produce a new class, MyCubeMap, as specified in the instructions.
-- However, as we noticed the code from the original MyUnitCubeQuad could be vastly improved, we decided to improve that class and then adapt it into the MyCubeMap. Both classes are present in the project folder. We decided to add MyUnitCubeQuad to the project folder to show the improvements.
+- However, as we noticed the code from the original MyUnitCubeQuad could be vastly improved, we decided to improve that class and then adapt it into the MyCubeMap. Both classes are present in the project folder. We decided to add MyUnitCubeQuad to the project folder to show the improvements made, even though this class is ultimately not used in MyScene.
 - The main differences between a MyCubeMap and a MyUnitCubeQuad is the material (MyCubeMap has the properties specified in the instructions of the project), the size (MyCubeMap has a scale factor of 500) and the faces of MyCubeMap pointing inwards (implemented as a 180 degrees rotation around the X or Y axis, depending on the face).
 - We used a scale factor of 500 for MyCubeMap, instead of the instructed 50, so that objects weren't clipped outside the cube in certain perspectives.
 - We improved the code of MyUnitCubeQuad.js from the TP4 (the improved version can be seen in the file MyUnitCubeQuad.js of the project folder) before using the code to create MyCubeMap.js.
@@ -129,6 +129,12 @@ For the total of 0.5 + 1.5 + 1 = 3 marks as instructed.
 
 - The fish shader created in section 4 does not react to light, giving the fish an artificial aspect. The objective of this item was to improve the fish's shader, modifying it so that the fish's body and head would react to the light. As instructed, we used the shader in "lib/CGF/shaders/Gouraud/textured" as a starting point, adding the modifications of section 4.
 - The distortion of the sphere was added to the vertex variable in line 127 of the vertex shader. The fragment shader then uses the texture with the body color if z < 0.2, or the solid head color otherwise. This means that the vertex shader calculates both colors and passes them to the fragment shader. The head color is calculated from the fish appearence already used in the fins and tail. The body color is calculated from a white material defined in the shader, in order to keep the colors of the texture.
+
+#### Code cleanup
+
+- After finishing all features, we dedicated the last two weeks of the project to clean the code, add documentation, improve efficiency and remove unused textures.
+- We decided to keep the transformations made to MyPyramid in its display function. This transformations were added in '1. Moving Object' so that the pyramid would conform to the MyMovingObject requirements (starting facing the positive z direction). These transformations were applied to the pyramid itself rather than MyMovingObject because different objects passed to MyMovingObject (such as MyFish) would need different transformations to be facing the positive Z direction.
+- We reduced the number of calls to setActiveShader() in order to improve efficiency. However we kept a call to set the default shader between displaying the MySeaFloor (which uses its shader) and the MySeaweedSet (which uses its shader). Even though this call is not necessary in some computers (and nothing is drawn between setting the default shader and setting the seaweed shader), in other computers it is needed for the correct display of the seaweed colors.
 
 ## Screenshots
 

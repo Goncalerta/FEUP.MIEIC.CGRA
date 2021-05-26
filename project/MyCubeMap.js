@@ -60,6 +60,10 @@ export class MyCubeMap {
         this.scene.popMatrix();
     }
 	
+    /**
+     * @method display
+     * Displays MyCubeMap.
+     */
 	display() {
         this.displayFace(-Math.PI/2, true, 0);
 
